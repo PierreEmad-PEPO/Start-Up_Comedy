@@ -7,9 +7,21 @@ public class Timer : MonoBehaviour
 {
     private float totalTime;
     private float elapsedTime = 0f;
-    private UnityEvent unityEvent;
+    private bool once = true;
+    private VoidEventInvoker onTimeFinishEvent;
+    private UnityAction toDoFunction;
     
     public float Duration { get { return totalTime; } set { totalTime = value; } }
+    public UnityAction ToDoFunction 
+    { 
+        get { return toDoFunction; } 
+        set 
+        {
+            onTimeFinishEvent.RemoveListener(toDoFunction);
+            toDoFunction = value; 
+            onTimeFinishEvent.AddListener(toDoFunction);
+        } 
+    }
     public bool IsDone { get { return (elapsedTime >= totalTime); } }
 
 
@@ -17,13 +29,20 @@ public class Timer : MonoBehaviour
     {
         this.totalTime = totalTime;
         this.elapsedTime = 0f;
-        this.unityEvent = new UnityEvent();
-        this.unityEvent.AddListener(ToDoFunction);
+        this.toDoFunction = ToDoFunction;
+
+        onTimeFinishEvent = gameObject.AddComponent<VoidEventInvoker>();
+        onTimeFinishEvent.AddListener(toDoFunction);
+    }
+
+    private void Start()
+    {
     }
 
     public void Run()
     {
         elapsedTime = 0f;
+        once = true;
     }
 
     // Update is called once per frame
@@ -33,9 +52,10 @@ public class Timer : MonoBehaviour
         {
             elapsedTime += Time.deltaTime;
         }
-        else
+        else if (once)
         {
-            unityEvent.Invoke();
+            once = false;
+            onTimeFinishEvent.Invoke();
         }
     }
 }

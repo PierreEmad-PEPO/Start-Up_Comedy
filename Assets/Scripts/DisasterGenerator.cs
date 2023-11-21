@@ -6,23 +6,20 @@ using UnityEngine.Events;
 public class DisasterGenerator : MonoBehaviour
 {
     private Timer timer;
-    private float delayTime;
-    private UnityAction disaster;
     private List<UnityAction> disastersList = new List<UnityAction>();
 
 
-    private UnityAction RandomDisaster()
+    private void UpdateRandomDisaster()
     {
-        delayTime = RandomGenerator.NextFloat(1f, 10f);
+        timer.Duration = RandomGenerator.NextFloat(1f, 10f);
 
         int idx = RandomGenerator.NextInt(0, disastersList.Count);
-        return disastersList[idx];
+        timer.ToDoFunction = disastersList[idx];
     }
 
-    void RunTimer()
+    private void SetNewDisaster()
     {
-        disaster = RandomDisaster();
-        timer.Init(delayTime, disaster);
+        UpdateRandomDisaster();
         timer.Run();
     }
 
@@ -34,8 +31,11 @@ public class DisasterGenerator : MonoBehaviour
         disastersList.Add(CyberAttack);
         disastersList.Add(EmployeeIssue);
 
+
         timer = gameObject.AddComponent<Timer>();
-        RunTimer();
+        // sending dummy data
+        timer.Init(timer.Duration, disastersList[0]);
+        SetNewDisaster();
     }
 
 
@@ -43,27 +43,27 @@ public class DisasterGenerator : MonoBehaviour
     {
         Debug.Log("FIRE !!!!!");
 
-        RunTimer();
+        SetNewDisaster();
     }
 
     void EmployeeDeath()
     {
         Debug.Log("Employee Death");
 
-        RunTimer();
+        SetNewDisaster();
     }
 
     void CyberAttack()
     {
         Debug.Log("Cyber Attack");
 
-        RunTimer();
+        SetNewDisaster();
     }
 
     void EmployeeIssue()
     {
         Debug.Log("Employee Issue");
 
-        RunTimer();
+        SetNewDisaster();
     }
 }

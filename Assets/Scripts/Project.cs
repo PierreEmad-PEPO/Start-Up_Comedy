@@ -16,8 +16,8 @@ public class Project : MonoBehaviour
     private float requiredDesignSkills;
     private float totalAssignedTechnicalSkills;
     private float totalAssignedDesignSkills;
-    private UnityEvent<int> OnProjectDone;
-    private UnityEvent<int> OnDeadlineEnd;
+    private IntEventInvoker OnProjectDone;
+    private IntEventInvoker OnDeadlineEnd;
     #endregion
 
     #region Props
@@ -45,6 +45,16 @@ public class Project : MonoBehaviour
         this.totalAssignedDesignSkills = 0f;
     }
 
+    private void Start()
+    {
+        // Assign Events
+        OnProjectDone = gameObject.AddComponent<IntEventInvoker>();
+        EventManager.AddIntEventInvoker(EventEnum.OnProjectDone, OnProjectDone);
+
+        OnDeadlineEnd = gameObject.AddComponent<IntEventInvoker>();
+        EventManager.AddIntEventInvoker(EventEnum.OnDeadlineEnd, OnDeadlineEnd);
+    }
+
     public void AssignEmployee(int technicalSkills, int  designSkills)
     {
         totalAssignedTechnicalSkills += technicalSkills;
@@ -55,11 +65,6 @@ public class Project : MonoBehaviour
     {
         totalAssignedTechnicalSkills -= technicalSkills;
         totalAssignedDesignSkills -= designSkills;
-    }
-
-    private void Start()
-    {
-        // Assign Events
     }
 
     // Update is called once per frame

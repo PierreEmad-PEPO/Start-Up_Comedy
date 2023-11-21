@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Employee 
+public class Employee : MonoBehaviour
 {
     #region Feilds
 
-    protected string name;
+    protected new string name;
     protected EmployeeSpecialization specialization;
     protected int salary;
     protected int minSalary;
@@ -26,7 +26,7 @@ public class Employee
 
     #region Constructor
 
-    public Employee(string name, EmployeeSpecialization specialization, int minSalary)
+    public void Init(string name, EmployeeSpecialization specialization, int minSalary)
     {
         this.name = name;
         this.specialization = specialization;

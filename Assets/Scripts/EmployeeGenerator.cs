@@ -2,25 +2,26 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EmployeeGenerator : MonoBehaviour
 {
     #region Fields
-    List<Employee> employees = new List<Employee>();
-    string[] employeesNames = { "Boda", "PepoElMfsh5WeElTa3ban", "Q7tany", "Martin", "AlmrkanyElHwyan"};
+    private List<GameObject> employees = new List<GameObject>();
+    private string[] employeesNames = { "Boda", "PepoElMfsh5WeElTa3ban", "Q7tany", "Martin", "AlmrkanyElHwyan"};
 
-    Timer timer ;
-    float timerDuration = 2f;    // For Now
+    private Timer timer;
+    private const float timerDuration = 2f;    // For Now
 
-    EmployeeSpecialization specialization = EmployeeSpecialization.Game;    // Fore Now
-    int hrSkill;
+    private EmployeeSpecialization specialization = EmployeeSpecialization.Game;    // Fore Now
+    private int hrSkill;
 
-    int maxSkillFactor = 5;     // For Now
-    int minSkillFactor = 3;     // For Now
-    int maxMinSalaryFactor = 5; // For Now
-    int minMinSalaryFactor = 3; // For Now
+    private int maxSkillFactor = 5;     // For Now
+    private int minSkillFactor = 3;     // For Now
+    private int maxMinSalaryFactor = 5; // For Now
+    private int minMinSalaryFactor = 3; // For Now
 
-
+    private GameObjectEventInvoker onEmployeeGenerated;
     #endregion
 
     #region Unity Methods
@@ -29,7 +30,9 @@ public class EmployeeGenerator : MonoBehaviour
     {
         timer = gameObject.AddComponent<Timer>();
         timer.Init(timerDuration, GenerateEmployee);
-        timer.Run();
+
+        onEmployeeGenerated = gameObject.AddComponent<GameObjectEventInvoker>();
+        EventManager.AddGameObjectEventInvoker(EventEnum.OnEmployeeGenerated, onEmployeeGenerated);        
     }
 
     #endregion
@@ -37,9 +40,9 @@ public class EmployeeGenerator : MonoBehaviour
     #region Public Methods
     public void StartGeneration(EmployeeSpecialization _specialization, int _hrSkill)
     {
+        gameObject.SetActive(true);
         specialization = _specialization;
         hrSkill = _hrSkill; // from game manager;
-        gameObject.SetActive(true);
         timer.Run();
     }
 
@@ -56,9 +59,10 @@ public class EmployeeGenerator : MonoBehaviour
 
         // Add Skill;
 
-        Employee employee = new Employee(employeeName, specialization, employeeMinSalary);
+        GameObject employee = new GameObject(employeeName);
+        employee.AddComponent<Employee>().Init(employeeName, specialization, employeeMinSalary);
         employees.Add(employee);
-        Debug.Log(employee.Name);
+        Debug.Log(employee);
         timer.Run();
         /*switch (specialization)
         {
@@ -70,6 +74,7 @@ public class EmployeeGenerator : MonoBehaviour
             case EmployeeSpecialization.HR: GenerateHrEmployee();break; 
         }*/
 
+        onEmployeeGenerated.Invoke(employee);
     }
 
     public void GenerateGameEmployee() { }
@@ -78,6 +83,10 @@ public class EmployeeGenerator : MonoBehaviour
     public void GenerateHrEmployee() { }
     public void GenerateMarketingEmployee() { }
     public void GenerateDataAnalysisEmployee() { }
+    public void AddOnEmployeeGeneratedListener(UnityAction<GameObject> unityAction)
+    {
+        onEmployeeGenerated.AddListener(unityAction);
+    }
     #endregion
 
 
