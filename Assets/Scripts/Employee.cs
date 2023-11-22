@@ -15,7 +15,7 @@ public class Employee : MonoBehaviour
 
     #endregion
 
-    #region Prop
+    #region Props
 
     public string Name { get { return name; } }
     public EmployeeSpecialization Specialization { get { return specialization; } }
@@ -24,17 +24,14 @@ public class Employee : MonoBehaviour
 
     #endregion
 
-    #region Constructor
-
+    #region public Methods
     public void Init(string name, EmployeeSpecialization specialization, int minSalary)
     {
         this.name = name;
         this.specialization = specialization;
         this.minSalary = minSalary;
     }
-    #endregion
 
-    #region public Methods
     virtual public void UpgradeSkills(int increasePercentage) { }
     #endregion
 }

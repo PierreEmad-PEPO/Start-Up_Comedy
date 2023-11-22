@@ -4,12 +4,11 @@ using UnityEngine;
 
 public enum EmployeeSpecialization
 {
-    Game,
-    Mobile,
+    // ORDER MUST BE LIKE PROJECT SPECIALIZATION ENUM !!!!!!
+    Games,
     Web,
+    Mobile,
     Marketing,
     DataAnalysis,
     HR,
-    
-
 }
