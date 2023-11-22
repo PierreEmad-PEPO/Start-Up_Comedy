@@ -13,7 +13,7 @@ public class EmployeeGenerator : MonoBehaviour
     private Timer timer;
     private const float timerDuration = 2f;    // For Now
 
-    private EmployeeSpecialization specialization = EmployeeSpecialization.Game;    // Fore Now
+    private EmployeeSpecialization specialization = EmployeeSpecialization.Games;    // Fore Now
     private int hrSkill;
 
     private int maxSkillFactor = 5;     // For Now
