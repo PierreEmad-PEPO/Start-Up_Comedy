@@ -21,6 +21,11 @@ public class EmployeeGenerator : MonoBehaviour
     private int maxMinSalaryFactor = 5; // For Now
     private int minMinSalaryFactor = 3; // For Now
 
+    private float maxTechnicaSkillFactor = 3; // For Now
+    private float maxDesignSkillFactor = 3;   // For Now
+    private float maxMarktingSkillFactor = 3; // For Now
+    private float maxHrSkillFacotor = 3;
+
     private GameObjectEventInvoker onEmployeeGenerated;
     #endregion
 
@@ -60,29 +65,43 @@ public class EmployeeGenerator : MonoBehaviour
         // Add Skill;
 
         GameObject employee = new GameObject(employeeName);
-        employee.AddComponent<Employee>().Init(employeeName, specialization, employeeMinSalary);
-        employees.Add(employee);
-        Debug.Log(employee);
-        timer.Run();
-        /*switch (specialization)
-        {
-            case EmployeeSpecialization.Game: GenerateGameEmployee();break;
-            case EmployeeSpecialization.Mobile: GenerateMobileEmployee(); break;
-            case EmployeeSpecialization.Web: GenerateWebEmployee();break;
-            case EmployeeSpecialization.Marketing: GenerateMarketingEmployee();break;
-            case EmployeeSpecialization.DataAnalysis: GenerateDataAnalysisEmployee();break;
-            case EmployeeSpecialization.HR: GenerateHrEmployee();break; 
-        }*/
 
+
+        switch (specialization)
+        {
+            case EmployeeSpecialization.Games:
+                int technicalGamesSkills = (int)(hrSkill * RandomGenerator.NextFloat(.5f, maxTechnicaSkillFactor));
+                int designGamesSkills = (int)(hrSkill * RandomGenerator.NextFloat(.5f, maxDesignSkillFactor));
+                employee.AddComponent<ProjectEmployee>().Init(employeeName, ProjectSpecialization.Games, employeeMinSalary, technicalGamesSkills, designGamesSkills);
+                break;
+            case EmployeeSpecialization.Mobile:
+                int technicalMobileSkills = (int)(hrSkill * RandomGenerator.NextFloat(.5f, maxTechnicaSkillFactor));
+                int designMobileSkills = (int)(hrSkill * RandomGenerator.NextFloat(.5f, maxDesignSkillFactor));
+                employee.AddComponent<ProjectEmployee>().Init(employeeName, ProjectSpecialization.Mobile, employeeMinSalary, technicalMobileSkills, designMobileSkills);
+                break;
+            case EmployeeSpecialization.Web:
+                int technicalWebSkills = (int)(hrSkill * RandomGenerator.NextFloat(.5f, maxTechnicaSkillFactor));
+                int designWebSkills = (int)(hrSkill * RandomGenerator.NextFloat(.5f, maxDesignSkillFactor));
+                employee.AddComponent<ProjectEmployee>().Init(employeeName, ProjectSpecialization.Web, employeeMinSalary, technicalWebSkills, designWebSkills);
+                break;
+            case EmployeeSpecialization.Marketing:
+                int marketingSkills = (int)(hrSkill * RandomGenerator.NextFloat(.5f, maxMarktingSkillFactor));
+                employee.AddComponent<MarketingEmployee>().Init(employeeName, employeeMinSalary ,marketingSkills );
+                break;
+            case EmployeeSpecialization.DataAnalysis:
+                employee.AddComponent<DataAnalysisEmployee>().Init(employeeName, EmployeeSpecialization.DataAnalysis ,employeeMinSalary);
+                break;
+            case EmployeeSpecialization.HR:
+                int hrSkills = (int)(hrSkill * RandomGenerator.NextFloat(.5f,maxHrSkillFacotor));
+                employee.AddComponent<HrEmployee>().Init(employeeName, employeeMinSalary, hrSkills);
+                break;
+        }
+
+        employees.Add(employee);
+        timer.Run();
         onEmployeeGenerated.Invoke(employee);
     }
 
-    public void GenerateGameEmployee() { }
-    public void GenerateMobileEmployee() { }
-    public void GenerateWebEmployee() { }
-    public void GenerateHrEmployee() { }
-    public void GenerateMarketingEmployee() { }
-    public void GenerateDataAnalysisEmployee() { }
     public void AddOnEmployeeGeneratedListener(UnityAction<GameObject> unityAction)
     {
         onEmployeeGenerated.AddListener(unityAction);

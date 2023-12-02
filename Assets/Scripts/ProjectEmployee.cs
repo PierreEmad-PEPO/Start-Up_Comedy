@@ -9,7 +9,7 @@ public class ProjectEmployee : Employee
     private int designSkills;
     private Project assignedProject;
 
-    public void Init(string name, int minSalary, ProjectSpecialization _specialization, int _technicalSkills, int _designSkills)
+    public void Init(string name, ProjectSpecialization _specialization, int minSalary, int _technicalSkills, int _designSkills)
     {
         base.Init(name, (EmployeeSpecialization)((int)_specialization), minSalary);
         technicalSkills = _technicalSkills;
