@@ -19,6 +19,9 @@ public static class EventManager
             gameObjectEventInvokers.Add((EventEnum)i, new List<GameObjectEventInvoker>());
             gameObjectEventListeners.Add((EventEnum)i, new List<UnityAction<GameObject>>());
 
+            employeeEventInvokers.Add((EventEnum)i, new List<EmployeeEventInvoker>());
+            employeeEventListeners.Add((EventEnum)i, new List<UnityAction<Employee>>());
+
         }
     }
 
@@ -99,6 +102,29 @@ public static class EventManager
     }
     //-------------------------------------------------------------
 
+    // Employee Event Handling
+    private static Dictionary<EventEnum, List<EmployeeEventInvoker>> employeeEventInvokers =
+        new Dictionary<EventEnum, List<EmployeeEventInvoker>>();
+    private static Dictionary<EventEnum, List<UnityAction<Employee>>> employeeEventListeners =
+        new Dictionary<EventEnum, List<UnityAction<Employee>>>();
+    public static void AddEmployeeEventInvoker(EventEnum eventEnum, EmployeeEventInvoker eventInvoker)
+    {
+        employeeEventInvokers[eventEnum].Add(eventInvoker);
 
-    
+        foreach (UnityAction<Employee> listener in employeeEventListeners[eventEnum])
+        {
+            eventInvoker.AddListener(listener);
+        }
+    }
+    public static void AddEmployeeEventListener(EventEnum eventEnum, UnityAction<Employee> listener)
+    {
+        employeeEventListeners[eventEnum].Add(listener);
+
+        foreach (EmployeeEventInvoker employeeEventInvoker in employeeEventInvokers[eventEnum])
+        {
+            employeeEventInvoker.AddListener(listener);
+        }
+    }
+    //-------------------------------------------------------------
+
 }

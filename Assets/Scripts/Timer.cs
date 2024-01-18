@@ -8,6 +8,7 @@ public class Timer : MonoBehaviour
     private float totalTime;
     private float elapsedTime = 0f;
     private bool once = true;
+    private bool pause = false;
     private VoidEventInvoker onTimeFinishEvent;
     private UnityAction toDoFunction;
     
@@ -43,11 +44,24 @@ public class Timer : MonoBehaviour
     {
         elapsedTime = 0f;
         once = true;
+        pause = false;
+    }
+    public void Stop()
+    {
+        elapsedTime = totalTime+1;
+        once = false;
+    }
+
+    public void Pause()
+    {
+        pause = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (pause) return;
+
         if (elapsedTime < totalTime)
         {
             elapsedTime += Time.deltaTime;

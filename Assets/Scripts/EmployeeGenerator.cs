@@ -7,14 +7,13 @@ using UnityEngine.Events;
 public class EmployeeGenerator : MonoBehaviour
 {
     #region Fields
-    private List<GameObject> employees = new List<GameObject>();
-    private string[] employeesNames = { "Boda", "PepoElMfsh5WeElTa3ban", "Q7tany", "Martin", "AlmrkanyElHwyan"};
+    private string[] employeesNames = { "Boda", "PepoElMfsh5WeElTa3ban", "Q7tanyEl5wel", "Martin", "AlmrkanyElHwyan"};
 
     private Timer timer;
     private const float timerDuration = 2f;    // For Now
 
-    private EmployeeSpecialization specialization = EmployeeSpecialization.Games;    // Fore Now
-    private int hrSkill;
+    private EmployeeSpecialization specialization = EmployeeSpecialization.Games;
+    private int hrSkill = 100; // From Game Manager
 
     private int maxSkillFactor = 5;     // For Now
     private int minSkillFactor = 3;     // For Now
@@ -26,7 +25,7 @@ public class EmployeeGenerator : MonoBehaviour
     private float maxMarktingSkillFactor = 3; // For Now
     private float maxHrSkillFacotor = 3;
 
-    private GameObjectEventInvoker onEmployeeGenerated;
+    private EmployeeEventInvoker onEmployeeGenerated;
     #endregion
 
     #region Unity Methods
@@ -36,8 +35,10 @@ public class EmployeeGenerator : MonoBehaviour
         timer = gameObject.AddComponent<Timer>();
         timer.Init(timerDuration, GenerateEmployee);
 
-        onEmployeeGenerated = gameObject.AddComponent<GameObjectEventInvoker>();
-        EventManager.AddGameObjectEventInvoker(EventEnum.OnEmployeeGenerated, onEmployeeGenerated);        
+        onEmployeeGenerated = gameObject.AddComponent<EmployeeEventInvoker>();
+        EventManager.AddEmployeeEventInvoker(EventEnum.OnEmployeeGenerated, onEmployeeGenerated);
+
+        EndGeneration();
     }
 
     #endregion
@@ -45,68 +46,70 @@ public class EmployeeGenerator : MonoBehaviour
     #region Public Methods
     public void StartGeneration(EmployeeSpecialization _specialization, int _hrSkill)
     {
-        gameObject.SetActive(true);
+        timer.Run();
         specialization = _specialization;
         hrSkill = _hrSkill; // from game manager;
-        timer.Run();
+
     }
 
     public void EndGeneration()
     {
-        gameObject.SetActive(false);
+        timer.Pause();
+        
     }
 
     private void GenerateEmployee()
     {
-        // will be swich
         string employeeName = employeesNames[RandomGenerator.NextInt(0, employeesNames.Length)];
         int  employeeMinSalary = RandomGenerator.NextInt(minMinSalaryFactor, maxMinSalaryFactor);
 
-        // Add Skill;
-
-        GameObject employee = new GameObject(employeeName);
-
+        Employee employee = new Employee();
 
         switch (specialization)
         {
             case EmployeeSpecialization.Games:
+                employee = new ProjectEmployee();
                 int technicalGamesSkills = (int)(hrSkill * RandomGenerator.NextFloat(.5f, maxTechnicaSkillFactor));
                 int designGamesSkills = (int)(hrSkill * RandomGenerator.NextFloat(.5f, maxDesignSkillFactor));
-                employee.AddComponent<ProjectEmployee>().Init(employeeName, ProjectSpecialization.Games, employeeMinSalary, technicalGamesSkills, designGamesSkills);
+                (employee as ProjectEmployee).Init(employeeName, ProjectSpecialization.Games, employeeMinSalary, technicalGamesSkills, designGamesSkills);
                 break;
             case EmployeeSpecialization.Mobile:
+                employee = new ProjectEmployee();
                 int technicalMobileSkills = (int)(hrSkill * RandomGenerator.NextFloat(.5f, maxTechnicaSkillFactor));
                 int designMobileSkills = (int)(hrSkill * RandomGenerator.NextFloat(.5f, maxDesignSkillFactor));
-                employee.AddComponent<ProjectEmployee>().Init(employeeName, ProjectSpecialization.Mobile, employeeMinSalary, technicalMobileSkills, designMobileSkills);
+                (employee as ProjectEmployee).Init(employeeName, ProjectSpecialization.Mobile, employeeMinSalary, technicalMobileSkills, designMobileSkills);
                 break;
             case EmployeeSpecialization.Web:
+                employee = new ProjectEmployee();
                 int technicalWebSkills = (int)(hrSkill * RandomGenerator.NextFloat(.5f, maxTechnicaSkillFactor));
                 int designWebSkills = (int)(hrSkill * RandomGenerator.NextFloat(.5f, maxDesignSkillFactor));
-                employee.AddComponent<ProjectEmployee>().Init(employeeName, ProjectSpecialization.Web, employeeMinSalary, technicalWebSkills, designWebSkills);
+                (employee as ProjectEmployee).Init(employeeName, ProjectSpecialization.Web, employeeMinSalary, technicalWebSkills, designWebSkills);
                 break;
             case EmployeeSpecialization.Marketing:
+                employee = new MarketingEmployee();
                 int marketingSkills = (int)(hrSkill * RandomGenerator.NextFloat(.5f, maxMarktingSkillFactor));
-                employee.AddComponent<MarketingEmployee>().Init(employeeName, employeeMinSalary ,marketingSkills );
+                (employee as MarketingEmployee).Init(employeeName, employeeMinSalary ,marketingSkills );
                 break;
             case EmployeeSpecialization.DataAnalysis:
-                employee.AddComponent<DataAnalysisEmployee>().Init(employeeName, EmployeeSpecialization.DataAnalysis ,employeeMinSalary);
+                employee = new DataAnalysisEmployee();
+                (employee as DataAnalysisEmployee).Init(employeeName, EmployeeSpecialization.DataAnalysis ,employeeMinSalary);
                 break;
             case EmployeeSpecialization.HR:
+                employee = new HrEmployee();
                 int hrSkills = (int)(hrSkill * RandomGenerator.NextFloat(.5f,maxHrSkillFacotor));
-                employee.AddComponent<HrEmployee>().Init(employeeName, employeeMinSalary, hrSkills);
+                (employee as HrEmployee).Init(employeeName, employeeMinSalary, hrSkills);
                 break;
         }
 
-        employees.Add(employee);
         timer.Run();
         onEmployeeGenerated.Invoke(employee);
+        Debug.Log(employee.Name + " " + employee.Specialization);
     }
 
-    public void AddOnEmployeeGeneratedListener(UnityAction<GameObject> unityAction)
+    public void AddOnEmployeeGeneratedListener(UnityAction<Employee> unityAction)
     {
         onEmployeeGenerated.AddListener(unityAction);
     }
     #endregion
-
 
 }
