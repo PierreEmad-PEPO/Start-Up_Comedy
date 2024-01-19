@@ -1,16 +1,14 @@
 using System;
 using System.Collections.Generic;
-using System.Linq.Expressions;
-using System.Reflection;
 using UnityEngine;
 using UnityEngine.UIElements;
-using static UnityEditor.Progress;
 
 public class EmployeeHiringListView : MonoBehaviour
 {
     #region Field
 
     [SerializeField] private VisualTreeAsset EmployeeCardTemplate;
+    [SerializeField] private Negotiation negotiationMenu;
 
     private EmployeeSpecialization em;
 
@@ -108,7 +106,7 @@ public class EmployeeHiringListView : MonoBehaviour
         item.Q<Label>("EmployeeName").text = employees[index].Name;
         item.Q<Button>("Negotiation").clicked += () =>
         {
-            Debug.Log("nego");
+            negotiationMenu.SetTheEmployee(employees[index]);
         };
         item.Q<Button>("Delete").clicked += () =>
         {

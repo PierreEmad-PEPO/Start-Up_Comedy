@@ -103,7 +103,6 @@ public class EmployeeGenerator : MonoBehaviour
 
         timer.Run();
         onEmployeeGenerated.Invoke(employee);
-        Debug.Log(employee.Name + " " + employee.Specialization);
     }
 
     public void AddOnEmployeeGeneratedListener(UnityAction<Employee> unityAction)

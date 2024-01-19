@@ -1,0 +1,52 @@
+#EmployeeEnum Label {
+    color: rgb(0, 0, 0);
+    -unity-text-align: upper-center;
+    -unity-font-style: normal;
+    -unity-text-outline-color: rgba(255, 255, 255, 0);
+    -unity-text-outline-width: 0;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+#EmployeeEnum VisualElement {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 0;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+}
+
+#EmployeeEnum TextElement {
+    color: rgb(231, 231, 231);
+}
+
+.unity-base-dropdown .unity-scroll-view {
+    background-color: rgb(130, 181, 210);
+    color: rgb(255, 255, 255);
+    border-left-color: rgb(59, 163, 94);
+    border-right-color: rgb(59, 163, 94);
+    border-top-color: rgb(59, 163, 94);
+    border-bottom-color: rgb(59, 163, 94);
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 0;
+}
+
+.unity-base-dropdown__container-outer {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 20px;
+}
+
+.unity-base-dropdown__item:hover {
+    background-color: rgb(74, 148, 190);
+}

@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Employee : MonoBehaviour
+public class Employee
 {
     #region Feilds
 
-    protected new string name;
+    protected string name;
     protected EmployeeSpecialization specialization;
     protected int salary;
     protected int minSalary;
