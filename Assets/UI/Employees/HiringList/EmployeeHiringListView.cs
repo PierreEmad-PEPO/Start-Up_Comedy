@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -7,10 +8,10 @@ public class EmployeeHiringListView : MonoBehaviour
 {
     #region Field
 
+    private const int MAX_LIST_SIZE = 20;
+
     [SerializeField] private VisualTreeAsset EmployeeCardTemplate;
     [SerializeField] private Negotiation negotiationMenu;
-
-    private EmployeeSpecialization em;
 
     List<Employee> employees = new List<Employee>();
 
@@ -23,6 +24,8 @@ public class EmployeeHiringListView : MonoBehaviour
     Button StartGenerationButton;
     Button EndGenerationButton;
     EnumField employeeEnum;
+    Label listCounterLabel;
+    ProgressBar progressBar;
 
     #endregion
 
@@ -36,6 +39,15 @@ public class EmployeeHiringListView : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        if (employees.Count < MAX_LIST_SIZE)
+        {
+            progressBar.value = employeeGenerator.Timer.CurrentTime;
+
+        }
+    }
+
     void SetVisualElement()
     {
         root = GetComponent<UIDocument>().rootVisualElement;
@@ -43,6 +55,10 @@ public class EmployeeHiringListView : MonoBehaviour
         StartGenerationButton = root.Q<Button>("Start");
         EndGenerationButton = root.Q<Button>("End");
         employeeEnum = root.Q<EnumField>("EmployeeEnum");
+        listCounterLabel = root.Q<Label>("ListCounter");
+        progressBar = root.Q<ProgressBar>("ProgressBar");
+        progressBar.highValue = employeeGenerator.Timer.Duration;
+        listCounterLabel.text = employees.Count.ToString() + " / " + MAX_LIST_SIZE.ToString();
         StartGenerationButton.clicked += () =>
         {
             StartGenerationButton.style.display = DisplayStyle.None;
@@ -66,6 +82,15 @@ public class EmployeeHiringListView : MonoBehaviour
         
         employeeList.makeItem = () =>
         {
+            if (employees.Count < MAX_LIST_SIZE)
+            {
+                listCounterLabel.style.color = Color.white;
+            }
+            else
+            {
+                listCounterLabel.style.color = Color.red;
+            }
+            listCounterLabel.text = employees.Count.ToString() + " / " + MAX_LIST_SIZE.ToString();
             var temp = EmployeeCardTemplate.Instantiate();
             return temp;
            
@@ -111,7 +136,11 @@ public class EmployeeHiringListView : MonoBehaviour
         item.Q<Button>("Delete").clicked += () =>
         {
             employees.RemoveAt(index);
-            employeeList.Rebuild();
+            if (employees.Count == 0)
+            {
+                listCounterLabel.text = employees.Count.ToString() + " / " + MAX_LIST_SIZE.ToString();
+            }
+                employeeList.Rebuild();
         };
     }
 
@@ -157,9 +186,15 @@ public class EmployeeHiringListView : MonoBehaviour
     }
     void AddEmployee(Employee employee)
     {
-        em = employee.Specialization;
-        employees.Add(employee);
-        employeeList.Rebuild();
+        if (employees.Count < MAX_LIST_SIZE)
+        {
+            employees.Add(employee);
+            employeeList.Rebuild();
+        }
+        else 
+        {
+            employeeGenerator.EndGeneration();
+        }
     }
 
 }

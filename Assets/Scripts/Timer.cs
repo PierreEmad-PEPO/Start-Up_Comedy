@@ -13,6 +13,7 @@ public class Timer : MonoBehaviour
     private UnityAction toDoFunction;
     
     public float Duration { get { return totalTime; } set { totalTime = value; } }
+    public float CurrentTime { get { return elapsedTime; } }
     public UnityAction ToDoFunction 
     { 
         get { return toDoFunction; } 
@@ -42,7 +43,7 @@ public class Timer : MonoBehaviour
 
     public void Run()
     {
-        elapsedTime = 0f;
+        if (elapsedTime >= totalTime) elapsedTime = 0f;
         once = true;
         pause = false;
     }

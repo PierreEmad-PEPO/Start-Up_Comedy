@@ -26,15 +26,20 @@ public class EmployeeGenerator : MonoBehaviour
     private float maxHrSkillFacotor = 3;
 
     private EmployeeEventInvoker onEmployeeGenerated;
+
+    public Timer Timer { get { return timer; } }
     #endregion
 
     #region Unity Methods
 
-    private void Start()
+    private void Awake()
     {
         timer = gameObject.AddComponent<Timer>();
         timer.Init(timerDuration, GenerateEmployee);
+    }
 
+    private void Start()
+    {
         onEmployeeGenerated = gameObject.AddComponent<EmployeeEventInvoker>();
         EventManager.AddEmployeeEventInvoker(EventEnum.OnEmployeeGenerated, onEmployeeGenerated);
 

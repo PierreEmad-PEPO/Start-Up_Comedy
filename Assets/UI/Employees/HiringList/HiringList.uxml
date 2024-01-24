@@ -9,6 +9,10 @@
                 <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="End" style="width: 5%; display: none; background-image: url(&apos;project://database/Assets/Sprites/Resources/EmployeeLists/Pause.png?fileID=2800000&amp;guid=c51d8426976bcdd49be681814f06a95a&amp;type=3#Pause&apos;); -unity-background-image-tint-color: rgb(209, 56, 63); background-color: rgba(158, 158, 158, 0); margin-left: 2.5%; border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0);" />
             </ui:VisualElement>
         </ui:GroupBox>
+        <ui:VisualElement name="MetaDataContainer" style="flex-grow: initial; flex-direction: row; height: auto; align-self: flex-start; align-items: center; justify-content: flex-start; flex-shrink: 1; width: 100%;">
+            <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ListCounter" style="align-self: flex-start; margin-left: 50px; font-size: 25px;" />
+            <ui:ProgressBar value="44.3" name="ProgressBar" style="height: auto; width: 70%; margin-left: 30px;" />
+        </ui:VisualElement>
         <ui:ListView focusable="true" name="HiringList" show-border="false" horizontal-scrolling="false" reorderable="false" show-alternating-row-backgrounds="None" reorder-mode="Simple" style="width: 98%; height: auto; background-color: rgb(255, 255, 255); align-items: stretch; align-self: center; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; padding-top: 21px; padding-right: 21px; padding-bottom: 21px; padding-left: 21px; flex-direction: row; flex-wrap: wrap; flex-grow: 1; margin-bottom: 10px;" />
     </ui:VisualElement>
 </ui:UXML>
