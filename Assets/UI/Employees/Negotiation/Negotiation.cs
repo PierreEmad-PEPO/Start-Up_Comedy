@@ -1,8 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Jobs;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -51,6 +47,7 @@ public class Negotiation : MonoBehaviour
     Label finalMessage;
     SliderInt sliderInt;
     Button send;
+    Scroller scroller;
 
     VisualElement root;
 
@@ -70,6 +67,7 @@ public class Negotiation : MonoBehaviour
         sliderInt = root.Q<SliderInt>("SliderInt");
         send = root.Q<Button>("Send");
         finalMessage = root.Q<Label>("FinalMessage");
+        scroller = chatView.Q<Scroller>();
 
         exit.clicked += () =>
         {
@@ -107,7 +105,7 @@ public class Negotiation : MonoBehaviour
 
         var sent = sentMessage.Instantiate();
         sent.Q<Label>("Message").text = salary.ToString() + " $";
-        chatView.Add(sent);
+        chatView.contentContainer.Add(sent);
 
         var recieved = recievedMessage.Instantiate();
 
@@ -115,7 +113,7 @@ public class Negotiation : MonoBehaviour
         {
             recieved.Q<Label>("Message").text = acceptingMessages[RandomGenerator.NextInt(0, acceptingMessages.Length)];
             currentTry = 0;
-            chatView.Add(recieved);
+            chatView.contentContainer.Add(recieved);
             finalMessage.style.display = DisplayStyle.Flex;
             finalMessage.text = "Employee Hired";
             finalMessage.style.color = Color.green;
@@ -127,7 +125,6 @@ public class Negotiation : MonoBehaviour
             chatView.Add(recieved);
         }
 
-
         currentTry--;
         if (currentTry <= 0) 
         {
@@ -136,5 +133,8 @@ public class Negotiation : MonoBehaviour
             finalMessage.style.color = Color.red;
         }
         Debug.Log(currentTry);
+
+        if (scroller.highValue > 0) scroller.highValue = 1000;
+        scroller.value = scroller.highValue;
     }
 }

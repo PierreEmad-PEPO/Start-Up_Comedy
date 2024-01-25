@@ -59,6 +59,7 @@ public class EmployeeHiringListView : MonoBehaviour
         progressBar = root.Q<ProgressBar>("ProgressBar");
         progressBar.highValue = employeeGenerator.Timer.Duration;
         listCounterLabel.text = employees.Count.ToString() + " / " + MAX_LIST_SIZE.ToString();
+        
         StartGenerationButton.clicked += () =>
         {
             StartGenerationButton.style.display = DisplayStyle.None;
@@ -90,6 +91,7 @@ public class EmployeeHiringListView : MonoBehaviour
             {
                 listCounterLabel.style.color = Color.red;
             }
+
             listCounterLabel.text = employees.Count.ToString() + " / " + MAX_LIST_SIZE.ToString();
             var temp = EmployeeCardTemplate.Instantiate();
             return temp;
@@ -190,6 +192,8 @@ public class EmployeeHiringListView : MonoBehaviour
         {
             employees.Add(employee);
             employeeList.Rebuild();
+            var scroller = employeeList.Q<Scroller>();
+            scroller.value = scroller.highValue;
         }
         else 
         {
