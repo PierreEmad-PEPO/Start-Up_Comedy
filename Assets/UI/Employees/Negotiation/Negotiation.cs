@@ -51,10 +51,17 @@ public class Negotiation : MonoBehaviour
 
     VisualElement root;
 
+    EmployeeEventInvoker onEmployeeHired;
+    EmployeeEventInvoker onEmployeeCanceled;
+
     // Start is called before the first frame update
     void Start()
     {
         SetVisualElement();
+        onEmployeeHired = gameObject.AddComponent<EmployeeEventInvoker>();
+        onEmployeeCanceled = gameObject.AddComponent<EmployeeEventInvoker>();
+        EventManager.AddEmployeeEventInvoker(EventEnum.OnEmployeeHired, onEmployeeHired);
+        EventManager.AddEmployeeEventInvoker(EventEnum.OnEmployeeCanceled, onEmployeeCanceled);
         root.style.display = DisplayStyle.None;
     }
 
@@ -115,8 +122,10 @@ public class Negotiation : MonoBehaviour
             currentTry = 0;
             chatView.contentContainer.Add(recieved);
             finalMessage.style.display = DisplayStyle.Flex;
-            finalMessage.text = "Employee Hired";
+            finalMessage.text = "Employee Is Hired";
             finalMessage.style.color = Color.green;
+            employee.Salary = salary;
+            onEmployeeHired.Invoke(employee);
             return;
         }
         else 
@@ -131,6 +140,7 @@ public class Negotiation : MonoBehaviour
             finalMessage.style.display = DisplayStyle.Flex;
             finalMessage.text = "Employee Closed The Neogtiation";
             finalMessage.style.color = Color.red;
+            onEmployeeCanceled.Invoke(employee);
         }
         Debug.Log(currentTry);
 

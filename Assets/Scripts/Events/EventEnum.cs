@@ -7,5 +7,7 @@ public enum EventEnum
     OnProjectGenerated,
     OnProjectDone,
     OnDeadlineEnd,
-    OnEmployeeGenerated
+    OnEmployeeGenerated,
+    OnEmployeeHired,
+    OnEmployeeCanceled,
 }
