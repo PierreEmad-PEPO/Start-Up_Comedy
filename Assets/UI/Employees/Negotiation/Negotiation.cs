@@ -1,10 +1,45 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Jobs;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class Negotiation : MonoBehaviour
 {
+    string[] rejectingMessages = new string[9]
+    {
+        "Salary too low, can't accept.",
+        "Offer declined, low salary.",
+        "Regretfully decline, salary below expectations.",
+        "Salary doesn't meet goals, can't accept.",
+        "Grateful, but can't accept low salary.",
+        "Decline offer, salary doesn't match.",
+        "Respectfully decline, salary not enough.",
+        "Offer declined, salary below market standards.",
+        "Can't accept, salary doesn't meet expectations."
+    };
+
+    string[] acceptingMessages = new string[10]
+    {
+        "Thank you for the offer, I gladly accept.",
+        "I'm excited to accept the job offer.",
+        "Offer accepted, looking forward to starting.",
+        "Delighted to accept the job offer.",
+        "I gladly accept the offer, thank you.",
+        "Thrilled to accept the job offer.",
+        "Accepting the offer with pleasure.",
+        "I'm honored to accept the job offer.",
+        "Offer accepted, eager to contribute to the team.",
+        "Excited to join the team, offer accepted."
+    };
+
+    private const int MIN_TRIES = 1;
+    private const int MAX_TRIES = 5;
+    private int currentTry;
+
+
     [SerializeField] VisualTreeAsset sentMessage;
     [SerializeField] VisualTreeAsset recievedMessage;
 
@@ -13,11 +48,11 @@ public class Negotiation : MonoBehaviour
     Button exit;
     Label employeeName;
     ScrollView chatView;
+    Label finalMessage;
     SliderInt sliderInt;
     Button send;
 
     VisualElement root;
-
 
     // Start is called before the first frame update
     void Start()
@@ -34,11 +69,11 @@ public class Negotiation : MonoBehaviour
         chatView = root.Q<ScrollView>("ChatView");
         sliderInt = root.Q<SliderInt>("SliderInt");
         send = root.Q<Button>("Send");
+        finalMessage = root.Q<Label>("FinalMessage");
 
         exit.clicked += () =>
         {
-            chatView.Clear();
-            root.style.display = DisplayStyle.None;
+            Exit();
         };
 
         send.clicked += () =>
@@ -47,8 +82,17 @@ public class Negotiation : MonoBehaviour
         };
     }
 
+    private void Exit()
+    {
+        chatView.Clear();
+        finalMessage.style.display = DisplayStyle.None;
+        root.style.display = DisplayStyle.None;
+    }
+
     public void SetTheEmployee(Employee employee)
     {
+        currentTry = RandomGenerator.NextInt(MIN_TRIES, MAX_TRIES + 1);
+        Debug.Log(currentTry);
         this.employee = employee;
         employeeName.text = employee.Name;
         root.style.display = DisplayStyle.Flex;
@@ -56,11 +100,41 @@ public class Negotiation : MonoBehaviour
 
     void Negotiate(int salary)
     {
+        if (currentTry <= 0)
+        {
+            return;
+        }
+
         var sent = sentMessage.Instantiate();
         sent.Q<Label>("Message").text = salary.ToString() + " $";
         chatView.Add(sent);
 
         var recieved = recievedMessage.Instantiate();
-        chatView.Add(recieved);
+
+        if (salary >= employee.MinSalary)
+        {
+            recieved.Q<Label>("Message").text = acceptingMessages[RandomGenerator.NextInt(0, acceptingMessages.Length)];
+            currentTry = 0;
+            chatView.Add(recieved);
+            finalMessage.style.display = DisplayStyle.Flex;
+            finalMessage.text = "Employee Hired";
+            finalMessage.style.color = Color.green;
+            return;
+        }
+        else 
+        {
+            recieved.Q<Label>("Message").text = rejectingMessages[RandomGenerator.NextInt(0, rejectingMessages.Length)];
+            chatView.Add(recieved);
+        }
+
+
+        currentTry--;
+        if (currentTry <= 0) 
+        {
+            finalMessage.style.display = DisplayStyle.Flex;
+            finalMessage.text = "Employee Closed The Neogtiation";
+            finalMessage.style.color = Color.red;
+        }
+        Debug.Log(currentTry);
     }
 }

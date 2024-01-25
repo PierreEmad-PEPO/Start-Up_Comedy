@@ -17,7 +17,7 @@ public class EmployeeGenerator : MonoBehaviour
 
     private int maxSkillFactor = 5;     // For Now
     private int minSkillFactor = 3;     // For Now
-    private int maxMinSalaryFactor = 5; // For Now
+    private int maxMinSalaryFactor = 500; // For Now
     private int minMinSalaryFactor = 3; // For Now
 
     private float maxTechnicaSkillFactor = 3; // For Now
