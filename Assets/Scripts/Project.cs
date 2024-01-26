@@ -4,10 +4,10 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Project : MonoBehaviour
+public class Project
 {
     #region Fields
-    private new string name;
+    private string name;
     private ProjectSpecialization specialization;
     private float deadline;
     private int price;
@@ -16,8 +16,6 @@ public class Project : MonoBehaviour
     private float requiredDesignSkills;
     private float totalAssignedTechnicalSkills;
     private float totalAssignedDesignSkills;
-    private IntEventInvoker OnProjectDone;
-    private IntEventInvoker OnDeadlineEnd;
     #endregion
 
     #region Props
@@ -28,6 +26,8 @@ public class Project : MonoBehaviour
     public int PenalClause { get { return penalClause; } }
     public float RequiredTechnicalSkills { get {  return requiredTechnicalSkills; } }
     public float RequiredDesignSkills {  get { return requiredDesignSkills; } }
+    public bool IsDone { get { return (requiredTechnicalSkills <= 0 &&  requiredDesignSkills <= 0); } }
+    public bool IsDeadlineEnd { get { return deadline <= 0; } }
     #endregion
 
     #region Methods
@@ -45,16 +45,6 @@ public class Project : MonoBehaviour
         this.totalAssignedDesignSkills = 0f;
     }
 
-    private void Start()
-    {
-        // Assign Events
-        OnProjectDone = gameObject.AddComponent<IntEventInvoker>();
-        EventManager.AddIntEventInvoker(EventEnum.OnProjectDone, OnProjectDone);
-
-        OnDeadlineEnd = gameObject.AddComponent<IntEventInvoker>();
-        EventManager.AddIntEventInvoker(EventEnum.OnDeadlineEnd, OnDeadlineEnd);
-    }
-
     public void AssignEmployee(int technicalSkills, int  designSkills)
     {
         totalAssignedTechnicalSkills += technicalSkills;
@@ -68,31 +58,14 @@ public class Project : MonoBehaviour
     }
 
     // Update is called once per frame
-    private void Update()
+    public void UpdateProject()
     {
-        requiredTechnicalSkills -= totalAssignedTechnicalSkills * Time.deltaTime;
-        requiredDesignSkills -= totalAssignedDesignSkills * Time.deltaTime;
-        deadline -= Time.deltaTime;
-
-        if (requiredTechnicalSkills <= 0 && requiredDesignSkills <= 0)
-        {
-            OnProjectDone.Invoke(price);
-        }
-
-        if (deadline <= 0)
-        {
-            OnDeadlineEnd.Invoke(penalClause);
-        }
-    }
-
-    public void AddOnProjectDoneListener(UnityAction<int> unityAction)
-    {
-        OnProjectDone.AddListener(unityAction);
-    }
-
-    public void AddOnDeadlineEndListener(UnityAction<int> unityAction) 
-    {
-        OnDeadlineEnd.AddListener(unityAction);
+        if (requiredTechnicalSkills > 0f)
+            requiredTechnicalSkills -= totalAssignedTechnicalSkills;
+        if (requiredDesignSkills > 0f)
+            requiredDesignSkills -= totalAssignedDesignSkills;
+        if (deadline > 0f)
+            deadline -= 1;
     }
     #endregion
 }

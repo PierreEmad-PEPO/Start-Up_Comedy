@@ -6,12 +6,17 @@ public class Test : MonoBehaviour
 {
     private void Start()
     {
-        EventManager.AddEmployeeEventListener(EventEnum.OnEmployeeHired, ListenEmployee);
-        EventManager.AddEmployeeEventListener(EventEnum.OnEmployeeCanceled, ListenEmployee);
+        EventManager.AddProjectEventListener(EventEnum.OnProjectDone, ProjectDone);
+        EventManager.AddProjectEventListener(EventEnum.OnDeadlineEnd, ProjectDead);
     }
 
-    private void ListenEmployee(Employee employee)
+    private void ProjectDone(Project project)
     {
-        Debug.Log(employee.Name);
+        Debug.Log(project.Name + " " + project.RequiredTechnicalSkills + " Done");
+    }
+
+    private void ProjectDead(Project project)
+    {
+        Debug.Log(project.Name + " " + project.RequiredTechnicalSkills + " Dead");
     }
 }

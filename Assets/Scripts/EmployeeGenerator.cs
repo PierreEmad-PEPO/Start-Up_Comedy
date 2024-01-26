@@ -109,11 +109,6 @@ public class EmployeeGenerator : MonoBehaviour
         timer.Run();
         onEmployeeGenerated.Invoke(employee);
     }
-
-    public void AddOnEmployeeGeneratedListener(UnityAction<Employee> unityAction)
-    {
-        onEmployeeGenerated.AddListener(unityAction);
-    }
     #endregion
 
 }

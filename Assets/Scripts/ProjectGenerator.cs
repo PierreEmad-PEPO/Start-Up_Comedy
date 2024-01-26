@@ -34,7 +34,7 @@ public class ProjectGenerator : MonoBehaviour
     {
         string name = "lol";
         ProjectSpecialization specialization = ProjectSpecialization.Games;
-        float deadline = 50;
+        float deadline = 10;
         int price = 50;
         int penalClause = 50;
         float requiredTechnicalSkills = 50;
@@ -49,10 +49,5 @@ public class ProjectGenerator : MonoBehaviour
 
         timer.Duration = CalculateNewDuration();
         timer.Pause();
-    }
-
-    public void AddOnProjectGeneratedListener(UnityAction<Project> unityAction)
-    {
-        onProjectGenerated.AddListener(unityAction);
     }
 }

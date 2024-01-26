@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 public class ProjectOfferUI : MonoBehaviour
 {
-    private Label name;
+    private new Label name;
     private Label specialization;
     private Label deadline;
     private Label price;
@@ -25,7 +25,7 @@ public class ProjectOfferUI : MonoBehaviour
         projectGenerator = gameObject.GetComponent<ProjectGenerator>();
         projectTimer = projectGenerator.ProjectTimer;
         SetVisualElement();
-        EventManager.AddProjectEventListener(EventEnum.OnProjectGenerated, SetTheProjectWindo);
+        EventManager.AddProjectEventListener(EventEnum.OnProjectGenerated, SetTheProjectWindow);
 
         onProjectAccepted = gameObject.AddComponent<ProjectEventInvoker>();
         EventManager.AddProjectEventInvoker(EventEnum.OnProjectAccepted, onProjectAccepted);
@@ -60,7 +60,7 @@ public class ProjectOfferUI : MonoBehaviour
 
     }
 
-    void SetTheProjectWindo(Project project)
+    void SetTheProjectWindow(Project project)
     {
         root.userData = project;
         name.text = project.Name;

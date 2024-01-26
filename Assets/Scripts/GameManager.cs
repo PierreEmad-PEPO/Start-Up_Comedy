@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class GamePlayManager 
+public static class GameManager
 {
     // Lists
     static List<Project> projects = new List<Project>();

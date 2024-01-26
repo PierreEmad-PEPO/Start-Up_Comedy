@@ -13,7 +13,7 @@ public class AssignedProjectUI : MonoBehaviour
     void Start()
     {
 
-        projects = GamePlayManager.Projects;
+        projects = GameManager.Projects;
         SetVisualElement();
         root.style.display = DisplayStyle.None;
         EventManager.AddProjectEventListener(EventEnum.OnProjectAccepted,AddAssignedProject);
@@ -63,7 +63,7 @@ public class AssignedProjectUI : MonoBehaviour
 
     void AddAssignedProject(Project project) 
     {
-        GamePlayManager.AddProject(project);
+        GameManager.AddProject(project);
         Debug.Log(project.Name);
         assignedProjectListView.Rebuild();
     } 
