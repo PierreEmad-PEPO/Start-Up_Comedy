@@ -6,18 +6,22 @@ using UnityEngine.Events;
 public class ProjectGenerator : MonoBehaviour
 {
     private Timer timer;
-    private GameObjectEventInvoker onProjectGenerated;
+    private ProjectEventInvoker onProjectGenerated;
 
-
+    public Timer ProjectTimer { get { return timer; } }
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         timer = gameObject.AddComponent<Timer>();
         timer.Init(CalculateNewDuration(), GenerateProject);
+    }
+    void Start()
+    {
+       
         timer.Run();
 
-        onProjectGenerated = gameObject.AddComponent<GameObjectEventInvoker>();
-        EventManager.AddGameObjectEventInvoker(EventEnum.OnProjectGenerated, onProjectGenerated);
+        onProjectGenerated = gameObject.AddComponent<ProjectEventInvoker>();
+        EventManager.AddProjectEventInvoker(EventEnum.OnProjectGenerated, onProjectGenerated);
     }
 
     private float CalculateNewDuration()
@@ -36,17 +40,18 @@ public class ProjectGenerator : MonoBehaviour
         float requiredTechnicalSkills = 50;
         float requiredDesignSkills = 50;
 
-        GameObject project = new GameObject("Project");
-        project.AddComponent<Project>().Init(name, specialization, deadline, price,
+        Project project = new Project();
+        project.Init(name, specialization, deadline, price,
         penalClause, requiredTechnicalSkills, requiredDesignSkills);
 
         onProjectGenerated.Invoke(project);
+        
 
         timer.Duration = CalculateNewDuration();
-        timer.Run();
+        timer.Pause();
     }
 
-    public void AddOnProjectGeneratedListener(UnityAction<GameObject> unityAction)
+    public void AddOnProjectGeneratedListener(UnityAction<Project> unityAction)
     {
         onProjectGenerated.AddListener(unityAction);
     }

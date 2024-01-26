@@ -22,6 +22,9 @@ public static class EventManager
             employeeEventInvokers.Add((EventEnum)i, new List<EmployeeEventInvoker>());
             employeeEventListeners.Add((EventEnum)i, new List<UnityAction<Employee>>());
 
+            projectEventInvokers.Add((EventEnum)i, new List<ProjectEventInvoker>());
+            projectEventListeners.Add((EventEnum)i, new List<UnityAction<Project>>());
+
         }
     }
 
@@ -123,6 +126,32 @@ public static class EventManager
         foreach (EmployeeEventInvoker employeeEventInvoker in employeeEventInvokers[eventEnum])
         {
             employeeEventInvoker.AddListener(listener);
+        }
+    }
+    //-------------------------------------------------------------
+
+
+    // Project Event Handling
+    private static Dictionary<EventEnum, List<ProjectEventInvoker>> projectEventInvokers =
+        new Dictionary<EventEnum, List<ProjectEventInvoker>>();
+    private static Dictionary<EventEnum, List<UnityAction<Project>>> projectEventListeners =
+        new Dictionary<EventEnum, List<UnityAction<Project>>>();
+    public static void AddProjectEventInvoker(EventEnum eventEnum, ProjectEventInvoker eventInvoker)
+    {
+        projectEventInvokers[eventEnum].Add(eventInvoker);
+
+        foreach (UnityAction<Project> listener in projectEventListeners[eventEnum])
+        {
+            eventInvoker.AddListener(listener);
+        }
+    }
+    public static void AddProjectEventListener(EventEnum eventEnum, UnityAction<Project> listener)
+    {
+        projectEventListeners[eventEnum].Add(listener);
+
+        foreach (ProjectEventInvoker projectEventInvoker in projectEventInvokers[eventEnum])
+        {
+            projectEventInvoker.AddListener(listener);
         }
     }
     //-------------------------------------------------------------

@@ -35,6 +35,7 @@ public class EmployeeHiringListView : MonoBehaviour
         employeeGenerator = GetComponent<EmployeeGenerator>();
 
         SetVisualElement();
+        root.style.display = DisplayStyle.None;
         InitHiringListViwe();
 
     }
@@ -75,7 +76,15 @@ public class EmployeeHiringListView : MonoBehaviour
             employeeEnum.pickingMode = PickingMode.Position;
             employeeGenerator.EndGeneration();
         };
+        root.Q<Button>("Exit").clicked += () =>
+        {
+            root.style.display = DisplayStyle.None;
+        };
+    }
 
+    private void EmployeeHiringListView_clicked()
+    {
+        throw new NotImplementedException();
     }
 
     void InitHiringListViwe()

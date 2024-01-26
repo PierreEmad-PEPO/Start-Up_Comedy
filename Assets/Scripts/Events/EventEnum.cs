@@ -8,6 +8,7 @@ public enum EventEnum
     OnProjectDone,
     OnDeadlineEnd,
     OnEmployeeGenerated,
+    OnProjectAccepted,
     OnEmployeeHired,
     OnEmployeeCanceled,
 }
