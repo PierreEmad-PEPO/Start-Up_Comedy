@@ -16,6 +16,9 @@ public class Project
     private float requiredDesignSkills;
     private float totalAssignedTechnicalSkills;
     private float totalAssignedDesignSkills;
+    private float maxRequredTechnicalSkills;
+    private float maxRequredDesignSkills;
+
     #endregion
 
     #region Props
@@ -28,6 +31,8 @@ public class Project
     public float RequiredDesignSkills {  get { return requiredDesignSkills; } }
     public bool IsDone { get { return (requiredTechnicalSkills <= 0 &&  requiredDesignSkills <= 0); } }
     public bool IsDeadlineEnd { get { return deadline <= 0; } }
+    public float TechnicalProgress { get { return (maxRequredTechnicalSkills - requiredTechnicalSkills) / (maxRequredTechnicalSkills * 100); } }
+    public float DesignProgress { get { return (maxRequredDesignSkills - requiredDesignSkills) / (maxRequredDesignSkills * 100); } }
     #endregion
 
     #region Methods
@@ -43,6 +48,8 @@ public class Project
         this.requiredDesignSkills = requiredDesignSkills;
         this.totalAssignedTechnicalSkills = 0f;
         this.totalAssignedDesignSkills = 0f;
+        this.maxRequredTechnicalSkills = requiredTechnicalSkills;
+        this.maxRequredDesignSkills = requiredDesignSkills;
     }
 
     public void AssignEmployee(int technicalSkills, int  designSkills)

@@ -100,7 +100,6 @@ public class Negotiation : MonoBehaviour
         Debug.Log(currentTry);
         this.employee = employee;
         employeeName.text = employee.Name;
-        root.style.display = DisplayStyle.Flex;
     }
 
     void Negotiate(int salary)

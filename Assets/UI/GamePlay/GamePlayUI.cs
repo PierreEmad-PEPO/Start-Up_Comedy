@@ -19,12 +19,12 @@ public class GamePlayUI : MonoBehaviour
         hrButton = root.Q<Button>("HrButton");
         projectsButton.clicked += () =>
         {
-            acceptedProjectList.rootVisualElement.style.display = DisplayStyle.Flex;
+            WindowManager.OpenWindow(WindowName.Projects);
         };
 
         hrButton.clicked += () =>
         {
-            hitingList.rootVisualElement.style.display = DisplayStyle.Flex;
+            WindowManager.OpenWindow(WindowName.HiringEmployees);
         };
 
 

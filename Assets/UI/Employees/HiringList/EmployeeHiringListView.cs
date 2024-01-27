@@ -142,6 +142,7 @@ public class EmployeeHiringListView : MonoBehaviour
         item.Q<Label>("EmployeeName").text = employees[index].Name;
         item.Q<Button>("Negotiation").clicked += () =>
         {
+            WindowManager.OpenSubWindow(SubWindowName.Negotation);
             negotiationMenu.SetTheEmployee(employees[index]);
         };
         item.Q<Button>("Delete").clicked += () =>

@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Initializer : MonoBehaviour
 {
+    [SerializeField] GameObject UI;
     private void Awake()
     {
         EventManager.Init();
+        WindowManager.Init(UI);
     }
 }
