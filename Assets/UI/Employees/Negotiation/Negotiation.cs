@@ -147,7 +147,5 @@ public class Negotiation : MonoBehaviour
         scroller.lowValue = -10000;
         scroller.highValue = 10000;
         scroller.value = scroller.highValue;
-
-        Debug.Log(scroller.lowValue + " " + scroller.value + " " + scroller.highValue);
     }
 }
