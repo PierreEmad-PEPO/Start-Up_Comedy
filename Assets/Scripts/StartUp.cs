@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class StartUp : MonoBehaviour
+public class StartUp
 {
     #region Fields
     private Dictionary<EmployeeSpecialization, List<GameObject>> employees;
@@ -74,25 +74,6 @@ public class StartUp : MonoBehaviour
     public void SetHasDataAnalyst(bool _hasDataAnalyst)
     {
         hasDataAnalyst = _hasDataAnalyst;
-    }
-    private void Init()
-    {
-        foreach (int i in Enum.GetValues(typeof(EmployeeSpecialization)))
-        {
-            employees.Add((EmployeeSpecialization)i, new List<GameObject>());
-        }
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        Init();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
     #endregion
 }

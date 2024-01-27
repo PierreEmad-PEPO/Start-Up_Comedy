@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -12,12 +11,12 @@ public class AssignedProjectUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         projects = GameManager.Projects;
         SetVisualElement();
         root.style.display = DisplayStyle.None;
         EventManager.AddProjectEventListener(EventEnum.OnProjectAccepted,AddAssignedProject);
-
+        EventManager.AddProjectEventListener(EventEnum.OnDeadlineEnd, RebuidProjectsList);
+        EventManager.AddProjectEventListener(EventEnum.OnProjectDone, RebuidProjectsList);
     }
 
     void SetVisualElement ()
@@ -28,10 +27,10 @@ public class AssignedProjectUI : MonoBehaviour
         {
             root.style.display = DisplayStyle.None;
         };
-        InitHiringListViwe();
+        InitAssignedListViwe();
     }
 
-    void InitHiringListViwe()
+    void InitAssignedListViwe()
     {
         assignedProjectListView.makeItem = () =>
         {
@@ -63,8 +62,12 @@ public class AssignedProjectUI : MonoBehaviour
 
     void AddAssignedProject(Project project) 
     {
-        GameManager.AddProject(project);
-        Debug.Log(project.Name);
+        projects.Add(project);
+        RebuidProjectsList(project);
+    }
+
+    void RebuidProjectsList(Project project)
+    {
         assignedProjectListView.Rebuild();
-    } 
+    }
 }
