@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class AssignedProjectUI : MonoBehaviour
+public class AcceptedProjectUI : MonoBehaviour
 {
     [SerializeField] VisualTreeAsset assignedProjectCard;
     List<Project> projects;
