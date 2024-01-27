@@ -4,9 +4,9 @@ using UnityEngine.UIElements;
 
 public class AcceptedProjectUI : MonoBehaviour
 {
-    [SerializeField] VisualTreeAsset assignedProjectCard;
+    [SerializeField] VisualTreeAsset AcceptedProjectCard;
     List<Project> projects;
-    ListView assignedProjectListView;
+    ListView acceptedProjectListView;
     VisualElement root;
     // Start is called before the first frame update
     void Start()
@@ -22,7 +22,7 @@ public class AcceptedProjectUI : MonoBehaviour
     void SetVisualElement ()
     {
         root = gameObject.GetComponent<UIDocument>().rootVisualElement;
-        assignedProjectListView = root.Q<ListView>("AssignedList");
+        acceptedProjectListView = root.Q<ListView>("AcceptedList");
         root.Q<Button>("Exit").clicked += () =>
         {
             root.style.display = DisplayStyle.None;
@@ -32,13 +32,13 @@ public class AcceptedProjectUI : MonoBehaviour
 
     void InitAssignedListViwe()
     {
-        assignedProjectListView.makeItem = () =>
+        acceptedProjectListView.makeItem = () =>
         {
-            var temp = assignedProjectCard.Instantiate();
+            var temp = AcceptedProjectCard.Instantiate();
             return temp;
         };
 
-        assignedProjectListView.bindItem = (item, index) =>
+        acceptedProjectListView.bindItem = (item, index) =>
         {
             item.Q<Label>("Name").text = projects[index].Name;
 
@@ -55,8 +55,8 @@ public class AcceptedProjectUI : MonoBehaviour
                     break;
             }
         };
-        assignedProjectListView.fixedItemHeight = 110;
-        assignedProjectListView.itemsSource = projects;
+        acceptedProjectListView.fixedItemHeight = 110;
+        acceptedProjectListView.itemsSource = projects;
 
     }
 
@@ -68,6 +68,6 @@ public class AcceptedProjectUI : MonoBehaviour
 
     void RebuidProjectsList(Project project)
     {
-        assignedProjectListView.Rebuild();
+        acceptedProjectListView.Rebuild();
     }
 }
