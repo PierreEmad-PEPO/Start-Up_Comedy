@@ -1,8 +1,9 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="ProjectEmployeesTabbedLists" src="project://database/Assets/UI/Project/ProjectInfo/ProjectEmployeesTabbedLists.uxml?fileID=9197481963319205126&amp;guid=e09e71d31e6bb47439fedb4286641634&amp;type=3#ProjectEmployeesTabbedLists" />
     <ui:VisualElement name="Root" style="flex-grow: 1; background-color: rgb(195, 195, 195);">
-        <ui:VisualElement name="HeaderContainer" style="flex-grow: initial; flex-shrink: initial; align-self: center; align-items: center; justify-content: center; width: 100%; height: 15%; flex-direction: row; border-top-width: 0; border-right-width: 0; border-bottom-width: 3px; border-left-width: 0; border-left-color: rgba(0, 0, 0, 0.57); border-right-color: rgba(0, 0, 0, 0.57); border-top-color: rgba(0, 0, 0, 0.57); border-bottom-color: rgba(0, 0, 0, 0.57); margin-bottom: 5px; padding-bottom: 10px;">
-            <ui:VisualElement name="Logo" style="flex-grow: initial; background-image: resource(&apos;EmployeeLists/Games&apos;); width: 15%; height: 100%; flex-shrink: initial;" />
-            <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" style="flex-grow: 0; width: 60%; margin-left: 20px; font-size: 18px;" />
+        <ui:VisualElement name="HeaderContainer" style="flex-grow: initial; flex-shrink: initial; align-self: center; align-items: center; justify-content: center; width: 100%; height: 10%; flex-direction: row; border-top-width: 0; border-right-width: 0; border-bottom-width: 3px; border-left-width: 0; border-left-color: rgba(0, 0, 0, 0.57); border-right-color: rgba(0, 0, 0, 0.57); border-top-color: rgba(0, 0, 0, 0.57); border-bottom-color: rgba(0, 0, 0, 0.57); margin-bottom: 5px; padding-bottom: 10px;">
+            <ui:VisualElement name="Logo" style="flex-grow: initial; background-image: resource(&apos;EmployeeLists/Games&apos;); width: 8%; height: 100%; flex-shrink: initial;" />
+            <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ProjectName" style="flex-grow: 0; width: 60%; margin-left: 20px; font-size: 18px;" />
         </ui:VisualElement>
         <ui:VisualElement name="DeadlineContainer" style="flex-grow: 0; height: 10%; flex-shrink: 0; flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: center; align-self: center; width: 100%; margin-top: 5px; margin-bottom: 5px;">
             <ui:VisualElement name="DeadlineIcon" style="flex-grow: 0; flex-shrink: 1; background-image: url(&apos;project://database/Assets/Sprites/ProjectInfo/deadline.png?fileID=21300000&amp;guid=bb6e4296f5c83d8428f9c8207d6c5a03&amp;type=3#deadline&apos;); height: 100%; width: 10%;" />
@@ -16,5 +17,6 @@
             <ui:ProgressBar value="22" title="Technical Progress 22%" name="TechnicalProgress" />
             <ui:ProgressBar value="55" title="Design Progress 55%" name="DesignProgress" />
         </ui:VisualElement>
+        <ui:Instance template="ProjectEmployeesTabbedLists" name="ProjectEmployeesTabbedLists" style="flex-grow: 1;" />
     </ui:VisualElement>
 </ui:UXML>
