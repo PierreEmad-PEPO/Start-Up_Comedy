@@ -12,7 +12,7 @@ public class ProjectEmployee : Employee
     public int TechicalSkills { get{ return technicalSkills; }}
     public int DesignSkills { get { return designSkills; }}
 
-    public Project AssigneProject { get { return assignedProject; }}
+    public Project AssignedProject { get { return assignedProject; }}
     public void Init(string name, ProjectSpecialization _specialization, int minSalary, int _technicalSkills, int _designSkills)
     {
         base.Init(name, (EmployeeSpecialization)((int)_specialization), minSalary);
