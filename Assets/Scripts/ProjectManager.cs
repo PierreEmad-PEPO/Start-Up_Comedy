@@ -54,7 +54,8 @@ public class ProjectManager : MonoBehaviour
                 Debug.Log(project.RequiredDesignSkills + " " + project.RequiredDesignSkills);
                 
             }
-            onProjectManagerOneSec.Invoke();
+            if (projects.Count > 0)
+                onProjectManagerOneSec.Invoke();
             yield return new WaitForSeconds(1);
         }
     }

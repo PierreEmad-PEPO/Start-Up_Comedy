@@ -71,10 +71,6 @@ public class ProjectInfoUI : MonoBehaviour
         price.text = "Price : " + project.Price;
 
         penalClause.text = "Penal Clause : " + project.PenalClause;
-
-        technicalProgress.highValue = project.MaxRequiredTechnicalSkills;
-
-        designProgress.highValue = project.MaxRequiredDesignSkills;
     }
 
     void UpdateDynamicVisualElementData()
