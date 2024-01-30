@@ -1,4 +1,6 @@
+using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -8,6 +10,7 @@ public class AcceptedProjectUI : MonoBehaviour
     List<Project> projects;
     ListView acceptedProjectListView;
     VisualElement root;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +20,13 @@ public class AcceptedProjectUI : MonoBehaviour
         EventManager.AddProjectEventListener(EventEnum.OnProjectAccepted,AddAssignedProject);
         EventManager.AddProjectEventListener(EventEnum.OnDeadlineEnd, RebuidProjectsList);
         EventManager.AddProjectEventListener(EventEnum.OnProjectDone, RebuidProjectsList);
+        EventManager.AddVoidEventListener(EventEnum.OnProjectMangerOneSec, UpdateProgressBar);
+    }
+
+    void UpdateProgressBar()
+    {
+        Debug.Log("22222222");
+        acceptedProjectListView.Rebuild();
     }
 
     void SetVisualElement ()
@@ -27,10 +37,10 @@ public class AcceptedProjectUI : MonoBehaviour
         {
             root.style.display = DisplayStyle.None;
         };
-        InitAssignedListViwe();
+        InitAcceptedProjectListViwe();
     }
 
-    void InitAssignedListViwe()
+    void InitAcceptedProjectListViwe()
     {
         acceptedProjectListView.makeItem = () =>
         {
@@ -41,6 +51,13 @@ public class AcceptedProjectUI : MonoBehaviour
         acceptedProjectListView.bindItem = (item, index) =>
         {
             item.Q<Label>("Name").text = projects[index].Name;
+            ProgressBar tichincal = item.Q<ProgressBar>("TechincalProgress");
+            tichincal.value = projects[index].TechnicalProgress;
+            tichincal.title = "Techincal Progress " + projects[index].TechnicalProgress.ToString() + "%";
+            ProgressBar design = item.Q<ProgressBar>("DesignProgress");
+            design.value = projects[index].DesignProgress;
+            Debug.Log("Techincal Progress " + projects[index].TechnicalProgress.ToString() + "%");
+            design.title = "Design Progress " + projects[index].DesignProgress.ToString() + "%";
 
             switch (projects[index].Specialization)
             {

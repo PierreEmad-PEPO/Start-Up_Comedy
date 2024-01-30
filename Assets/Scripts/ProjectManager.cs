@@ -8,6 +8,7 @@ public class ProjectManager : MonoBehaviour
     List<Project> projects;
     private ProjectEventInvoker OnProjectDone;
     private ProjectEventInvoker OnDeadlineEnd;
+    VoidEventInvoker onProjectManagerOneSec;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +21,9 @@ public class ProjectManager : MonoBehaviour
 
         OnDeadlineEnd = gameObject.AddComponent<ProjectEventInvoker>();
         EventManager.AddProjectEventInvoker(EventEnum.OnDeadlineEnd, OnDeadlineEnd);
+
+        onProjectManagerOneSec = gameObject.AddComponent<VoidEventInvoker>();
+        EventManager.AddVoidEventInvoker(EventEnum.OnProjectMangerOneSec, onProjectManagerOneSec);
 
         StartCoroutine(UpdateProjects());
     }
@@ -48,7 +52,9 @@ public class ProjectManager : MonoBehaviour
 
                 Debug.Log(project.Deadline);
                 Debug.Log(project.RequiredDesignSkills + " " + project.RequiredDesignSkills);
+                
             }
+            onProjectManagerOneSec.Invoke();
             yield return new WaitForSeconds(1);
         }
     }
