@@ -33,6 +33,8 @@ public class Project
     public bool IsDeadlineEnd { get { return deadline <= 0; } }
     public float TechnicalProgress { get { return (maxRequredTechnicalSkills - requiredTechnicalSkills) / (maxRequredTechnicalSkills * 100); } }
     public float DesignProgress { get { return (maxRequredDesignSkills - requiredDesignSkills) / (maxRequredDesignSkills * 100); } }
+    public float MaxRequiredTechnicalSkills { get { return maxRequredTechnicalSkills; } }
+    public float MaxRequiredDesignSkills { get { return maxRequredDesignSkills; } }
     #endregion
 
     #region Methods

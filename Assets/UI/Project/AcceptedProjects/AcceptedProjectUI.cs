@@ -72,7 +72,7 @@ public class AcceptedProjectUI : MonoBehaviour
                     break;
             }
         };
-        acceptedProjectListView.fixedItemHeight = 110;
+        acceptedProjectListView.fixedItemHeight = 150;
         acceptedProjectListView.itemsSource = projects;
 
     }
