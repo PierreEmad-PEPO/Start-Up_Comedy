@@ -36,8 +36,6 @@ public class ProjectInfoUI : MonoBehaviour
     void Start()
     {
         SetVisualElement();
-        UpdateStaticVisualElementData();
-        UpdateDynamicVisualElementData();
         root.style.display = DisplayStyle.None;
 
         EventManager.AddVoidEventListener(EventEnum.OnProjectMangerOneSec, UpdateDynamicVisualElementData);
@@ -48,10 +46,11 @@ public class ProjectInfoUI : MonoBehaviour
         this.project = project;
         assignedEmployees = GameManager.GetAssignedEmployees(project);
         unAssignedEmployees = GameManager.GetUnAssignedEmployees(project);
+        Debug.Log(project.Name);
 
-        root.style.display = DisplayStyle.Flex;
         UpdateStaticVisualElementData();
         UpdateDynamicVisualElementData();
+
     }
 
     void SetVisualElement()
@@ -113,6 +112,7 @@ public class ProjectInfoUI : MonoBehaviour
                 assignedEmployeesList.Rebuild();
             };
         };
+        assignedEmployeesList.fixedItemHeight = 106;
     }
 
     void InitUnAssignedEmployeesList()
@@ -141,6 +141,7 @@ public class ProjectInfoUI : MonoBehaviour
                 unAssignedEmployeesList.Rebuild();
             };
         };
+        unAssignedEmployeesList.fixedItemHeight = 106;
     }
 
     void UpdateStaticVisualElementData()
@@ -195,5 +196,6 @@ public class ProjectInfoUI : MonoBehaviour
         
         designProgress.value = project.DesignProgress;
         designProgress.title = "Design Progress " + designProgress.value + "%";
+
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public static class WindowManager 
+public static class WindowManager
 {
     static Dictionary<WindowName, VisualElement> window = new Dictionary<WindowName, VisualElement>();
     static Dictionary<SubWindowName, VisualElement> subWindow = new Dictionary<SubWindowName, VisualElement>();
@@ -11,7 +11,7 @@ public static class WindowManager
     static WindowName crrentWindow;
     static SubWindowName crrentSubWindow;
 
-    public static void Init (GameObject UI)
+    public static void Init(GameObject UI)
     {
         GameObject hiringUI = UI.transform.Find("HiringEmployee").gameObject;
         VisualElement hiringRoot = hiringUI.GetComponent<UIDocument>().rootVisualElement;
@@ -31,7 +31,7 @@ public static class WindowManager
 
     }
 
-    public static void OpenWindow (WindowName windowName) 
+    public static void OpenWindow(WindowName windowName)
     {
         if (window.ContainsKey(windowName))
         {
@@ -51,7 +51,7 @@ public static class WindowManager
         }
     }
 
-    public static void AddWindow (WindowName windowName, VisualElement UIDecomentRoot)
+    public static void AddWindow(WindowName windowName, VisualElement UIDecomentRoot)
     {
         window.Add(windowName, UIDecomentRoot);
     }
@@ -61,9 +61,9 @@ public static class WindowManager
         subWindow.Add(subWindowName, UIDecomentRoot);
     }
 
-    public static VisualElement GetWindow (WindowName windowName)
+    public static VisualElement GetWindow(WindowName windowName)
     {
-        if (window.ContainsKey (windowName))
+        if (window.ContainsKey(windowName))
         {
             return window[windowName];
         }

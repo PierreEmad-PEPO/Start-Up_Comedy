@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.UIElements;
+
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class AcceptedProjectUI : MonoBehaviour
 {
     [SerializeField] VisualTreeAsset AcceptedProjectCard;
+    [SerializeField] ProjectInfoUI projectInfoScript;
     List<Project> projects;
     ListView acceptedProjectListView;
     VisualElement root;
@@ -71,7 +72,11 @@ public class AcceptedProjectUI : MonoBehaviour
                     item.Q<VisualElement>("Icon").style.backgroundImage = new StyleBackground(Resources.Load<Sprite>("EmployeeLists/Android"));
                     break;
             }
-        };
+            item.RegisterCallback<ClickEvent>(e => {
+                WindowManager.OpenSubWindow(SubWindowName.ProjectInfo);
+                projectInfoScript.SetTheProject(projects[index]);
+            });
+            };
         acceptedProjectListView.fixedItemHeight = 150;
         acceptedProjectListView.itemsSource = projects;
 

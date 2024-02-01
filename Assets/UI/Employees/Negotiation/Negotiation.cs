@@ -120,6 +120,12 @@ public class Negotiation : MonoBehaviour
             recieved.Q<Label>("Message").text = acceptingMessages[RandomGenerator.NextInt(0, acceptingMessages.Length)];
             currentTry = 0;
             chatView.contentContainer.Add(recieved);
+            GameManager.HiredEmployee.Add(employee);
+            if (GameManager.HiringEmployees.Contains(employee))
+            {
+                GameManager.HiringEmployees.Remove(employee);
+                WindowManager.GetWindow(WindowName.HiringEmployees).Q<ListView>("HiringList").Rebuild();
+            }
             finalMessage.style.display = DisplayStyle.Flex;
             finalMessage.text = "Employee Is Hired";
             finalMessage.style.color = Color.green;

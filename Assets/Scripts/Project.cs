@@ -48,8 +48,8 @@ public class Project
         this.penalClause = penalClause;
         this.requiredTechnicalSkills = requiredTechnicalSkills;
         this.requiredDesignSkills = requiredDesignSkills;
-        this.totalAssignedTechnicalSkills = 5f;
-        this.totalAssignedDesignSkills = 5f;
+        this.totalAssignedTechnicalSkills = 0f;
+        this.totalAssignedDesignSkills = 0f;
         this.maxRequredTechnicalSkills = requiredTechnicalSkills;
         this.maxRequredDesignSkills = requiredDesignSkills;
     }

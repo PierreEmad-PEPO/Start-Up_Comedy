@@ -13,7 +13,7 @@ public class EmployeeHiringListView : MonoBehaviour
     [SerializeField] private VisualTreeAsset EmployeeCardTemplate;
     [SerializeField] private Negotiation negotiationMenu;
 
-    List<Employee> employees = new List<Employee>();
+    List<Employee> employees;
 
     VisualElement root;
 
@@ -33,6 +33,7 @@ public class EmployeeHiringListView : MonoBehaviour
     {
         EventManager.AddEmployeeEventListener(EventEnum.OnEmployeeGenerated, AddEmployee);
         employeeGenerator = GetComponent<EmployeeGenerator>();
+        employees = GameManager.HiringEmployees;
 
         SetVisualElement();
         root.style.display = DisplayStyle.None;

@@ -34,7 +34,7 @@ public class ProjectGenerator : MonoBehaviour
     {
         string name = "lol";
         ProjectSpecialization specialization = ProjectSpecialization.Games;
-        float deadline = 10;
+        float deadline = 300;
         int price = 50;
         int penalClause = 50;
         float requiredTechnicalSkills = 50;
