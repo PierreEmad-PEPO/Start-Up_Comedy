@@ -6,6 +6,5 @@ public enum WindowName
     Employees,
     HiringEmployees,
     Markiting,
-    ProjectInfo,
-    Setting
+    Setting,
 }

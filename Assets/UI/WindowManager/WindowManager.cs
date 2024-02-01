@@ -25,6 +25,9 @@ public static class WindowManager
         VisualElement negotiationRoot = negotiationUI.GetComponent<UIDocument>().rootVisualElement;
         subWindow.Add(SubWindowName.Negotation, negotiationRoot);
 
+        GameObject projectInfoUI = UI.transform.Find("ProjectInfo").gameObject;
+        VisualElement projectInfoRoot = projectInfoUI.GetComponent<UIDocument>().rootVisualElement;
+        subWindow.Add(SubWindowName.ProjectInfo, projectInfoRoot);
 
     }
 
@@ -58,7 +61,7 @@ public static class WindowManager
         subWindow.Add(subWindowName, UIDecomentRoot);
     }
 
-    public static VisualElement GitWindow (WindowName windowName)
+    public static VisualElement GetWindow (WindowName windowName)
     {
         if (window.ContainsKey (windowName))
         {
@@ -68,7 +71,7 @@ public static class WindowManager
         return null;
     }
 
-    public static VisualElement GitSubWindow(SubWindowName subWindowName)
+    public static VisualElement GetSubWindow(SubWindowName subWindowName)
     {
         if (subWindow.ContainsKey(subWindowName))
         {

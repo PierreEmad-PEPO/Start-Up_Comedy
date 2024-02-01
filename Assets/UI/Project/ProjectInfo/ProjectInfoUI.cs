@@ -11,6 +11,10 @@ public class ProjectInfoUI : MonoBehaviour
     [SerializeField] private VisualTreeAsset assignedEmployeeCard;
     [SerializeField] private VisualTreeAsset unAssignedEmployeeCard;
 
+    VisualElement assigndEmployeesTab;
+    VisualElement unAssigndEmployeesTab;
+    string pressedtabName = "tab-pressed";
+
     private Project project;
 
     VisualElement root;
@@ -22,8 +26,8 @@ public class ProjectInfoUI : MonoBehaviour
     Label penalClause;
     ProgressBar technicalProgress;
     ProgressBar designProgress;
-    ListView assignedEmployessList;
-    ListView unAssignedEmployessList;
+    ListView assignedEmployeesList;
+    ListView unAssignedEmployeesList;
 
     List<Employee> assignedEmployees;
     List<Employee> unAssignedEmployees;
@@ -62,18 +66,42 @@ public class ProjectInfoUI : MonoBehaviour
         penalClause = root.Q<Label>("PenalClause");
         technicalProgress = root.Q<ProgressBar>("TechnicalProgress");
         designProgress = root.Q<ProgressBar>("DesignProgress");
-        assignedEmployessList = root.Q<ListView>("AssignedEmployeesList");
-        unAssignedEmployessList = root.Q<ListView>("UnAssignedEmployeesList");
+        assignedEmployeesList = root.Q<ListView>("AssignedEmployeesList");
+        unAssignedEmployeesList = root.Q<ListView>("UnAssignedEmployeesList");
+
+        assigndEmployeesTab = root.Q<VisualElement>("AssignedEmployeesTab");
+        unAssigndEmployeesTab = root.Q<VisualElement>("UnAssignedEmployeesTab");
+
+        assigndEmployeesTab.RegisterCallback<ClickEvent>(e => {
+            assignedEmployeesList.style.display = DisplayStyle.Flex;
+            unAssignedEmployeesList.style.display = DisplayStyle.None;
+            if (!assigndEmployeesTab.ClassListContains(pressedtabName))
+                assigndEmployeesTab.AddToClassList(pressedtabName);
+            if (unAssigndEmployeesTab.ClassListContains(pressedtabName))
+                unAssigndEmployeesTab.RemoveFromClassList(pressedtabName);
+
+        });
+        unAssigndEmployeesTab.RegisterCallback<ClickEvent>(e => {
+            assignedEmployeesList.style.display = DisplayStyle.None;
+            unAssignedEmployeesList.style.display = DisplayStyle.Flex;
+            if (!unAssigndEmployeesTab.ClassListContains(pressedtabName))
+                unAssigndEmployeesTab.AddToClassList(pressedtabName);
+            if (assigndEmployeesTab.ClassListContains(pressedtabName))
+                assigndEmployeesTab.RemoveFromClassList(pressedtabName);
+        });
+
+        unAssignedEmployeesList.style.display = DisplayStyle.None;
+
     }
 
     void InitAssignedEmployeesList()
     {
-        assignedEmployessList.makeItem = () =>
+        assignedEmployeesList.makeItem = () =>
         {
             return assignedEmployeeCard.Instantiate();
         };
 
-        assignedEmployessList.bindItem = (item, index) =>
+        assignedEmployeesList.bindItem = (item, index) =>
         {
             item.Q<VisualElement>("SpecializationIcon").style.backgroundImage = specializationLogo.style.backgroundImage;
             item.Q<Label>("EmployeeName").text = assignedEmployees[index].Name;
@@ -81,7 +109,36 @@ public class ProjectInfoUI : MonoBehaviour
             item.Q<Label>("SecondarySkills").text = (assignedEmployees[index] as ProjectEmployee).DesignSkills.ToString();
             item.Q<Button>("Delete").clicked += () =>
             {
+                assignedEmployees.RemoveAt(index);
+                assignedEmployeesList.Rebuild();
+            };
+        };
+    }
 
+    void InitUnAssignedEmployeesList()
+    {
+        unAssignedEmployeesList.makeItem = () =>
+        {
+            return unAssignedEmployeeCard.Instantiate();
+        };
+
+        unAssignedEmployeesList.bindItem = (item, index) =>
+        {
+            var emp = (unAssignedEmployees[index] as ProjectEmployee);
+            var tech = emp.TechicalSkills;
+            var des = emp.DesignSkills;
+
+            item.Q<VisualElement>("SpecializationIcon").style.backgroundImage = specializationLogo.style.backgroundImage;
+            item.Q<Label>("EmployeeName").text = unAssignedEmployees[index].Name;
+            item.Q<Label>("PrimarySkills").text = tech.ToString();
+            item.Q<Label>("SecondarySkills").text = des.ToString();
+            item.Q<Button>("AssignProject").clicked += () =>
+            {
+                project.AssignEmployee(tech, des);
+                emp.AssignProject(project);
+                unAssignedEmployees.RemoveAt(index);
+                assignedEmployees.Add(emp);
+                unAssignedEmployeesList.Rebuild();
             };
         };
     }
@@ -109,24 +166,13 @@ public class ProjectInfoUI : MonoBehaviour
 
         penalClause.text = "Penal Clause : " + project.PenalClause;
 
-        /* 
-         * To Remember //\\
-         * Assiging employee to project affects employee and project both
-         */
+        InitAssignedEmployeesList();
+        assignedEmployeesList.itemsSource = assignedEmployees;
+        assignedEmployeesList.Rebuild();
 
-
-        assignedEmployessList.itemsSource = assignedEmployees;
-        assignedEmployessList.Rebuild();
-
-        unAssignedEmployessList.itemsSource = unAssignedEmployees;
-        unAssignedEmployessList.Rebuild();
-
-
-    }
-
-    void AssignedEmployeeDeleteButton(int index)
-    {
-        assignedEmployees.RemoveAt(index);
+        InitUnAssignedEmployeesList();
+        unAssignedEmployeesList.itemsSource = unAssignedEmployees;
+        unAssignedEmployeesList.Rebuild();
     }
 
     void UpdateDynamicVisualElementData()
