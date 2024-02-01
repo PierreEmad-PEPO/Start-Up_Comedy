@@ -115,7 +115,6 @@ public class ProjectInfoUI : MonoBehaviour
          */
 
 
-        InitProjectEmployeesList(assignedEmployeeCard, assignedEmployees, AssignedEmployeeDeleteButton);
         assignedEmployessList.itemsSource = assignedEmployees;
         assignedEmployessList.Rebuild();
 
