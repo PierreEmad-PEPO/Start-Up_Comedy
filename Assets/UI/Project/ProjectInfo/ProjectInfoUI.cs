@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,8 @@ using UnityEngine.UIElements;
 public class ProjectInfoUI : MonoBehaviour
 {
     [SerializeField] private UIDocument uIDocument;
+    [SerializeField] private VisualTreeAsset assignedEmployeeCard;
+    [SerializeField] private VisualTreeAsset unAssignedEmployeeCard;
 
     private Project project;
 
@@ -63,6 +66,26 @@ public class ProjectInfoUI : MonoBehaviour
         unAssignedEmployessList = root.Q<ListView>("UnAssignedEmployeesList");
     }
 
+    void InitAssignedEmployeesList()
+    {
+        assignedEmployessList.makeItem = () =>
+        {
+            return assignedEmployeeCard.Instantiate();
+        };
+
+        assignedEmployessList.bindItem = (item, index) =>
+        {
+            item.Q<VisualElement>("SpecializationIcon").style.backgroundImage = specializationLogo.style.backgroundImage;
+            item.Q<Label>("EmployeeName").text = assignedEmployees[index].Name;
+            item.Q<Label>("PrimarySkills").text = (assignedEmployees[index] as ProjectEmployee).TechicalSkills.ToString();
+            item.Q<Label>("SecondarySkills").text = (assignedEmployees[index] as ProjectEmployee).DesignSkills.ToString();
+            item.Q<Button>("Delete").clicked += () =>
+            {
+
+            };
+        };
+    }
+
     void UpdateStaticVisualElementData()
     {
         if (project == null) return;
@@ -91,11 +114,20 @@ public class ProjectInfoUI : MonoBehaviour
          * Assiging employee to project affects employee and project both
          */
 
+
+        InitProjectEmployeesList(assignedEmployeeCard, assignedEmployees, AssignedEmployeeDeleteButton);
         assignedEmployessList.itemsSource = assignedEmployees;
         assignedEmployessList.Rebuild();
 
         unAssignedEmployessList.itemsSource = unAssignedEmployees;
         unAssignedEmployessList.Rebuild();
+
+
+    }
+
+    void AssignedEmployeeDeleteButton(int index)
+    {
+        assignedEmployees.RemoveAt(index);
     }
 
     void UpdateDynamicVisualElementData()
@@ -117,6 +149,6 @@ public class ProjectInfoUI : MonoBehaviour
         technicalProgress.title = "Technical Progress " + technicalProgress.value + "%";
         
         designProgress.value = project.DesignProgress;
-        technicalProgress.title = "Design Progress " + technicalProgress.value + "%";
+        designProgress.title = "Design Progress " + designProgress.value + "%";
     }
 }
