@@ -26,6 +26,11 @@ public static class WindowManager
         window.Add(WindowName.Projects, projectsRoot);
         windowGameObject.Add(WindowName.Projects, projectsUI);
 
+        GameObject marketingUI = UI.transform.Find("Marketing").gameObject;
+        VisualElement marketingRoot = marketingUI.GetComponent<UIDocument>().rootVisualElement;
+        window.Add(WindowName.Markiting, marketingRoot);
+        windowGameObject.Add(WindowName.Markiting, marketingUI);
+
         GameObject negotiationUI = UI.transform.Find("Negotiation").gameObject;
         VisualElement negotiationRoot = negotiationUI.GetComponent<UIDocument>().rootVisualElement;
         subWindow.Add(SubWindowName.Negotation, negotiationRoot);

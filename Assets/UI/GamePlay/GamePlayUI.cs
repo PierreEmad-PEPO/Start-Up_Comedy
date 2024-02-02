@@ -10,6 +10,7 @@ public class GamePlayUI : MonoBehaviour
     VisualElement root;
     Button projectsButton;
     Button hrButton;
+    Button marketing;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +18,7 @@ public class GamePlayUI : MonoBehaviour
         root = GetComponent<UIDocument>().rootVisualElement;
         projectsButton = root.Q<Button>("ProjectsButton");
         hrButton = root.Q<Button>("HrButton");
+        marketing = root.Q <Button>("MarketingButton");
         projectsButton.clicked += () =>
         {
             WindowManager.OpenWindow(WindowName.Projects);
@@ -27,6 +29,10 @@ public class GamePlayUI : MonoBehaviour
             WindowManager.OpenWindow(WindowName.HiringEmployees);
         };
 
+        marketing.clicked += () =>
+        {
+            WindowManager.OpenWindow(WindowName.Markiting);
+        };
 
 
     }

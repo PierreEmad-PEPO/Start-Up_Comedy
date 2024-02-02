@@ -8,7 +8,7 @@ public class StartUp
 {
     #region Fields
     private Dictionary<EmployeeSpecialization, List<GameObject>> employees;
-    private long budget;
+    private long budget = 1000;
     private int popularity;
     private float popularitySpeedPerUnit;
     private Timer popularityChangeTimer;
@@ -75,5 +75,25 @@ public class StartUp
     {
         hasDataAnalyst = _hasDataAnalyst;
     }
+
+    public void DoAD(MarketingEnum name)
+    {
+        int price = GameManager.GetMarketingPrice(name);
+        float effect = GameManager.GetMarketingEffect(name);
+        if (price <= budget)
+        {
+            budget -= price;
+            popularitySpeedPerUnit += effect;
+            //alert
+            Debug.Log("Done");
+        }
+        else
+        {
+            // alert
+            Debug.Log("Budget Not enough");
+        }
+
+    }
+    
     #endregion
 }

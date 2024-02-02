@@ -1,0 +1,47 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Marketing/Marketing.uss?fileID=7433441132597879392&amp;guid=0e512ed5155f66144af1b6d0f269cc45&amp;type=3#Marketing" />
+    <ui:VisualElement style="flex-grow: initial; flex-basis: initial; flex-shrink: initial; width: 80%; height: 80%; align-self: center; justify-content: center; align-items: center; top: 10%; background-color: rgb(255, 255, 255); border-top-left-radius: 13px; border-top-right-radius: 13px; border-bottom-right-radius: 13px; border-bottom-left-radius: 13px; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);">
+        <ui:VisualElement style="flex-grow: 1; height: 10%; flex-direction: row; flex-shrink: 0;">
+            <ui:Label tabindex="-1" text="Welcome To Marketing " parse-escape-sequences="true" display-tooltip-when-elided="true" style="align-self: center; margin-top: 0; -unity-text-align: middle-center; font-size: 20px; -unity-font-style: bold; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; height: auto; justify-content: center; align-items: center; flex-grow: 1;" />
+            <ui:Button text="&#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Exit" style="background-color: rgba(188, 188, 188, 0); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); background-image: resource(&apos;EmployeeLists/Delete&apos;); height: 10%; margin-top: 9px; margin-left: 5px; margin-right: 5px;" />
+        </ui:VisualElement>
+        <ui:ScrollView name="Scroll" style="width: 98%; flex-grow: 0; height: 80%; align-self: center; margin-top: 0; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);">
+            <ui:VisualElement name="VisualElement" class="MarketingCard">
+                <ui:VisualElement name="Icon" style="flex-grow: 1; background-image: url(&apos;project://database/Assets/Sprites/MarkrtingIcon/social-media.png?fileID=21300000&amp;guid=08de07684c46caa478708d40f67035f3&amp;type=3#social-media&apos;); width: 80%; flex-shrink: 1; align-self: center;" />
+                <ui:Label tabindex="-1" text="Social AD" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Name" />
+                <ui:VisualElement name="VisualElement" style="flex-grow: 0; flex-direction: row; flex-wrap: nowrap; justify-content: space-between; align-items: auto; align-self: auto;">
+                    <ui:Label tabindex="-1" text="Price" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Price" />
+                    <ui:VisualElement style="flex-grow: initial; flex-direction: row; flex-shrink: initial;">
+                        <ui:Label tabindex="-1" text="50" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SocialValue" style="margin-right: 0; margin-left: 0; padding-right: 0;" />
+                        <ui:Label tabindex="-1" text="$" parse-escape-sequences="true" display-tooltip-when-elided="true" style="margin-right: 0; margin-left: 0;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:Button text="Make" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SocialAd" class="MarketingButtons" />
+            </ui:VisualElement>
+            <ui:VisualElement name="VisualElement" class="MarketingCard" style="flex-grow: 0; height: 50%; width: 30%; flex-shrink: 0; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px;">
+                <ui:VisualElement name="Icon" style="flex-grow: 1; background-image: url(&apos;project://database/Assets/Sprites/MarkrtingIcon/smart-tv.png?fileID=21300000&amp;guid=93e9a3c8fe4e1f74aa0ad70216bd46f0&amp;type=3#smart-tv&apos;); width: 80%; flex-shrink: 1; align-self: center;" />
+                <ui:Label tabindex="-1" text="TV AD" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Name" enable-rich-text="false" />
+                <ui:VisualElement name="VisualElement" style="flex-grow: 0; flex-direction: row; flex-wrap: nowrap; justify-content: space-between; align-items: auto; align-self: auto;">
+                    <ui:Label tabindex="-1" text="Price" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Price" />
+                    <ui:VisualElement style="flex-grow: initial; flex-direction: row; flex-shrink: initial;">
+                        <ui:Label tabindex="-1" text="50" parse-escape-sequences="true" display-tooltip-when-elided="true" name="TvValue" style="margin-right: 0; margin-left: 0; padding-right: 0;" />
+                        <ui:Label tabindex="-1" text="$" parse-escape-sequences="true" display-tooltip-when-elided="true" style="margin-right: 0; margin-left: 0;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:Button text="Make" parse-escape-sequences="true" display-tooltip-when-elided="true" name="TvAd" class="MarketingButtons" />
+            </ui:VisualElement>
+            <ui:VisualElement name="VisualElement" class="MarketingCard" style="flex-grow: 0; height: 50%; width: 30%; flex-shrink: 0; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px;">
+                <ui:VisualElement name="Icon" style="flex-grow: 1; background-image: url(&apos;project://database/Assets/Sprites/MarkrtingIcon/fm.png?fileID=21300000&amp;guid=fe342e6933823d648873a065dce34955&amp;type=3#fm&apos;); width: 80%; flex-shrink: 1; align-self: center;" />
+                <ui:Label tabindex="-1" text="Radoi AD" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Name" />
+                <ui:VisualElement name="VisualElement" style="flex-grow: 0; flex-direction: row; flex-wrap: nowrap; justify-content: space-between; align-items: auto; align-self: auto;">
+                    <ui:Label tabindex="-1" text="Price" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Price" />
+                    <ui:VisualElement style="flex-grow: initial; flex-direction: row; flex-shrink: initial;">
+                        <ui:Label tabindex="-1" text="50" parse-escape-sequences="true" display-tooltip-when-elided="true" name="RadoiValue" style="margin-right: 0; margin-left: 0; padding-right: 0;" />
+                        <ui:Label tabindex="-1" text="$" parse-escape-sequences="true" display-tooltip-when-elided="true" style="margin-right: 0; margin-left: 0;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:Button text="Make" parse-escape-sequences="true" display-tooltip-when-elided="true" name="RadoiAd" class="MarketingButtons" />
+            </ui:VisualElement>
+        </ui:ScrollView>
+    </ui:VisualElement>
+</ui:UXML>

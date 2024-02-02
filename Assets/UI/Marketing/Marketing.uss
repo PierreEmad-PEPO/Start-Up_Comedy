@@ -1,0 +1,54 @@
+.unity-scroll-view__content-container--vertical {
+    background-color: rgba(0, 0, 0, 0);
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    justify-content: flex-start;
+    align-self: flex-end;
+    width: 90%;
+    align-items: flex-start;
+}
+
+.MarketingButtons {
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+    background-color: rgb(84, 197, 132);
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-left-radius: 13px;
+    border-top-right-radius: 13px;
+    border-bottom-right-radius: 13px;
+    border-bottom-left-radius: 13px;
+}
+
+.MarketingCard {
+    flex-grow: 0;
+    height: 50%;
+    width: 30%;
+    flex-shrink: 0;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    border-left-color: rgba(12, 12, 12, 0);
+    border-right-color: rgba(12, 12, 12, 0);
+    border-top-color: rgba(12, 12, 12, 0);
+    border-bottom-color: rgba(12, 12, 12, 0);
+    background-color: rgb(241, 241, 241);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+    border-bottom-left-radius: 7px;
+    margin-top: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+}

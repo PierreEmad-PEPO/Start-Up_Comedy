@@ -9,5 +9,6 @@ public class Initializer : MonoBehaviour
     {
         EventManager.Init();
         WindowManager.Init(UI);
+        GameManager.Init();
     }
 }

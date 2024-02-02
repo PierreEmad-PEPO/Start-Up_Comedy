@@ -12,6 +12,7 @@ public static class GameManager
     static List<Project> projects = new List<Project>();
     static List<Employee> hiringEmployees = new List<Employee>();
     static List<Employee> hiredEmployee = new List<Employee>();
+    static Dictionary<MarketingEnum, List<float>> marketingPrice = new Dictionary<MarketingEnum, List<float>> ();
     //Props
 
     public static StartUp StartUp { get { return startUp; } }
@@ -28,6 +29,28 @@ public static class GameManager
     public static int TotalMarkeintingSkills { get { return GetTotalMarkeitingEmployeesSkills(); } }
 
     //Methodes
+
+    public static void Init()
+    {
+        InitMarketing();
+    }
+
+    private static void InitMarketing()
+    {
+        // 50 and .5 for now
+        marketingPrice.Add(MarketingEnum.SocialAD, new List<float>{ 50f,.5f});
+        marketingPrice.Add(MarketingEnum.TVAD, new List<float> { 50f, .5f });
+        marketingPrice.Add(MarketingEnum.RadoiAd, new List<float> { 50f, .5f });
+    }
+    public static int GetMarketingPrice(MarketingEnum name)
+    {
+        return (int) marketingPrice[name][0];
+    }
+
+    public static float GetMarketingEffect(MarketingEnum name)
+    {
+        return marketingPrice[name][1];
+    }
     public static List<Employee> GetAssignedEmployees(Project project)
     {
         return hiredEmployee.Where(e => e is ProjectEmployee && (e as ProjectEmployee).AssignedProject == project).ToList();
