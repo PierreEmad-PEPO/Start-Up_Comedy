@@ -26,7 +26,6 @@ public class AcceptedProjectUI : MonoBehaviour
 
     void UpdateProgressBar()
     {
-        Debug.Log("22222222");
         acceptedProjectListView.Rebuild();
     }
 
@@ -57,7 +56,6 @@ public class AcceptedProjectUI : MonoBehaviour
             tichincal.title = "Techincal Progress " + projects[index].TechnicalProgress.ToString() + "%";
             ProgressBar design = item.Q<ProgressBar>("DesignProgress");
             design.value = projects[index].DesignProgress;
-            Debug.Log("Techincal Progress " + projects[index].TechnicalProgress.ToString() + "%");
             design.title = "Design Progress " + projects[index].DesignProgress.ToString() + "%";
 
             switch (projects[index].Specialization)

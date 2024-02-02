@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -9,37 +10,37 @@ public class Project
     #region Fields
     private string name;
     private ProjectSpecialization specialization;
-    private float deadline;
+    private int deadline;
     private int price;
     private int penalClause;
-    private float requiredTechnicalSkills;
-    private float requiredDesignSkills;
-    private float totalAssignedTechnicalSkills;
-    private float totalAssignedDesignSkills;
-    private float maxRequredTechnicalSkills;
-    private float maxRequredDesignSkills;
+    private int requiredTechnicalSkills;
+    private int requiredDesignSkills;
+    private int totalAssignedTechnicalSkills;
+    private int totalAssignedDesignSkills;
+    private int maxRequredTechnicalSkills;
+    private int maxRequredDesignSkills;
 
     #endregion
 
     #region Props
     public string Name { get { return name; } }
     public ProjectSpecialization Specialization { get { return specialization; } }
-    public float Deadline { get { return deadline; } }
+    public int Deadline { get { return deadline; } }
     public int Price { get { return price; } }
     public int PenalClause { get { return penalClause; } }
-    public float RequiredTechnicalSkills { get {  return requiredTechnicalSkills; } }
-    public float RequiredDesignSkills {  get { return requiredDesignSkills; } }
+    public int RequiredTechnicalSkills { get {  return requiredTechnicalSkills; } }
+    public int RequiredDesignSkills {  get { return requiredDesignSkills; } }
     public bool IsDone { get { return (requiredTechnicalSkills <= 0 &&  requiredDesignSkills <= 0); } }
     public bool IsDeadlineEnd { get { return deadline <= 0; } }
-    public float TechnicalProgress { get { return Mathf.Min(100, (maxRequredTechnicalSkills - requiredTechnicalSkills) / maxRequredTechnicalSkills * 100); } }
-    public float DesignProgress { get { return Mathf.Min(100, (maxRequredDesignSkills - requiredDesignSkills) / maxRequredDesignSkills * 100); } }
-    public float MaxRequiredTechnicalSkills { get { return maxRequredTechnicalSkills; } }
-    public float MaxRequiredDesignSkills { get { return maxRequredDesignSkills; } }
+    public float TechnicalProgress { get { return Mathf.Min(100f, (float)(maxRequredTechnicalSkills - requiredTechnicalSkills) / maxRequredTechnicalSkills * 100f); } }
+    public float DesignProgress { get { return Mathf.Min(100f, (float)(maxRequredDesignSkills - requiredDesignSkills) / maxRequredDesignSkills * 100f); } }
+    public int MaxRequiredTechnicalSkills { get { return maxRequredTechnicalSkills; } }
+    public int MaxRequiredDesignSkills { get { return maxRequredDesignSkills; } }
     #endregion
 
     #region Methods
-    public void Init(string name, ProjectSpecialization specialization, float deadline, int price, 
-                   int penalClause, float requiredTechnicalSkills, float requiredDesignSkills)
+    public void Init(string name, ProjectSpecialization specialization, int deadline, int price, 
+                   int penalClause, int requiredTechnicalSkills, int requiredDesignSkills)
     {
         this.name = name;
         this.specialization = specialization;
@@ -48,8 +49,8 @@ public class Project
         this.penalClause = penalClause;
         this.requiredTechnicalSkills = requiredTechnicalSkills;
         this.requiredDesignSkills = requiredDesignSkills;
-        this.totalAssignedTechnicalSkills = 0f;
-        this.totalAssignedDesignSkills = 0f;
+        this.totalAssignedTechnicalSkills = 0;
+        this.totalAssignedDesignSkills = 0;
         this.maxRequredTechnicalSkills = requiredTechnicalSkills;
         this.maxRequredDesignSkills = requiredDesignSkills;
     }

@@ -48,11 +48,7 @@ public class ProjectManager : MonoBehaviour
                     projects.Remove(project);
                     OnDeadlineEnd.Invoke(project);
                     continue;
-                }
-
-                Debug.Log(project.Deadline);
-                Debug.Log(project.RequiredDesignSkills + " " + project.RequiredDesignSkills);
-                
+                }                
             }
             if (projects.Count > 0)
                 onProjectManagerOneSec.Invoke();

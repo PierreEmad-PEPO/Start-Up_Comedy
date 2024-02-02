@@ -40,6 +40,8 @@ public class ProjectInfoUI : MonoBehaviour
         root.style.display = DisplayStyle.None;
 
         EventManager.AddVoidEventListener(EventEnum.OnProjectMangerOneSec, UpdateDynamicVisualElementData);
+        EventManager.AddVoidEventListener(EventEnum.OnProjectDone, UpdateDynamicVisualElementData);
+        EventManager.AddVoidEventListener(EventEnum.OnDeadlineEnd, UpdateDynamicVisualElementData);
     }
 
     public void SetTheProject(Project project)
@@ -47,7 +49,6 @@ public class ProjectInfoUI : MonoBehaviour
         this.project = project;
         assignedEmployees = GameManager.GetAssignedEmployees(project);
         unAssignedEmployees = GameManager.GetUnAssignedEmployees(project);
-        Debug.Log(project.Name);
 
         UpdateStaticVisualElementData();
         UpdateDynamicVisualElementData();
@@ -216,20 +217,19 @@ public class ProjectInfoUI : MonoBehaviour
         if (project == null) return;
 
         deadline.text = "";
-        int intDeadline = (int)project.Deadline;
+        int intDeadline = project.Deadline;
         int loop = 3;
         while (loop-- > 0)
         {
-            deadline.text += (intDeadline / 60).ToString();
-            if (loop > 0) deadline.text += ":";
-            intDeadline = intDeadline % 60;
+            deadline.text = (loop > 0 ? ":" : "") + (intDeadline % 60).ToString() + deadline.text;
+            intDeadline /= 60;
         }
+        
 
         technicalProgress.value = project.TechnicalProgress;
         technicalProgress.title = "Technical Progress " + technicalProgress.value + "%";
         
         designProgress.value = project.DesignProgress;
         designProgress.title = "Design Progress " + designProgress.value + "%";
-
     }
 }
