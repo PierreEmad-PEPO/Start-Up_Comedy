@@ -31,8 +31,8 @@ public class Project
     public float RequiredDesignSkills {  get { return requiredDesignSkills; } }
     public bool IsDone { get { return (requiredTechnicalSkills <= 0 &&  requiredDesignSkills <= 0); } }
     public bool IsDeadlineEnd { get { return deadline <= 0; } }
-    public float TechnicalProgress { get { return (maxRequredTechnicalSkills - requiredTechnicalSkills) / maxRequredTechnicalSkills * 100; } }
-    public float DesignProgress { get { return (maxRequredDesignSkills - requiredDesignSkills) / maxRequredDesignSkills * 100; } }
+    public float TechnicalProgress { get { return Mathf.Min(100, (maxRequredTechnicalSkills - requiredTechnicalSkills) / maxRequredTechnicalSkills * 100); } }
+    public float DesignProgress { get { return Mathf.Min(100, (maxRequredDesignSkills - requiredDesignSkills) / maxRequredDesignSkills * 100); } }
     public float MaxRequiredTechnicalSkills { get { return maxRequredTechnicalSkills; } }
     public float MaxRequiredDesignSkills { get { return maxRequredDesignSkills; } }
     #endregion
@@ -75,6 +75,8 @@ public class Project
             requiredDesignSkills -= totalAssignedDesignSkills;
         if (deadline > 0f)
             deadline -= 1;
+
+
     }
     #endregion
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static UnityEditor.Progress;
 
 public class ProjectInfoUI : MonoBehaviour
 {
@@ -94,13 +95,32 @@ public class ProjectInfoUI : MonoBehaviour
 
         unAssignedEmployeesList.style.display = DisplayStyle.None;
 
+        InitAssignedEmployeesList();
+        InitUnAssignedEmployeesList();
+
     }
 
     void InitAssignedEmployeesList()
     {
         assignedEmployeesList.makeItem = () =>
         {
-            return assignedEmployeeCard.Instantiate();
+            var template = assignedEmployeeCard.Instantiate();
+            template.Q<Button>("Delete").clicked += () =>
+            {
+                var emp = template.userData as ProjectEmployee;
+                var tech = emp.TechicalSkills;
+                var des = emp.DesignSkills;
+                
+                project.DismissEmployee(tech, des);
+                emp.AssignProject(null);
+
+                assignedEmployees.Remove(template.userData as Employee);
+
+                unAssignedEmployees.Add(template.userData as Employee);
+
+                assignedEmployeesList.Rebuild();
+            };
+            return template;
         };
 
         assignedEmployeesList.bindItem = (item, index) =>
@@ -109,19 +129,12 @@ public class ProjectInfoUI : MonoBehaviour
             var tech = emp.TechicalSkills;
             var des = emp.DesignSkills;
 
+            item.userData = assignedEmployees[index];
+
             item.Q<VisualElement>("SpecializationIcon").style.backgroundImage = specializationLogo.style.backgroundImage;
             item.Q<Label>("EmployeeName").text = assignedEmployees[index].Name;
             item.Q<Label>("PrimarySkills").text = tech.ToString();
             item.Q<Label>("SecondarySkills").text = des.ToString();
-            item.Q<Button>("Delete").clicked += () =>
-            {
-                project.DismissEmployee(tech, des);
-                emp.AssignProject(null);
-                unAssignedEmployees.Add(assignedEmployees[index]);
-                assignedEmployees.RemoveAt(index);
-
-                assignedEmployeesList.Rebuild();
-            };
         };
         assignedEmployeesList.fixedItemHeight = 106;
     }
@@ -130,7 +143,25 @@ public class ProjectInfoUI : MonoBehaviour
     {
         unAssignedEmployeesList.makeItem = () =>
         {
-            return unAssignedEmployeeCard.Instantiate();
+            var template = unAssignedEmployeeCard.Instantiate();
+
+            template.Q<Button>("AssignProject").clicked += () =>
+            {
+                var emp = template.userData as ProjectEmployee;
+                var tech = emp.TechicalSkills;
+                var des = emp.DesignSkills;
+
+                project.AssignEmployee(tech, des);
+                emp.AssignProject(project);
+
+                assignedEmployees.Add(template.userData as Employee);
+                unAssignedEmployees.Remove(template.userData as Employee);
+
+                unAssignedEmployeesList.Rebuild();
+
+            };
+
+            return template;
         };
 
         unAssignedEmployeesList.bindItem = (item, index) =>
@@ -139,21 +170,12 @@ public class ProjectInfoUI : MonoBehaviour
             var tech = emp.TechicalSkills;
             var des = emp.DesignSkills;
 
+            item.userData = unAssignedEmployees[index];
+
             item.Q<VisualElement>("SpecializationIcon").style.backgroundImage = specializationLogo.style.backgroundImage;
             item.Q<Label>("EmployeeName").text = unAssignedEmployees[index].Name;
             item.Q<Label>("PrimarySkills").text = tech.ToString();
             item.Q<Label>("SecondarySkills").text = des.ToString();
-            item.Q<Button>("AssignProject").clicked += () =>
-            {
-                project.AssignEmployee(tech, des);
-                emp.AssignProject(project);
-
-                assignedEmployees.Add(unAssignedEmployees[index]);
-                unAssignedEmployees.RemoveAt(index);
-
-                unAssignedEmployeesList.Rebuild();
-
-            };
         };
         unAssignedEmployeesList.fixedItemHeight = 106;
     }
@@ -181,11 +203,10 @@ public class ProjectInfoUI : MonoBehaviour
 
         penalClause.text = "Penal Clause : " + project.PenalClause;
 
-        InitAssignedEmployeesList();
+        
         assignedEmployeesList.itemsSource = assignedEmployees;
         assignedEmployeesList.Rebuild();
 
-        InitUnAssignedEmployeesList();
         unAssignedEmployeesList.itemsSource = unAssignedEmployees;
         unAssignedEmployeesList.Rebuild();
     }
@@ -200,9 +221,8 @@ public class ProjectInfoUI : MonoBehaviour
         while (loop-- > 0)
         {
             deadline.text += (intDeadline / 60).ToString();
-            if (loop > 1) deadline.text += ":";
+            if (loop > 0) deadline.text += ":";
             intDeadline = intDeadline % 60;
-            loop--;
         }
 
         technicalProgress.value = project.TechnicalProgress;

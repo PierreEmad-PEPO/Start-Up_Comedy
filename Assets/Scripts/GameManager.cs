@@ -35,7 +35,7 @@ public static class GameManager
 
     public static List<Employee> GetUnAssignedEmployees(Project project)
     {
-        return hiredEmployee.Where(e => e is ProjectEmployee && (e as ProjectEmployee).AssignedProject != project).ToList();
+        return hiredEmployee.Where(e => e is ProjectEmployee && (e as ProjectEmployee).AssignedProject == null).ToList();
     }
 
 

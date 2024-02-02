@@ -37,8 +37,8 @@ public class EmployeeHiringListView : MonoBehaviour
         employees = GameManager.HiringEmployees;
 
         SetVisualElement();
-        root.style.display = DisplayStyle.None;
         InitHiringListViwe();
+        root.style.display = DisplayStyle.None;
 
     }
 
@@ -104,7 +104,17 @@ public class EmployeeHiringListView : MonoBehaviour
             }
 
             listCounterLabel.text = employees.Count.ToString() + " / " + MAX_LIST_SIZE.ToString();
+            
             var temp = EmployeeCardTemplate.Instantiate();
+            temp.Q<Button>("Negotiation").clicked += () =>
+            {
+                WindowManager.OpenSubWindow(SubWindowName.Negotation);
+                negotiationMenu.SetTheEmployee(temp.userData as Employee);
+            };
+            temp.Q<Button>("Delete").clicked += () =>
+            {
+                ConfirmDelete(temp.userData as Employee);
+            };
             return temp;
            
         };
@@ -144,15 +154,7 @@ public class EmployeeHiringListView : MonoBehaviour
         item.userData = employees[index];
 
         item.Q<Label>("EmployeeName").text = employees[index].Name;
-        item.Q<Button>("Negotiation").clicked += () =>
-        {
-            WindowManager.OpenSubWindow(SubWindowName.Negotation);
-            negotiationMenu.SetTheEmployee(item.userData as Employee);
-        };
-        item.Q<Button>("Delete").clicked += () =>
-        {
-            ConfirmDelete(item.userData as Employee);
-        };
+        
     }
 
     public void ConfirmDelete(Employee employee)
