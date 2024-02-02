@@ -39,16 +39,18 @@ public class ProjectManager : MonoBehaviour
 
                 if (project.IsDone) 
                 {
-                    projects.Remove(project);
+                    OnProjectDoneEffect(project);
+                    projects.RemoveAt(i);
                     OnProjectDone.Invoke(project);
-                    project = null;
+                    i--;
                     continue;
                 }
                 else if (project.IsDeadlineEnd)
                 {
-                    projects.Remove(project);
+                    OnProjectDeadEffect(project);
+                    projects.RemoveAt(i);
                     OnDeadlineEnd.Invoke(project);
-                    project = null;
+                    i--;
                     continue;
                 }                
             }
@@ -56,5 +58,31 @@ public class ProjectManager : MonoBehaviour
                 onProjectManagerOneSec.Invoke();
             yield return new WaitForSeconds(1);
         }
+    }
+
+    void OnProjectDoneEffect (Project project)
+    {
+        List<Employee> assigndEmployees = GameManager.GetAssignedEmployees(project);
+        int extraSkills = 50; // for now
+        float increasePopularity = 10f;
+        foreach (ProjectEmployee employee in assigndEmployees)
+        {
+            employee.UpgradeSkills(extraSkills);
+            employee.AssignProject(null);
+        }
+        float popularitySpeed = GameManager.StartUp.PopularitySpeedPerUnit;
+        GameManager.StartUp.SetPopularitySpeed(popularitySpeed + increasePopularity);
+    }
+
+    void OnProjectDeadEffect(Project project)
+    {
+        List<Employee> assigndEmployees = GameManager.GetAssignedEmployees(project);
+        float decreasePopularity = 10f; // for now
+        foreach (ProjectEmployee employee in assigndEmployees)
+        {
+            employee.AssignProject(null);
+        }
+        float popularitySpeed = GameManager.StartUp.PopularitySpeedPerUnit;
+        GameManager.StartUp.SetPopularitySpeed(popularitySpeed - decreasePopularity);
     }
 }

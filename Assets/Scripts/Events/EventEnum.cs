@@ -12,4 +12,6 @@ public enum EventEnum
     OnEmployeeHired,
     OnEmployeeCanceled,
     OnProjectMangerOneSec,
+    OnAssigndProjectToEmployee,
+    OnUnAssigndProjectFromEmployee
 }

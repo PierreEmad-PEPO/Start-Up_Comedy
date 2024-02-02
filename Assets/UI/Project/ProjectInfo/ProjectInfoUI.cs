@@ -33,11 +33,20 @@ public class ProjectInfoUI : MonoBehaviour
     List<Employee> assignedEmployees;
     List<Employee> unAssignedEmployees;
 
+    private ProjectEventInvoker onAssigndProjectToEmployee;
+    private ProjectEventInvoker onUnAssigndProjectFromEmployee;
+
     // Start is called before the first frame update
     void Start()
     {
         SetVisualElement();
         root.style.display = DisplayStyle.None;
+
+        onAssigndProjectToEmployee = gameObject.AddComponent<ProjectEventInvoker>();
+        EventManager.AddProjectEventInvoker(EventEnum.OnAssigndProjectToEmployee, onAssigndProjectToEmployee);
+
+        onUnAssigndProjectFromEmployee = gameObject.AddComponent<ProjectEventInvoker>();
+        EventManager.AddProjectEventInvoker(EventEnum.OnUnAssigndProjectFromEmployee, onUnAssigndProjectFromEmployee);
 
         EventManager.AddVoidEventListener(EventEnum.OnProjectMangerOneSec, UpdateDynamicVisualElementData);
         EventManager.AddVoidEventListener(EventEnum.OnProjectDone, UpdateDynamicVisualElementData);
@@ -120,6 +129,8 @@ public class ProjectInfoUI : MonoBehaviour
                 unAssignedEmployees.Add(template.userData as Employee);
 
                 assignedEmployeesList.Rebuild();
+
+                onUnAssigndProjectFromEmployee.Invoke(project);
             };
             return template;
         };
@@ -159,6 +170,8 @@ public class ProjectInfoUI : MonoBehaviour
                 unAssignedEmployees.Remove(template.userData as Employee);
 
                 unAssignedEmployeesList.Rebuild();
+
+                onAssigndProjectToEmployee.Invoke(project);
 
             };
 
