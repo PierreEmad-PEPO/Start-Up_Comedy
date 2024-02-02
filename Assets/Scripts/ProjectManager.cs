@@ -41,12 +41,14 @@ public class ProjectManager : MonoBehaviour
                 {
                     projects.Remove(project);
                     OnProjectDone.Invoke(project);
+                    project = null;
                     continue;
                 }
                 else if (project.IsDeadlineEnd)
                 {
                     projects.Remove(project);
                     OnDeadlineEnd.Invoke(project);
+                    project = null;
                     continue;
                 }                
             }

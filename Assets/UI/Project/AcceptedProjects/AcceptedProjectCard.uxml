@@ -5,6 +5,10 @@
             <ui:Label tabindex="-1" text="LOL" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Name" enable-rich-text="true" style="align-items: flex-start; align-self: flex-start;" />
             <ui:ProgressBar value="22" title="Techical Progress 22%" name="TechincalProgress" style="width: auto; height: auto; flex-grow: 0; flex-shrink: 1;" />
             <ui:ProgressBar value="22" title="Design Progress 22%" name="DesignProgress" />
+            <ui:VisualElement name="DeadlineContainer" style="flex-grow: 0; height: auto; flex-shrink: 0; flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: center; align-self: center; width: 100%; margin-top: 5px; margin-bottom: 5px;">
+                <ui:VisualElement name="DeadlineIcon" style="flex-grow: 0; flex-shrink: 1; background-image: url(&apos;project://database/Assets/Sprites/ProjectInfo/deadline.png?fileID=21300000&amp;guid=bb6e4296f5c83d8428f9c8207d6c5a03&amp;type=3#deadline&apos;); height: 50px; width: 50px;" />
+                <ui:Label tabindex="-1" text="00:00:00" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Deadline" style="font-size: 35px; color: rgb(217, 9, 9); width: 174px; -unity-text-align: upper-center; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; height: 100%;" />
+            </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

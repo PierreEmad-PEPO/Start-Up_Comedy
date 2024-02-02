@@ -11,8 +11,8 @@ public static class WindowManager
     static Dictionary<WindowName, GameObject> windowGameObject = new Dictionary<WindowName, GameObject>();
     static Dictionary<SubWindowName, GameObject> subWindowGameObject = new Dictionary<SubWindowName, GameObject>();
     
-    static WindowName crrentWindow;
-    static SubWindowName crrentSubWindow;
+    static WindowName currentWindow;
+    static SubWindowName currentSubWindow;
 
     public static void Init(GameObject UI)
     {
@@ -42,9 +42,9 @@ public static class WindowManager
     {
         if (window.ContainsKey(windowName))
         {
-            window[crrentWindow].style.display = DisplayStyle.None;
-            crrentWindow = windowName;
-            window[crrentWindow].style.display = DisplayStyle.Flex;
+            window[currentWindow].style.display = DisplayStyle.None;
+            currentWindow = windowName;
+            window[currentWindow].style.display = DisplayStyle.Flex;
         }
     }
 
@@ -52,9 +52,9 @@ public static class WindowManager
     {
         if (subWindow.ContainsKey(subWindowName))
         {
-            subWindow[crrentSubWindow].style.display = DisplayStyle.None;
-            crrentSubWindow = subWindowName;
-            subWindow[crrentSubWindow].style.display = DisplayStyle.Flex;
+            subWindow[currentSubWindow].style.display = DisplayStyle.None;
+            currentSubWindow = subWindowName;
+            subWindow[currentSubWindow].style.display = DisplayStyle.Flex;
         }
     }
 

@@ -57,6 +57,19 @@ public class AcceptedProjectUI : MonoBehaviour
             ProgressBar design = item.Q<ProgressBar>("DesignProgress");
             design.value = projects[index].DesignProgress;
             design.title = "Design Progress " + projects[index].DesignProgress.ToString() + "%";
+            
+            Label deadline = item.Q<Label>("Deadline");
+            deadline.text = "";
+            int intDeadline = projects[index].Deadline;
+            int loop = 3;
+            while (loop-- > 0)
+            {
+                string toAdd = (intDeadline % 60).ToString();
+                if (toAdd.Length == 1) toAdd = "0" + toAdd;
+                deadline.text = (loop > 0 ? ":" : "") + toAdd + deadline.text;
+                intDeadline /= 60;
+            }
+
 
             switch (projects[index].Specialization)
             {
@@ -75,7 +88,7 @@ public class AcceptedProjectUI : MonoBehaviour
                 projectInfoScript.SetTheProject(projects[index]);
             });
             };
-        acceptedProjectListView.fixedItemHeight = 150;
+        acceptedProjectListView.fixedItemHeight = 200;
         acceptedProjectListView.itemsSource = projects;
 
     }

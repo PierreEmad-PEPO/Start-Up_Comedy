@@ -221,7 +221,9 @@ public class ProjectInfoUI : MonoBehaviour
         int loop = 3;
         while (loop-- > 0)
         {
-            deadline.text = (loop > 0 ? ":" : "") + (intDeadline % 60).ToString() + deadline.text;
+            string toAdd = (intDeadline % 60).ToString();
+            if (toAdd.Length == 1) toAdd = "0" + toAdd;
+            deadline.text = (loop > 0 ? ":" : "") + toAdd + deadline.text;
             intDeadline /= 60;
         }
         
