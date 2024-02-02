@@ -124,7 +124,7 @@ public class Negotiation : MonoBehaviour
             if (GameManager.HiringEmployees.Contains(employee))
             {
                 GameManager.HiringEmployees.Remove(employee);
-                WindowManager.GetWindow(WindowName.HiringEmployees).Q<ListView>("HiringList").Rebuild();
+                WindowManager.GetWindowGameObject(WindowName.HiringEmployees).GetComponent<EmployeeHiringListView>().ConfirmDelete(employee);
             }
             finalMessage.style.display = DisplayStyle.Flex;
             finalMessage.text = "Employee Is Hired";
@@ -144,6 +144,8 @@ public class Negotiation : MonoBehaviour
         {
             finalMessage.style.display = DisplayStyle.Flex;
             finalMessage.text = "Employee Closed The Neogtiation";
+            GameManager.HiringEmployees.Remove(employee);
+            WindowManager.GetWindowGameObject(WindowName.HiringEmployees).GetComponent<EmployeeHiringListView>().ConfirmDelete(employee);
             finalMessage.style.color = Color.red;
             onEmployeeCanceled.Invoke(employee);
         }

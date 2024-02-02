@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static UnityEditor.Progress;
 
 public class EmployeeHiringListView : MonoBehaviour
 {
@@ -72,10 +73,7 @@ public class EmployeeHiringListView : MonoBehaviour
         };
         EndGenerationButton.clicked += () =>
         {
-            StartGenerationButton.style.display = DisplayStyle.Flex;
-            EndGenerationButton.style.display = DisplayStyle.None;
-            employeeEnum.pickingMode = PickingMode.Position;
-            employeeGenerator.EndGeneration();
+            EndGeneration();
         };
         root.Q<Button>("Exit").clicked += () =>
         {
@@ -83,9 +81,12 @@ public class EmployeeHiringListView : MonoBehaviour
         };
     }
 
-    private void EmployeeHiringListView_clicked()
+    void EndGeneration()
     {
-        throw new NotImplementedException();
+        StartGenerationButton.style.display = DisplayStyle.Flex;
+        EndGenerationButton.style.display = DisplayStyle.None;
+        employeeEnum.pickingMode = PickingMode.Position;
+        employeeGenerator.EndGeneration();
     }
 
     void InitHiringListViwe()
@@ -140,21 +141,28 @@ public class EmployeeHiringListView : MonoBehaviour
 
     void BindBaseEmployeeUI(VisualElement item, int index)
     {
+        item.userData = employees[index];
+
         item.Q<Label>("EmployeeName").text = employees[index].Name;
         item.Q<Button>("Negotiation").clicked += () =>
         {
             WindowManager.OpenSubWindow(SubWindowName.Negotation);
-            negotiationMenu.SetTheEmployee(employees[index]);
+            negotiationMenu.SetTheEmployee(item.userData as Employee);
         };
         item.Q<Button>("Delete").clicked += () =>
         {
-            employees.RemoveAt(index);
-            if (employees.Count == 0)
-            {
-                listCounterLabel.text = employees.Count.ToString() + " / " + MAX_LIST_SIZE.ToString();
-            }
-                employeeList.Rebuild();
+            ConfirmDelete(item.userData as Employee);
         };
+    }
+
+    public void ConfirmDelete(Employee employee)
+    {
+        employees.Remove(employee);
+        if (employees.Count == 0)
+        {
+            listCounterLabel.text = employees.Count.ToString() + " / " + MAX_LIST_SIZE.ToString();
+        }
+        employeeList.Rebuild();
     }
 
     void BindGamesEmployee(VisualElement item, int index)
@@ -208,7 +216,7 @@ public class EmployeeHiringListView : MonoBehaviour
         }
         else 
         {
-            employeeGenerator.EndGeneration();
+            EndGeneration();
         }
     }
 

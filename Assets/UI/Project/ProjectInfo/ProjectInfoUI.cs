@@ -50,7 +50,6 @@ public class ProjectInfoUI : MonoBehaviour
 
         UpdateStaticVisualElementData();
         UpdateDynamicVisualElementData();
-
     }
 
     void SetVisualElement()
@@ -79,6 +78,8 @@ public class ProjectInfoUI : MonoBehaviour
             if (unAssigndEmployeesTab.ClassListContains(pressedtabName))
                 unAssigndEmployeesTab.RemoveFromClassList(pressedtabName);
 
+            assignedEmployeesList.Rebuild();
+
         });
         unAssigndEmployeesTab.RegisterCallback<ClickEvent>(e => {
             assignedEmployeesList.style.display = DisplayStyle.None;
@@ -87,6 +88,8 @@ public class ProjectInfoUI : MonoBehaviour
                 unAssigndEmployeesTab.AddToClassList(pressedtabName);
             if (assigndEmployeesTab.ClassListContains(pressedtabName))
                 assigndEmployeesTab.RemoveFromClassList(pressedtabName);
+
+            unAssignedEmployeesList.Rebuild();
         });
 
         unAssignedEmployeesList.style.display = DisplayStyle.None;
@@ -102,13 +105,21 @@ public class ProjectInfoUI : MonoBehaviour
 
         assignedEmployeesList.bindItem = (item, index) =>
         {
+            var emp = (assignedEmployees[index] as ProjectEmployee);
+            var tech = emp.TechicalSkills;
+            var des = emp.DesignSkills;
+
             item.Q<VisualElement>("SpecializationIcon").style.backgroundImage = specializationLogo.style.backgroundImage;
             item.Q<Label>("EmployeeName").text = assignedEmployees[index].Name;
-            item.Q<Label>("PrimarySkills").text = (assignedEmployees[index] as ProjectEmployee).TechicalSkills.ToString();
-            item.Q<Label>("SecondarySkills").text = (assignedEmployees[index] as ProjectEmployee).DesignSkills.ToString();
+            item.Q<Label>("PrimarySkills").text = tech.ToString();
+            item.Q<Label>("SecondarySkills").text = des.ToString();
             item.Q<Button>("Delete").clicked += () =>
             {
+                project.DismissEmployee(tech, des);
+                emp.AssignProject(null);
+                unAssignedEmployees.Add(assignedEmployees[index]);
                 assignedEmployees.RemoveAt(index);
+
                 assignedEmployeesList.Rebuild();
             };
         };
@@ -136,9 +147,12 @@ public class ProjectInfoUI : MonoBehaviour
             {
                 project.AssignEmployee(tech, des);
                 emp.AssignProject(project);
+
+                assignedEmployees.Add(unAssignedEmployees[index]);
                 unAssignedEmployees.RemoveAt(index);
-                assignedEmployees.Add(emp);
+
                 unAssignedEmployeesList.Rebuild();
+
             };
         };
         unAssignedEmployeesList.fixedItemHeight = 106;

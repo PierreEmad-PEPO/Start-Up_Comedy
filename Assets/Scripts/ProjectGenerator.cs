@@ -37,8 +37,8 @@ public class ProjectGenerator : MonoBehaviour
         float deadline = 300;
         int price = 50;
         int penalClause = 50;
-        float requiredTechnicalSkills = 50;
-        float requiredDesignSkills = 50;
+        float requiredTechnicalSkills = 5000;
+        float requiredDesignSkills = 5000;
 
         Project project = new Project();
         project.Init(name, specialization, deadline, price,
