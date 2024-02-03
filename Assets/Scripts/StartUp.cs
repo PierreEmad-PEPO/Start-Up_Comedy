@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class StartUp
+public class StartUp : MonoBehaviour
 {
     #region Fields
     private Dictionary<EmployeeSpecialization, List<GameObject>> employees;
@@ -17,7 +17,10 @@ public class StartUp
     private int fireSystemLevel;
     private int securityLevel;
     private bool hasDataAnalyst;
+
+    private VoidEventInvoker onBudgetChange;
     #endregion
+
 
     #region Props
     public long Budget { get { return budget; } }
@@ -30,6 +33,16 @@ public class StartUp
     public bool HasDataAnalyst { get {  return hasDataAnalyst; } }
     #endregion
 
+    #region Unity Methods
+
+    private void Start()
+    {
+        onBudgetChange = gameObject.AddComponent<VoidEventInvoker>();
+        EventManager.AddVoidEventInvoker(EventEnum.OnBudgetChanged, onBudgetChange);
+    }
+
+    #endregion
+
     #region Methods
     public List<GameObject> GetEmployees(EmployeeSpecialization specialization)
     {
@@ -38,14 +51,24 @@ public class StartUp
     public void AddMoney(int  money)
     {
         budget += money;
+        onBudgetChange.Invoke();
     }
     public void PayMoney(int money) 
     {
         budget -= money;
+        onBudgetChange.Invoke();
     }
     public void SetPopularitySpeed(float newSpeed)
     {
         popularitySpeedPerUnit = newSpeed;
+    }
+    public void IncreasePopularitySpeed(float newSpeed)
+    {
+        popularitySpeedPerUnit += newSpeed;
+    }
+    public void DecreasePopularitySpeed(float newSpeed)
+    {
+        popularitySpeedPerUnit -= newSpeed;
     }
     public void IncreaseEntertainment(int _entertainment)
     {
@@ -82,8 +105,8 @@ public class StartUp
         float effect = GameManager.GetMarketingEffect(name);
         if (price <= budget)
         {
-            budget -= price;
-            popularitySpeedPerUnit += effect;
+            PayMoney(price);
+            IncreasePopularitySpeed(effect);
             //alert
             Debug.Log("Done");
         }

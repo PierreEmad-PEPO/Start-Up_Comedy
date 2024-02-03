@@ -13,10 +13,15 @@ public class HiredEmployeeUI : MonoBehaviour
 
     ListView employeesList;
 
+     EmployeeEventInvoker onEmployeeFired;
+
     void Start()
     {
         employees = GameManager.HiredEmployee;
         SetVisualElement();
+
+        onEmployeeFired = gameObject.AddComponent<EmployeeEventInvoker>();
+        EventManager.AddEmployeeEventInvoker(EventEnum.OnEmployeeFired,onEmployeeFired);
 
         EventManager.AddProjectEventListener(EventEnum.OnProjectDone, RebuildEmoloyeeList);
         EventManager.AddProjectEventListener(EventEnum.OnUnAssigndProjectFromEmployee, RebuildEmoloyeeList);
@@ -103,6 +108,8 @@ public class HiredEmployeeUI : MonoBehaviour
             if (projectEmployee.AssignedProject != null)
                 projectEmployee.AssignedProject.DismissEmployee(projectEmployee.TechicalSkills, projectEmployee.DesignSkills);
         }
+
+        onEmployeeFired.Invoke(null);
 
         // delet Employee and Rebuild List
         employees.Remove(employee);

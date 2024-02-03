@@ -2,11 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public static class GameManager
 {
-    static StartUp startUp = new StartUp();
+    static StartUp startUp;
 
     // Lists
     static List<Project> projects = new List<Project>();
@@ -30,8 +31,9 @@ public static class GameManager
 
     //Methodes
 
-    public static void Init()
+    public static void Init(StartUp _startUp)
     {
+        startUp = _startUp;
         InitMarketing();
     }
 

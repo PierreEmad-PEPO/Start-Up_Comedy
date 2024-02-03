@@ -70,8 +70,7 @@ public class ProjectManager : MonoBehaviour
             employee.UpgradeSkills(extraSkills);
             employee.AssignProject(null);
         }
-        float popularitySpeed = GameManager.StartUp.PopularitySpeedPerUnit;
-        GameManager.StartUp.SetPopularitySpeed(popularitySpeed + increasePopularity);
+        GameManager.StartUp.IncreasePopularitySpeed(increasePopularity);
     }
 
     void OnProjectDeadEffect(Project project)
@@ -82,7 +81,6 @@ public class ProjectManager : MonoBehaviour
         {
             employee.AssignProject(null);
         }
-        float popularitySpeed = GameManager.StartUp.PopularitySpeedPerUnit;
-        GameManager.StartUp.SetPopularitySpeed(popularitySpeed - decreasePopularity);
+        GameManager.StartUp.DecreasePopularitySpeed(decreasePopularity);
     }
 }
