@@ -93,6 +93,15 @@ public class HiredEmployeeUI : MonoBehaviour
 
     public void ConfirmDelete(Employee employee)
     {
+        // Unassigned Employee From Project
+        if (employee is ProjectEmployee)
+        {
+            ProjectEmployee projectEmployee = (ProjectEmployee) employee;
+            if (projectEmployee.AssignedProject != null)
+                projectEmployee.AssignedProject.DismissEmployee(projectEmployee.TechicalSkills, projectEmployee.DesignSkills);
+        }
+
+        // delet Employee and Rebuild List
         employees.Remove(employee);
         employeesList.Rebuild();
     }
