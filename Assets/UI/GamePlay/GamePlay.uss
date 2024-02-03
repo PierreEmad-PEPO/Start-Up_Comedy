@@ -30,3 +30,13 @@
     justify-content: center;
     overflow: hidden;
 }
+
+.button {
+    background-color: rgba(220, 219, 220, 0);
+    -unity-background-image-tint-color: rgb(220, 219, 220);
+}
+
+.button-pressed {
+    background-color: rgba(220, 0, 0, 0);
+    -unity-background-image-tint-color: rgb(220, 0, 0);
+}

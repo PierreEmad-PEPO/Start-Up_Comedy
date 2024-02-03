@@ -11,6 +11,8 @@ public class GamePlayUI : MonoBehaviour
     Label popularity;
     Label projects;
     Label employees;
+    Button normalSpeed;
+    Button fastSpeed;
 
     // Start is called before the first frame update
     void Start()
@@ -42,14 +44,23 @@ public class GamePlayUI : MonoBehaviour
         employees = root.Q<Label>("Employees");
         UpdateEmployeesLabel(null);
 
-        root.Q<Button>("NormalSpeedButton").clicked += () =>
+        normalSpeed = root.Q<Button>("NormalSpeedButton");
+        fastSpeed = root.Q<Button>("FastSpeedButton");
+
+        normalSpeed.clicked += () =>
         {
             Time.timeScale = 1;
+
+            fastSpeed.RemoveFromClassList("button-pressed");
+            normalSpeed.AddToClassList("button-pressed");
         };
 
-        root.Q<Button>("FastSpeedButton").clicked += () =>
+        fastSpeed.clicked += () =>
         {
             Time.timeScale = 2;
+
+            normalSpeed.RemoveFromClassList("button-pressed");
+            fastSpeed.AddToClassList("button-pressed");
         };
 
         // Bottom
@@ -99,8 +110,6 @@ public class GamePlayUI : MonoBehaviour
 
     void UpdateBudgetLabel()
     {
-        Debug.Log(budget.ToString());
-        Debug.Log(GameManager.StartUp.ToString());
         budget.text = GameManager.StartUp.Budget.ToString("N0");
     }
 }
