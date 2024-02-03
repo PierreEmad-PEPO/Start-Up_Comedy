@@ -51,6 +51,8 @@ public class ProjectInfoUI : MonoBehaviour
         EventManager.AddVoidEventListener(EventEnum.OnProjectMangerOneSec, UpdateDynamicVisualElementData);
         EventManager.AddVoidEventListener(EventEnum.OnProjectDone, UpdateDynamicVisualElementData);
         EventManager.AddVoidEventListener(EventEnum.OnDeadlineEnd, UpdateDynamicVisualElementData);
+        EventManager.AddProjectEventListener(EventEnum.OnProjectDone, RebuildUnAssignedEmployeesList);
+        EventManager.AddProjectEventListener(EventEnum.OnDeadlineEnd, RebuildUnAssignedEmployeesList);
     }
 
     public void SetTheProject(Project project)
@@ -246,5 +248,18 @@ public class ProjectInfoUI : MonoBehaviour
         
         designProgress.value = project.DesignProgress;
         designProgress.title = "Design Progress " + designProgress.value + "%";
+    }
+
+    void RebuildUnAssignedEmployeesList(Project project)
+    {
+        if (project == this.project)
+        {
+            root.style.display = DisplayStyle.None;
+            return;
+        }
+
+        unAssignedEmployees = GameManager.GetUnAssignedEmployees(project);
+        UpdateStaticVisualElementData();
+        UpdateDynamicVisualElementData();
     }
 }
