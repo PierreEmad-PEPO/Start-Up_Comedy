@@ -53,9 +53,14 @@ public class ProjectOfferUI : MonoBehaviour
 
         root.Q<Button>("Accept").clicked += () =>
         {
-            root.style.display = DisplayStyle.None;
-            onProjectAccepted.Invoke(root.userData as Project);
-            projectTimer.Run();
+            WindowManager.ShowConfirmationAlert("Are you sure to ACCEPT this Project ?!!",
+                () =>
+                {
+                    root.style.display = DisplayStyle.None;
+                    onProjectAccepted.Invoke(root.userData as Project);
+                    projectTimer.Run();
+                });
+
         };
 
     }

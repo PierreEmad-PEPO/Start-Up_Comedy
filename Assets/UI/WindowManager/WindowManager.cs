@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -46,6 +47,10 @@ public static class WindowManager
         subWindow.Add(SubWindowName.ProjectInfo, projectInfoRoot);
         subWindowGameObject.Add(SubWindowName.ProjectInfo, projectInfoUI);
 
+        GameObject confirmationAlertUI = UI.transform.Find("ConfirmationAlert").gameObject;
+        VisualElement confirmationAlertRoot = confirmationAlertUI.GetComponent<UIDocument>().rootVisualElement;
+        subWindow.Add(SubWindowName.ConfirmationAlert, confirmationAlertRoot);
+        subWindowGameObject.Add(SubWindowName.ConfirmationAlert, confirmationAlertUI);
     }
 
     public static void OpenWindow(WindowName windowName)
@@ -66,6 +71,12 @@ public static class WindowManager
             currentSubWindow = subWindowName;
             subWindow[currentSubWindow].style.display = DisplayStyle.Flex;
         }
+    }
+
+    public static void ShowConfirmationAlert(string message, Action action)
+    {
+        GetSubWindowGameObject(SubWindowName.ConfirmationAlert).GetComponent<ConfirmUI>().SetConfirm(message, action);
+        OpenSubWindow(SubWindowName.ConfirmationAlert);
     }
 
     public static void AddWindow(WindowName windowName, VisualElement UIDecomentRoot)

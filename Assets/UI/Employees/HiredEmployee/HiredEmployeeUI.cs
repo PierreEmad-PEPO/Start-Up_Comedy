@@ -47,7 +47,10 @@ public class HiredEmployeeUI : MonoBehaviour
             var temp = EmployeeCardTemplate.Instantiate();
             temp.Q<Button>("Delete").clicked += () =>
             {
-                ConfirmDelete(temp.userData as Employee);
+                WindowManager.ShowConfirmationAlert("Are you suree to DELETE this Employee ?!!",
+                    () => {
+                        ConfirmDelete(temp.userData as Employee);
+                    });
             };
             return temp;
 
@@ -92,7 +95,7 @@ public class HiredEmployeeUI : MonoBehaviour
     }
 
     public void ConfirmDelete(Employee employee)
-    {
+    {   
         // Unassigned Employee From Project
         if (employee is ProjectEmployee)
         {
