@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -105,15 +106,17 @@ public class StartUp : MonoBehaviour
         float effect = GameManager.GetMarketingEffect(name);
         if (price <= budget)
         {
-            PayMoney(price);
-            IncreasePopularitySpeed(effect);
-            //alert
-            Debug.Log("Done");
+            WindowManager.ShowConfirmationAlert("Are you sure ?!!",
+                () =>
+                { 
+                    PayMoney(price);
+                    IncreasePopularitySpeed(effect);
+                });
         }
         else
         {
             // alert
-            Debug.Log("Budget Not enough");
+            WindowManager.ShowNotificationAlert("No Enough Money");
         }
 
     }

@@ -39,6 +39,4 @@ public class MarketingUI : MonoBehaviour
         root.style.display = DisplayStyle.None;
 
     }
-
-    
 }
