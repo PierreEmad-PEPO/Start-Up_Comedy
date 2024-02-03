@@ -51,6 +51,11 @@ public static class WindowManager
         VisualElement confirmationAlertRoot = confirmationAlertUI.GetComponent<UIDocument>().rootVisualElement;
         subWindow.Add(SubWindowName.ConfirmationAlert, confirmationAlertRoot);
         subWindowGameObject.Add(SubWindowName.ConfirmationAlert, confirmationAlertUI);
+
+        GameObject notificationAlertUI = UI.transform.Find("NotificationAlert").gameObject;
+        VisualElement notificationAlertRoot = notificationAlertUI.GetComponent<UIDocument>().rootVisualElement;
+        subWindow.Add(SubWindowName.NotificationAlert, notificationAlertRoot);
+        subWindowGameObject.Add(SubWindowName.NotificationAlert, notificationAlertUI);
     }
 
     public static void OpenWindow(WindowName windowName)
@@ -77,6 +82,12 @@ public static class WindowManager
     {
         GetSubWindowGameObject(SubWindowName.ConfirmationAlert).GetComponent<ConfirmUI>().SetConfirm(message, action);
         OpenSubWindow(SubWindowName.ConfirmationAlert);
+    }
+
+    public static void ShowNotificationAlert(string message)
+    {
+        GetSubWindowGameObject(SubWindowName.NotificationAlert).GetComponent<NotificatoinUI>().SetNotification(message);
+        OpenSubWindow(SubWindowName.NotificationAlert);
     }
 
     public static void AddWindow(WindowName windowName, VisualElement UIDecomentRoot)

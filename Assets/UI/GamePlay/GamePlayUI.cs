@@ -99,6 +99,8 @@ public class GamePlayUI : MonoBehaviour
 
     void UpdateBudgetLabel()
     {
+        Debug.Log(budget.ToString());
+        Debug.Log(GameManager.StartUp.ToString());
         budget.text = GameManager.StartUp.Budget.ToString("N0");
     }
 }
