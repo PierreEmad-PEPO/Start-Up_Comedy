@@ -1,17 +1,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Search;
 using UnityEngine;
-using UnityEngine.Events;
+using UnityEngine.UIElements;
 
 public class StartUp : MonoBehaviour
 {
     #region Fields
     private Dictionary<EmployeeSpecialization, List<GameObject>> employees;
     private long budget = 1000;
-    private int popularity;
-    private float popularitySpeedPerUnit;
+    private int popularity = 200;
+    private int popularitySpeedPerUnit;
     private Timer popularityChangeTimer;
     private int entertainment;
     private int totalHrSkills;
@@ -20,13 +19,15 @@ public class StartUp : MonoBehaviour
     private bool hasDataAnalyst;
 
     private VoidEventInvoker onBudgetChange;
+    [SerializeField] UIDocument gameplayUI;
+    private Label popularityLabel;
     #endregion
 
 
     #region Props
     public long Budget { get { return budget; } }
     public int Popularity { get { return popularity; } }
-    public float PopularitySpeedPerUnit { get {  return popularitySpeedPerUnit; } }
+    public int PopularitySpeedPerUnit { get {  return popularitySpeedPerUnit; } }
     public int Entertainment { get {  return entertainment; } }
     public int TotalHrSkills { get {  return totalHrSkills; } }
     public int FireSystemLevel { get {  return fireSystemLevel; } }
@@ -40,6 +41,12 @@ public class StartUp : MonoBehaviour
     {
         onBudgetChange = gameObject.AddComponent<VoidEventInvoker>();
         EventManager.AddVoidEventInvoker(EventEnum.OnBudgetChanged, onBudgetChange);
+
+        popularityLabel = gameplayUI.rootVisualElement.Q<Label>("Popularity");
+
+        popularityChangeTimer = gameObject.AddComponent<Timer>();
+        popularityChangeTimer.Init(1, UpdatePopularity);
+        popularityChangeTimer.Run();
     }
 
     #endregion
@@ -59,15 +66,15 @@ public class StartUp : MonoBehaviour
         budget -= money;
         onBudgetChange.Invoke();
     }
-    public void SetPopularitySpeed(float newSpeed)
+    public void SetPopularitySpeed(int newSpeed)
     {
         popularitySpeedPerUnit = newSpeed;
     }
-    public void IncreasePopularitySpeed(float newSpeed)
+    public void IncreasePopularitySpeed(int newSpeed)
     {
         popularitySpeedPerUnit += newSpeed;
     }
-    public void DecreasePopularitySpeed(float newSpeed)
+    public void DecreasePopularitySpeed(int newSpeed)
     {
         popularitySpeedPerUnit -= newSpeed;
     }
@@ -103,7 +110,7 @@ public class StartUp : MonoBehaviour
     public void DoAD(MarketingEnum name)
     {
         int price = GameManager.GetMarketingPrice(name);
-        float effect = GameManager.GetMarketingEffect(name);
+        int effect = (int)GameManager.GetMarketingEffect(name);
         if (price <= budget)
         {
             WindowManager.ShowConfirmationAlert("Are you sure ?!!",
@@ -119,6 +126,15 @@ public class StartUp : MonoBehaviour
             WindowManager.ShowNotificationAlert("No Enough Money");
         }
 
+    }
+
+    private void UpdatePopularity()
+    {
+        popularity += popularitySpeedPerUnit;
+        popularityLabel.text = popularity.ToString();
+        popularitySpeedPerUnit += RandomGenerator.NextInt(-5, 3);
+        if (popularitySpeedPerUnit < -5) popularitySpeedPerUnit = -5;
+        popularityChangeTimer.Run();
     }
     
     #endregion
