@@ -49,11 +49,12 @@ public class EmployeeGenerator : MonoBehaviour
     #endregion
 
     #region Public Methods
-    public void StartGeneration(EmployeeSpecialization _specialization, int _hrSkill)
+    public void StartGeneration(EmployeeSpecialization _specialization)
     {
         timer.Run();
         specialization = _specialization;
-        hrSkill = _hrSkill; // from game manager;
+        hrSkill = GameManager.StartUp.TotalHrSkills; // from game manager;
+        Debug.Log("HRSKILLS " + hrSkill);
 
     }
 

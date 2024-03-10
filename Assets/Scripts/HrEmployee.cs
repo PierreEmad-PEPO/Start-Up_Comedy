@@ -12,8 +12,13 @@ public class HrEmployee : Employee
     {
         base.Init(name, EmployeeSpecialization.HR, minSalary);
         hrSkill = _hrSkill;
+        EventManager.AddEmployeeEventListener(EventEnum.OnEmployeeHired, HireEmployee);
     }
 
+    public override void HireEmployee(Employee employee)
+    {
+        GameManager.StartUp.AddTotalHrSkills(hrSkill);
+    }
     // Start is called before the first frame update
     void Start()
     {

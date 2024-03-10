@@ -13,7 +13,8 @@ public class StartUp : MonoBehaviour
     private int popularitySpeedPerUnit;
     private Timer popularityChangeTimer;
     private int entertainment;
-    private int totalHrSkills;
+    private int totalHrSkills = 50;
+    private int totalMarketingSkills = 0;
     private int fireSystemLevel;
     private int securityLevel;
     private bool hasDataAnalyst;
@@ -30,6 +31,7 @@ public class StartUp : MonoBehaviour
     public int PopularitySpeedPerUnit { get {  return popularitySpeedPerUnit; } }
     public int Entertainment { get {  return entertainment; } }
     public int TotalHrSkills { get {  return totalHrSkills; } }
+    public int TotalMarketingSkills { get { return totalMarketingSkills; } }
     public int FireSystemLevel { get {  return fireSystemLevel; } }
     public int SecurityLevel { get { return securityLevel; } }
     public bool HasDataAnalyst { get {  return hasDataAnalyst; } }
@@ -86,14 +88,15 @@ public class StartUp : MonoBehaviour
     {
         entertainment -= _entertainment;
     }
-    public void IncreaseTotalHrSkills(int hrSkills)
+    public void AddTotalHrSkills(int hrSkills)
     {
         totalHrSkills += hrSkills;
     }
-    public void DecreaseTotalHrSkills(int hrSkills)
+    public void AddTotalMarketingSkills(int marketingSkills)
     {
-        totalHrSkills -= hrSkills;
+        totalMarketingSkills += marketingSkills;
     }
+
     public void UpgradeFireSystem()
     {
         fireSystemLevel++;

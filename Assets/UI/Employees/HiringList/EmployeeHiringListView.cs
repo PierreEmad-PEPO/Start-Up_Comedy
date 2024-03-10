@@ -69,7 +69,7 @@ public class EmployeeHiringListView : MonoBehaviour
             EndGenerationButton.style.display = DisplayStyle.Flex;
             EmployeeSpecialization employeeSpecialization = (EmployeeSpecialization)employeeEnum.value;
             employeeEnum.pickingMode = PickingMode.Ignore;
-            employeeGenerator.StartGeneration(employeeSpecialization, 50);
+            employeeGenerator.StartGeneration(employeeSpecialization);
         };
         EndGenerationButton.clicked += () =>
         {

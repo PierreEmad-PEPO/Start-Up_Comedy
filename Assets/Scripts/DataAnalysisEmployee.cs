@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class DataAnalysisEmployee : Employee
 {
-    
     public void DataAnalysisTask()
     {
 
     }
+
+    
 }

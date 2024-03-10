@@ -33,5 +33,7 @@ public class Employee
     }
 
     virtual public void UpgradeSkills(int increasePercentage) { }
+
+    public virtual void HireEmployee(Employee employee) { }
     #endregion
 }
