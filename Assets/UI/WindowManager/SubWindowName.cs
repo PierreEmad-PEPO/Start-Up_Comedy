@@ -5,4 +5,5 @@ public enum SubWindowName
     ProjectInfo,
     ConfirmationAlert,
     NotificationAlert,
+    AddLoan,
 }

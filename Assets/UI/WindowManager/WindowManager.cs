@@ -37,10 +37,20 @@ public static class WindowManager
         window.Add(WindowName.Employees, employeesRoot);
         windowGameObject.Add(WindowName.Employees, employeesUI);
 
+        GameObject loans = UI.transform.Find("Loans").gameObject;
+        VisualElement loansRoot = loans.GetComponent<UIDocument>().rootVisualElement;
+        window.Add(WindowName.Loan, loansRoot);
+        windowGameObject.Add(WindowName.Loan, loans);
+
         GameObject negotiationUI = UI.transform.Find("Negotiation").gameObject;
         VisualElement negotiationRoot = negotiationUI.GetComponent<UIDocument>().rootVisualElement;
         subWindow.Add(SubWindowName.Negotation, negotiationRoot);
         subWindowGameObject.Add(SubWindowName.Negotation, negotiationUI);
+
+        GameObject addLoan = UI.transform.Find("AddLoan").gameObject;
+        VisualElement addLoanRoot = addLoan.GetComponent<UIDocument>().rootVisualElement;
+        subWindow.Add(SubWindowName.AddLoan, addLoanRoot);
+        subWindowGameObject.Add(SubWindowName.AddLoan, addLoan);
 
         GameObject projectInfoUI = UI.transform.Find("ProjectInfo").gameObject;
         VisualElement projectInfoRoot = projectInfoUI.GetComponent<UIDocument>().rootVisualElement;
@@ -95,14 +105,16 @@ public static class WindowManager
         OpenSubWindow(SubWindowName.NotificationAlert);
     }
 
-    public static void AddWindow(WindowName windowName, VisualElement UIDecomentRoot)
+    public static void AddWindow(WindowName windowName, VisualElement UIDecomentRoot, GameObject gameObject)
     {
         window.Add(windowName, UIDecomentRoot);
+        windowGameObject.Add(windowName, gameObject);
     }
 
-    public static void AddSubWindow(SubWindowName subWindowName, VisualElement UIDecomentRoot)
+    public static void AddSubWindow(SubWindowName subWindowName, VisualElement UIDecomentRoot, GameObject gameObject)
     {
         subWindow.Add(subWindowName, UIDecomentRoot);
+        subWindowGameObject.Add(subWindowName, gameObject);
     }
 
     public static VisualElement GetWindow(WindowName windowName)

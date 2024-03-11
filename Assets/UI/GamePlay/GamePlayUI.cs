@@ -84,6 +84,10 @@ public class GamePlayUI : MonoBehaviour
         {
             WindowManager.OpenWindow(WindowName.StartUpStatus);
         };
+        root.Q<Button>("LoanButton").clicked += () =>
+        {
+            WindowManager.OpenWindow(WindowName.Loan);
+        };
 
     }
 

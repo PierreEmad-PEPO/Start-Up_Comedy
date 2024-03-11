@@ -8,4 +8,5 @@ public enum WindowName
     Markiting,
     Setting,
     StartUpStatus,
+    Loan,
 }

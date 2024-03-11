@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="VisualElement" style="flex-grow: 1; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); flex-shrink: 1; width: auto; height: auto; flex-direction: row; justify-content: space-between; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-left-radius: 13px; border-top-right-radius: 13px; border-bottom-right-radius: 13px; border-bottom-left-radius: 13px; background-color: rgb(255, 255, 255); margin-top: 5px; margin-right: 0; margin-bottom: 5px; margin-left: 0;">
+        <ui:VisualElement style="flex-grow: 0; flex-direction: row; flex-shrink: 0; align-self: center; right: auto; left: 10%;">
+            <ui:Label tabindex="-1" text="Money:" parse-escape-sequences="true" display-tooltip-when-elided="true" style="-unity-text-align: middle-center; -unity-font-style: bold; font-size: 16px;" />
+            <ui:Label tabindex="-1" text="1000" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Money" style="font-size: 16px; -unity-font-style: bold;" />
+            <ui:Label tabindex="-1" text="$" parse-escape-sequences="true" display-tooltip-when-elided="true" style="font-size: 16px; -unity-font-style: bold;" />
+        </ui:VisualElement>
+        <ui:Label tabindex="-1" text="00:00:00" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Deadline" style="align-self: center; margin-left: 4px; right: 10%; font-size: 16px; -unity-font-style: bold; color: rgb(173, 0, 0);" />
+    </ui:VisualElement>
+</ui:UXML>

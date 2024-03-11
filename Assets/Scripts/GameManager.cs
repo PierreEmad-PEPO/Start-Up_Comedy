@@ -14,6 +14,7 @@ public static class GameManager
     static List<Employee> hiringEmployees = new List<Employee>();
     static List<Employee> hiredEmployee = new List<Employee>();
     static Dictionary<MarketingEnum, List<float>> marketingPrice = new Dictionary<MarketingEnum, List<float>> ();
+    static List<Loan> loans = new List<Loan>();
     //Props
 
     public static StartUp StartUp { get { return startUp; } }
@@ -26,6 +27,7 @@ public static class GameManager
     public static List<Employee> HiredMarketingEmployee { get { return hiredEmployee.Where(m => m.Specialization == EmployeeSpecialization.Marketing).ToList(); } }
     public static List<Employee> HiredDataAnalysisEmployee { get { return hiredEmployee.Where(g => g.Specialization == EmployeeSpecialization.DataAnalysis).ToList(); } }
     public static List<Employee> HiredHrEmployee { get { return hiredEmployee.Where(g => g.Specialization == EmployeeSpecialization.HR).ToList(); } }
+    public static List<Loan> Loans { get { return loans; } }
     public static int TotalHrEmlpoyeesSkills { get { return GetTotalHrEmlpoyeesSkills(); } }
     public static int TotalMarkeintingSkills { get { return GetTotalMarkeitingEmployeesSkills(); } }
 
