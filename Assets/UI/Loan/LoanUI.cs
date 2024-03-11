@@ -60,7 +60,7 @@ public class LoanUI : MonoBehaviour
         for (int index = 0; index < loans.Count; index++)
         {
             loans[index].UpdateLoan();
-            if (loans[index].Deadline == 0)
+            if (loans[index].Deadline <= 0)
             {
                 int mo = (int)loans[index].Money;
                 int per = mo / 10;
