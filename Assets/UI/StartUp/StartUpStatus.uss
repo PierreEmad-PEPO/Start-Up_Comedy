@@ -1,0 +1,28 @@
+.table-cell {
+    width: 50%;
+    height: 100%;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    -unity-text-align: middle-center;
+    font-size: 20px;
+    border-top-width: 3px;
+    border-right-width: 3px;
+    border-bottom-width: 3px;
+    border-left-width: 3px;
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+}
+
+.exit {
+    flex-grow: 0;
+    flex-shrink: 0;
+    height: 25px;
+    width: 25px;
+    background-image: resource('EmployeeLists/Delete');
+    align-items: flex-end;
+    justify-content: center;
+}

@@ -79,7 +79,11 @@ public class GamePlayUI : MonoBehaviour
         root.Q<Button>("EmployeesButton").clicked += () =>
         {
             WindowManager.OpenWindow(WindowName.Employees);
-        }; 
+        };
+        root.Q<Button>("StatusButton").clicked += () =>
+        {
+            WindowManager.OpenWindow(WindowName.StartUpStatus);
+        };
 
     }
 

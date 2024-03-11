@@ -7,4 +7,5 @@ public enum WindowName
     HiringEmployees,
     Markiting,
     Setting,
+    StartUpStatus,
 }

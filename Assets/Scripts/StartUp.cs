@@ -8,6 +8,7 @@ public class StartUp : MonoBehaviour
 {
     #region Fields
     private Dictionary<EmployeeSpecialization, List<GameObject>> employees;
+    private string companyName = "Abo Hadeda";
     private long budget = 1000;
     private int popularity = 200;
     private int popularitySpeedPerUnit;
@@ -26,6 +27,7 @@ public class StartUp : MonoBehaviour
 
 
     #region Props
+    public string CompanyName {  get { return companyName; } }
     public long Budget { get { return budget; } }
     public int Popularity { get { return popularity; } }
     public int PopularitySpeedPerUnit { get {  return popularitySpeedPerUnit; } }

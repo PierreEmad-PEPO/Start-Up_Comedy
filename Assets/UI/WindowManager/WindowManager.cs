@@ -56,6 +56,11 @@ public static class WindowManager
         VisualElement notificationAlertRoot = notificationAlertUI.GetComponent<UIDocument>().rootVisualElement;
         subWindow.Add(SubWindowName.NotificationAlert, notificationAlertRoot);
         subWindowGameObject.Add(SubWindowName.NotificationAlert, notificationAlertUI);
+
+        GameObject startUpStatusUI = UI.transform.Find("StartUpStatus").gameObject;
+        VisualElement startUpStatusRoot = startUpStatusUI.GetComponent<UIDocument>().rootVisualElement;
+        window.Add(WindowName.StartUpStatus, startUpStatusRoot);
+        windowGameObject.Add(WindowName.StartUpStatus, startUpStatusUI);
     }
 
     public static void OpenWindow(WindowName windowName)
