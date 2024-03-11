@@ -24,7 +24,7 @@ public class AddLoanUI : MonoBehaviour
         };
         root.Q<Button>("Send").clicked += () =>
         {
-            if (money.value > GameManager.StartUp.Budget / 2)
+            if (money.value > GameManager.StartUp.Budget / 2 && GameManager.Loans.Count <= 10)
             {
                 WindowManager.ShowNotificationAlert("Soory, But The Bank Refused Rour Requist.");
             }
@@ -32,6 +32,7 @@ public class AddLoanUI : MonoBehaviour
             {
                 Loan loan = new Loan(money.value);
                 GameManager.Loans.Add(loan);
+                GameManager.StartUp.AddMoney(money.value);
                 WindowManager.GetWindowGameObject(WindowName.Loan).GetComponent<LoanUI>().RebuildLoansList();
                 WindowManager.ShowNotificationAlert("Congrites The Bank Accepted Your Requist.");
 

@@ -61,7 +61,12 @@ public class LoanUI : MonoBehaviour
         {
             loans[index].UpdateLoan();
             if (loans[index].Deadline == 0)
+            {
+                int mo = (int)loans[index].Money;
+                int per = mo / 10;
+                GameManager.StartUp.AddMoney(- (mo + per));
                 loans.RemoveAt(index);
+            }
             RebuildLoansList();
         }
     }
