@@ -5,12 +5,12 @@ using UnityEngine;
 public class EmpooyeesManager : MonoBehaviour
 {
     Timer timerManage;
-    float itmerManageDuration = 30f; //for Naw
+    float timerManageDuration = 30f; //for Naw
     // Start is called before the first frame update
     void Start()
     {
         timerManage = gameObject.AddComponent<Timer>();
-        timerManage.Init(30, PaySalaries);
+        timerManage.Init(timerManageDuration, PaySalaries);
         timerManage.Run();
     }
 
