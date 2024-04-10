@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0159825c9c546ed40b1a24f102192593, type: 3}
+  m_Name: DataBase
+  m_EditorClassIdentifier: 
+  items:
+  - <name>k__BackingField: chair
+    <id>k__BackingField: 0
+    <cost>k__BackingField: 0
+    <prefab>k__BackingField: {fileID: 2954398463305685266, guid: f99a418a43716784e809a4a27cdffac4, type: 3}
+  - <name>k__BackingField: 
+    <id>k__BackingField: 0
+    <cost>k__BackingField: 0
+    <prefab>k__BackingField: {fileID: 0}
+  - <name>k__BackingField: 
+    <id>k__BackingField: 0
+    <cost>k__BackingField: 0
+    <prefab>k__BackingField: {fileID: 0}
+  - <name>k__BackingField: 
+    <id>k__BackingField: 0
+    <cost>k__BackingField: 0
+    <prefab>k__BackingField: {fileID: 0}
+  - <name>k__BackingField: 
+    <id>k__BackingField: 0
+    <cost>k__BackingField: 0
+    <prefab>k__BackingField: {fileID: 0}
+  - <name>k__BackingField: 
+    <id>k__BackingField: 0
+    <cost>k__BackingField: 0
+    <prefab>k__BackingField: {fileID: 0}
+  - <name>k__BackingField: office1
+    <id>k__BackingField: 6
+    <cost>k__BackingField: 100
+    <prefab>k__BackingField: {fileID: 4422761564128664771, guid: e568e1f9e7555f04280c166ac40446bd, type: 3}
+  - <name>k__BackingField: 
+    <id>k__BackingField: 0
+    <cost>k__BackingField: 0
+    <prefab>k__BackingField: {fileID: 0}
+  - <name>k__BackingField: 
+    <id>k__BackingField: 0
+    <cost>k__BackingField: 0
+    <prefab>k__BackingField: {fileID: 0}
+  - <name>k__BackingField: 
+    <id>k__BackingField: 0
+    <cost>k__BackingField: 0
+    <prefab>k__BackingField: {fileID: 0}
+  - <name>k__BackingField: office2
+    <id>k__BackingField: 10
+    <cost>k__BackingField: 0
+    <prefab>k__BackingField: {fileID: 78540711509061800, guid: b4b24d80f5ffede4ca3c6179ab33fea2, type: 3}
+  - <name>k__BackingField: class
+    <id>k__BackingField: 11
+    <cost>k__BackingField: 0
+    <prefab>k__BackingField: {fileID: 6025418813087723579, guid: 4b6b6a51bec07f242bfe88b73ef5f753, type: 3}
+  - <name>k__BackingField: 
+    <id>k__BackingField: 0
+    <cost>k__BackingField: 0
+    <prefab>k__BackingField: {fileID: 0}
+  - <name>k__BackingField: 
+    <id>k__BackingField: 0
+    <cost>k__BackingField: 0
+    <prefab>k__BackingField: {fileID: 0}
+  - <name>k__BackingField: 
+    <id>k__BackingField: 0
+    <cost>k__BackingField: 0
+    <prefab>k__BackingField: {fileID: 0}
+  - <name>k__BackingField: 
+    <id>k__BackingField: 0
+    <cost>k__BackingField: 0
+    <prefab>k__BackingField: {fileID: 0}
+  - <name>k__BackingField: 
+    <id>k__BackingField: 0
+    <cost>k__BackingField: 0
+    <prefab>k__BackingField: {fileID: 0}
+  - <name>k__BackingField: 
+    <id>k__BackingField: 0
+    <cost>k__BackingField: 0
+    <prefab>k__BackingField: {fileID: 0}
+  - <name>k__BackingField: 
+    <id>k__BackingField: 0
+    <cost>k__BackingField: 0
+    <prefab>k__BackingField: {fileID: 0}
