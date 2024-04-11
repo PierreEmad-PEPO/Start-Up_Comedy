@@ -12,10 +12,10 @@ public class PlacementSystem : MonoBehaviour
 
       [SerializeField] public  LayerMask placementLayerMask;
       
-      [SerializeField] private GameObject activeObject;
+      static GameObject activeObject = null;
       
 
-    public bool overlap = false;
+      public static bool overlap = false;
       
       private void Awake()
       {
@@ -23,7 +23,7 @@ public class PlacementSystem : MonoBehaviour
             InputManager.mainCamera = mainCamera;
       }
       
-      public void AssignActiveObject(GameObject _gameObject)
+      public static void AssignActiveObject(GameObject _gameObject)
       {
             activeObject = _gameObject;
       }

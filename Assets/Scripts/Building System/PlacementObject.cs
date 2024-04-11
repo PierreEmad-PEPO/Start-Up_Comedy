@@ -6,20 +6,18 @@ using UnityEngine.Events;
 
 public class PlacementObject : MonoBehaviour
 {
-    public int id;
 
     private void OnMouseDown()
     {
-       Camera.main.GetComponent<PlacementSystem>().AssignActiveObject(gameObject);
-        Debug.Log("555555");
+       PlacementSystem.AssignActiveObject(gameObject);
     }
     private void OnTriggerStay(Collider other)
     {
-        Camera.main.GetComponent<PlacementSystem>().overlap = true;
+       PlacementSystem.overlap = true;
 
     }
     private void OnTriggerExit(Collider other)
     {
-        Camera.main.GetComponent<PlacementSystem>().overlap = false;
+        PlacementSystem.overlap = false;
     }
 }
