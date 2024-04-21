@@ -10,8 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7277459274597988662}
   - component: {fileID: -8677936502495817525}
-  - component: {fileID: 5084052182175160703}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EmployeeOffice 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,33 +57,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.6665634, y: 1.1694653, z: 1.6439679}
   m_Center: {x: 0.3332817, y: 0.69480765, z: 0.0056489706}
---- !u!54 &5084052182175160703
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6359029790808614162}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1001 &193346244819003635
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -134,6 +106,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8391222552659086748, guid: 957ad655a5932c64596179cc9574f9c8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -8391222552659086748, guid: 957ad655a5932c64596179cc9574f9c8, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -150,8 +126,16 @@ PrefabInstance:
       value: Desk Edit (2)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 957ad655a5932c64596179cc9574f9c8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 957ad655a5932c64596179cc9574f9c8, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4649304590781711473, guid: 957ad655a5932c64596179cc9574f9c8, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4649304590781711473, guid: 957ad655a5932c64596179cc9574f9c8, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -219,6 +203,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cup
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e682250e8605f034c8e0e0dbd42ae949, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -277,9 +265,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5323843131946716325, guid: 602ac3fdc091b5c428e5f1aec588a0c5, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 602ac3fdc091b5c428e5f1aec588a0c5, type: 3}
       propertyPath: m_Name
       value: PersonalComputer
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 602ac3fdc091b5c428e5f1aec588a0c5, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2291401258797143783, guid: 602ac3fdc091b5c428e5f1aec588a0c5, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3566207899841815972, guid: 602ac3fdc091b5c428e5f1aec588a0c5, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -354,6 +358,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: fa8a696af4af70c4394fe0bd46fb3926, type: 3}
       propertyPath: m_Name
       value: OfficeChair (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fa8a696af4af70c4394fe0bd46fb3926, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: fa8a696af4af70c4394fe0bd46fb3926, type: 3}
       propertyPath: m_StaticEditorFlags
