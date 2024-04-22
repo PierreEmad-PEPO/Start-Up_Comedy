@@ -1,47 +1,62 @@
+using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class StoreWindow : MonoBehaviour
 {
-    private VisualElement categoryContainer;
-    private VisualElement itemContainer;
+    ObjectsDatabaseSO database;
+    [SerializeField] VisualTreeAsset itemCard;
+    UIDocument uIDocument;
+    VisualElement root;
+    ScrollView scrollView;
 
-    private void Start()
+    
+    void Start()
     {
-        var visualElement = GetComponent<UIDocument>().rootVisualElement.Q<VisualElement>("store-window");
-
-        categoryContainer = visualElement.Q<VisualElement>("category-container");
-        itemContainer = visualElement.Q<VisualElement>("item-container");
-
-        // Add categories
-        AddCategory("Category 1");
-        AddCategory("Category 2");
-        AddCategory("Category 3");
-
-        this.GetComponent<UIDocument>().rootVisualElement.Add(visualElement);
+        database = GameObject.Find("PlacementSystem").GetComponent<PlacementSystem>().DatabaseSO;
+        SetVisualElement();
     }
+ 
 
-    private void AddCategory(string categoryName)
+    void SetVisualElement()
     {
-        var categoryLabel = new Label(categoryName);
-        categoryLabel.AddToClassList("category-label");
-        categoryLabel.RegisterCallback<MouseUpEvent>(evt => ShowItemsForCategory(categoryName));
-        categoryContainer.Add(categoryLabel);
-    }
+        uIDocument = GetComponent<UIDocument>();
+        root = uIDocument.rootVisualElement;
+        root.Q<Button>("Exit").clicked += () => { root.style.display = DisplayStyle.None; };
+        scrollView = root.Q<ScrollView>("Content");
 
-    private void ShowItemsForCategory(string categoryName)
-    {
-        // Clear existing items
-        itemContainer.Clear();
+        // Create a container for the grid
+        var gridContainer = new VisualElement();
+        gridContainer.style.flexDirection = FlexDirection.Row;
+        gridContainer.style.flexWrap = Wrap.Wrap;
+        gridContainer.style.width = Length.Percent(100); // Full width
+        gridContainer.style.height = Length.Percent(100); // Full height
 
-        // Simulate fetching items from a database based on the selected category
-        // Here you would actually fetch items related to the selected category
-        // For demonstration purposes, let's just add some dummy items
-        for (int i = 1; i <= 5; i++)
+        // Create buttons and add them to the grid
+        for (int index = 0; index < database.items.Count; index++)
         {
-            var itemLabel = new Label($"Item {i} - {categoryName}");
-            itemLabel.AddToClassList("item-label");
-            itemContainer.Add(itemLabel);
+            VisualElement item = itemCard.CloneTree();
+            item.style.width = Length.Percent(30);
+            item.style.height = Length.Percent(40);
+            item.style.marginBottom = item.style.marginTop =
+            item.style.marginLeft = item.style.marginRight = Length.Percent(1);
+            item.userData = (int)index;
+            item.Q<VisualElement>("ItemImage").style.backgroundImage =
+            new StyleBackground(database.items[index].img);
+            item.Q<Label>("ItemName").text = database.items[index].name;
+            item.Q<Label>("ItemCost").text = database.items[index].cost + "$";
+            item.RegisterCallback((ClickEvent evt) =>
+            {
+                WindowManager.ShowConfirmationAlert("Are you sure ?!", () =>
+                {
+                    GameManager.StartUp.BuyFromStore(database.items[(int)item.userData]);
+                    root.style.display = DisplayStyle.None;
+                });
+            });
+            gridContainer.Add(item);
         }
+
+        scrollView.Add(gridContainer);
+
     }
 }

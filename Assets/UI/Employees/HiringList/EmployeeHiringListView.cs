@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
-using UnityEditor.UIElements;
+
 using UnityEngine;
 using UnityEngine.UIElements;
-using static UnityEditor.Progress;
 
 public class EmployeeHiringListView : MonoBehaviour
 {

@@ -1,5 +1,25 @@
 #unity-content-container {
-    flex-grow: 1;
+    flex-direction: row;
+    width: 100%;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+}
+
+.list-view {
+    height: 100%;
+    width: 100%;
     flex-direction: row;
     flex-wrap: wrap;
+}
+
+.exit {
+    flex-grow: 0;
+    height: 100%;
+    width: 5%;
+    align-self: flex-end;
+    background-image: resource('EmployeeLists/Delete');
+    margin-right: 1%;
+    margin-top: 1%;
 }

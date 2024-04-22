@@ -22,6 +22,7 @@ public class StartUp : MonoBehaviour
 
     private VoidEventInvoker onBudgetChange;
     [SerializeField] UIDocument gameplayUI;
+    [SerializeField] PlacementSystem placementSystem;
     private Label popularityLabel;
     #endregion
 
@@ -131,6 +132,18 @@ public class StartUp : MonoBehaviour
             WindowManager.ShowNotificationAlert("No Enough Money");
         }
 
+    }
+
+    public bool BuyFromStore(Item item)
+    {
+        if (item.cost <= budget)
+        {
+            PayMoney(item.cost);
+            placementSystem.intiobject(item.id);
+            return true;
+        }
+        WindowManager.ShowNotificationAlert("Not enough money");
+        return false;
     }
 
     private void UpdatePopularity()

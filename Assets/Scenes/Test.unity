@@ -425,13 +425,14 @@ GameObject:
   m_Component:
   - component: {fileID: 1396498189}
   - component: {fileID: 1396498188}
+  - component: {fileID: 1396498190}
   m_Layer: 0
   m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1396498188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -463,6 +464,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1396498190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1396498187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78c7acd732d251a44b39f874c0765299, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  database: {fileID: 11400000, guid: 8e6bc81ab92b5d34ebb69a46fa671da2, type: 2}
+  itemCard: {fileID: 9197481963319205126, guid: f46e3fec13791814e945fb2a020c6eab, type: 3}
 --- !u!1001 &1971413868
 PrefabInstance:
   m_ObjectHideFlags: 0

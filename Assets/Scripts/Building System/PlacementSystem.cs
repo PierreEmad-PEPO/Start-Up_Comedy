@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 public class PlacementSystem : MonoBehaviour
 {
@@ -16,14 +15,21 @@ public class PlacementSystem : MonoBehaviour
       
 
       public static bool overlap = false;
+
+    public ObjectsDatabaseSO DatabaseSO { get { return dataBase; } }
       
       private void Awake()
       {
             InputManager.placementLayerMask = placementLayerMask;
             InputManager.mainCamera = mainCamera;
       }
-      
-      public static void AssignActiveObject(GameObject _gameObject)
+
+    private void Start()
+    {
+        dataBase.Initialize();
+    }
+
+    public static void AssignActiveObject(GameObject _gameObject)
       {
             activeObject = _gameObject;
       }
@@ -55,6 +61,7 @@ public class PlacementSystem : MonoBehaviour
       
      public void intiobject(int id)
      {
+        Debug.Log(id);
         GameObject _object = Instantiate(dataBase.items[id].prefab);
         AssignActiveObject(_object);
 
