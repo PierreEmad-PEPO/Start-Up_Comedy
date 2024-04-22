@@ -1280,10 +1280,10 @@ MonoBehaviour:
   mainCamera: {fileID: 963194227}
   placementLayerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 128
   placementObjectLyerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
 --- !u!4 &1945248264
 Transform:
   m_ObjectHideFlags: 0
