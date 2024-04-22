@@ -5,6 +5,7 @@ using UnityEngine.UIElements;
 public class StoreWindow : MonoBehaviour
 {
     ObjectsDatabaseSO database;
+    [SerializeField] PlacementSystem placementSystem;
     [SerializeField] VisualTreeAsset itemCard;
     UIDocument uIDocument;
     VisualElement root;
@@ -13,7 +14,7 @@ public class StoreWindow : MonoBehaviour
     
     void Start()
     {
-        database = GameObject.Find("PlacementSystem").GetComponent<PlacementSystem>().DatabaseSO;
+        database = placementSystem.DatabaseSO;
         SetVisualElement();
     }
  

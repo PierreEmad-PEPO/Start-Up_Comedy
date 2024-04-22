@@ -197,7 +197,7 @@ GameObject:
   - component: {fileID: 192415868}
   - component: {fileID: 192415867}
   - component: {fileID: 192415866}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -336,6 +336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78c7acd732d251a44b39f874c0765299, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  placementSystem: {fileID: 1945248263}
   itemCard: {fileID: 9197481963319205126, guid: f46e3fec13791814e945fb2a020c6eab, type: 3}
 --- !u!114 &301379809
 MonoBehaviour:
@@ -899,7 +900,7 @@ GameObject:
   - component: {fileID: 1081293141}
   - component: {fileID: 1081293140}
   - component: {fileID: 1081293139}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: wall (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1109,7 +1110,7 @@ GameObject:
   - component: {fileID: 1191090326}
   - component: {fileID: 1191090325}
   - component: {fileID: 1191090324}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1280,6 +1281,9 @@ MonoBehaviour:
   placementLayerMask:
     serializedVersion: 2
     m_Bits: 1
+  placementObjectLyerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!4 &1945248264
 Transform:
   m_ObjectHideFlags: 0

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1705420290925192079}
   - component: {fileID: 243157725290601490}
   - component: {fileID: 46568754091383055}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 3827477666719807807}
   - component: {fileID: 1398885858192167033}
   - component: {fileID: 2381269708167165045}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Book0.014
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 4903218032363606368}
   - component: {fileID: 4451449150886741152}
   - component: {fileID: 8385488425627932270}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube.203
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -263,8 +263,7 @@ GameObject:
   - component: {fileID: 2818175956188564060}
   - component: {fileID: 70046931492699798}
   - component: {fileID: 7537373617774155318}
-  - component: {fileID: -3424336888874679231}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BooksLibrary
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -366,33 +365,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.9359379, y: 0.9139302, z: 0.234389}
   m_Center: {x: 0.008442998, y: 0.020044446, z: 0.0022567213}
---- !u!54 &-3424336888874679231
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2015403851969322819}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &2332343647122263279
 GameObject:
   m_ObjectHideFlags: 0
@@ -404,7 +376,7 @@ GameObject:
   - component: {fileID: 8679129145967611986}
   - component: {fileID: 4778338259578994821}
   - component: {fileID: 1522240761887878027}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Book0.013
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -491,7 +463,7 @@ GameObject:
   - component: {fileID: 8294204225215094869}
   - component: {fileID: 3988566901437633558}
   - component: {fileID: 7878123862485462332}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube.204
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -574,7 +546,7 @@ GameObject:
   - component: {fileID: 4436775027493298966}
   - component: {fileID: 1075614078194623663}
   - component: {fileID: 3812873773127294472}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: box.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -658,7 +630,7 @@ GameObject:
   - component: {fileID: 8671636900348111244}
   - component: {fileID: 6474767062617109764}
   - component: {fileID: 6823570370597747516}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube.205
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -741,7 +713,7 @@ GameObject:
   - component: {fileID: 2963131660476747175}
   - component: {fileID: 2584956190609987215}
   - component: {fileID: 7725535192466471086}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Book0.015
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -825,7 +797,7 @@ GameObject:
   - component: {fileID: 1483711365136331477}
   - component: {fileID: 7821082273144102682}
   - component: {fileID: 4212217742030860855}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Textured.005
   m_TagString: Untagged
   m_Icon: {fileID: 0}

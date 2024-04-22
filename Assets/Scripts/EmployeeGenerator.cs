@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class EmployeeGenerator : MonoBehaviour
 {
     #region Fields
-    private string[] employeesNames = { "Boda", "PepoElMfsh5WeElTa3ban", "Q7tanyEl5wel", "Martin", "AlmrkanyElHwyan"};
+    private string[] employeesNames = { "ABDELRHMAN", "PEPO", "ZIAD", "MARTIN", "SAMUEL"};
 
     private Timer timer;
     private const float timerDuration = 2f;    // For Now

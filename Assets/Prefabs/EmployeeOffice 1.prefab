@@ -10,8 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 927062448483032302}
   - component: {fileID: 4954465100199313018}
-  - component: {fileID: 663471357772951341}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EmployeeOffice 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 4422761564128664771}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.7899066, y: 0.023199975, z: -1.3424822}
+  m_LocalPosition: {x: -1.9, y: 0.023199975, z: 4.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -58,33 +57,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.6192317, y: 1.1566788, z: 1.4115373}
   m_Center: {x: 0.00000011920929, y: 0.594366, z: 0.20576882}
---- !u!54 &663471357772951341
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4422761564128664771}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1001 &2201177753735222
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -133,9 +105,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5323843131946716325, guid: 602ac3fdc091b5c428e5f1aec588a0c5, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 602ac3fdc091b5c428e5f1aec588a0c5, type: 3}
       propertyPath: m_Name
       value: PersonalComputer
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 602ac3fdc091b5c428e5f1aec588a0c5, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2291401258797143783, guid: 602ac3fdc091b5c428e5f1aec588a0c5, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3566207899841815972, guid: 602ac3fdc091b5c428e5f1aec588a0c5, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -203,6 +191,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: OfficeChair
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fa8a696af4af70c4394fe0bd46fb3926, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -265,6 +257,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cup
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e682250e8605f034c8e0e0dbd42ae949, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -323,9 +319,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8391222552659086748, guid: 957ad655a5932c64596179cc9574f9c8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 957ad655a5932c64596179cc9574f9c8, type: 3}
       propertyPath: m_Name
       value: Desk Edit (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 957ad655a5932c64596179cc9574f9c8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4649304590781711473, guid: 957ad655a5932c64596179cc9574f9c8, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
