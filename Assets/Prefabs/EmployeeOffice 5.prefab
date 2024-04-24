@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5104326118465765325}
   m_Layer: 6
   m_Name: EmployeeOffice 5
-  m_TagString: Untagged
+  m_TagString: Office
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30,6 +30,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 615614498611939010}
   - {fileID: 2172031239654365798}
   - {fileID: 7152765244096739169}
   - {fileID: 2398432116464388571}
@@ -57,6 +58,37 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.4422814, y: 1.1167846, z: 1.3115526}
   m_Center: {x: 0.0037792325, y: 0.58183503, z: 0.34572107}
+--- !u!1 &8651064486532226460
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 615614498611939010}
+  m_Layer: 0
+  m_Name: CharPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &615614498611939010
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8651064486532226460}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.9996842, z: 0.025130149, w: 0}
+  m_LocalPosition: {x: -0.018, y: -0.049, z: 0.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5754052612974086108}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1850455645222550925
 PrefabInstance:
   m_ObjectHideFlags: 0

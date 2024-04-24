@@ -8,33 +8,29 @@ public class PlacementSystem : MonoBehaviour
 {
     [SerializeField] private ObjectsDatabaseSO dataBase;
 
-    [SerializeField] public Camera mainCamera;
 
-    [SerializeField] public LayerMask placementLayerMask;
 
     GameObject activeObject = null;
     BoxCollider activeBoxCollider = null;
 
 
     private BoxCollider[] colliders = new BoxCollider[10];
+    [SerializeField] Camera mainCamera;
     [SerializeField] LayerMask placementObjectLyerMask;
 
     public ObjectsDatabaseSO DatabaseSO { get { return dataBase; } }
 
-    private void Awake()
-    {
-        InputManager.placementLayerMask = placementLayerMask;
-        InputManager.mainCamera = mainCamera;
-        gameObject.SetActive(false);
-    }
 
     private void Start()
     {
         dataBase.Initialize();
+        gameObject.SetActive(false);
     }
 
     public void AssignActiveObject(GameObject _gameObject)
     {
+        if (activeObject != null)
+            activeObject.layer = 6;
         gameObject.SetActive(true);
         activeObject = _gameObject;
         activeBoxCollider = activeObject.GetComponent<BoxCollider>();
@@ -58,23 +54,24 @@ public class PlacementSystem : MonoBehaviour
         }
 
         // is collide
-        if (Physics.OverlapBoxNonAlloc(activeBoxCollider.transform.position + activeBoxCollider.center, activeBoxCollider.size / 2,
+        if (Physics.OverlapBoxNonAlloc(activeBoxCollider.transform.position + activeBoxCollider.center, (activeBoxCollider.size) / 2,
             colliders, activeBoxCollider.transform.rotation, placementObjectLyerMask) > 0)
         {
             // red light
-            Debug.Log(colliders.Length);
         }
         else if (Input.GetMouseButtonDown(1))
         {
             activeObject.layer = 6;
             gameObject.SetActive(false);
         }
+        
     }
 
 
     public void intiobject(int id)
     {
         GameObject _object = Instantiate(dataBase.items[id].prefab);
+        _object.AddComponent<Office>().Init(id);
         AssignActiveObject(_object);
 
     }

@@ -59,5 +59,7 @@ public class StoreWindow : MonoBehaviour
 
         scrollView.Add(gridContainer);
 
+        root.style.display = DisplayStyle.None;
+
     }
 }

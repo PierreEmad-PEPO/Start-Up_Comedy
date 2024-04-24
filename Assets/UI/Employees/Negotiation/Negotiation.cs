@@ -97,7 +97,6 @@ public class Negotiation : MonoBehaviour
     public void SetTheEmployee(Employee employee)
     {
         currentTry = RandomGenerator.NextInt(MIN_TRIES, MAX_TRIES + 1);
-        Debug.Log(currentTry);
         this.employee = employee;
         employeeName.text = employee.Name;
     }
@@ -131,6 +130,7 @@ public class Negotiation : MonoBehaviour
             finalMessage.style.color = Color.green;
             employee.Salary = salary;
             onEmployeeHired.Invoke(employee);
+            employee.HireEmployee();
             return;
         }
         else 

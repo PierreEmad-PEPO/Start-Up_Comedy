@@ -9,4 +9,5 @@ public enum WindowName
     Setting,
     StartUpStatus,
     Loan,
+    Office
 }

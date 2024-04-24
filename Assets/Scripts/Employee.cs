@@ -12,6 +12,8 @@ public class Employee
     protected EmployeeSpecialization specialization;
     protected int salary;
     protected int minSalary;
+    bool isSet = false;
+    int setID;
 
     #endregion
 
@@ -21,6 +23,8 @@ public class Employee
     public EmployeeSpecialization Specialization { get { return specialization; } }
     public int Salary { get { return salary; } set { salary = value; } }
     public int MinSalary { get { return minSalary; } }
+    public int SetID {  get { return setID; } }
+    public bool IsSet { get { return isSet; } }
 
     #endregion
 
@@ -34,6 +38,14 @@ public class Employee
 
     virtual public void UpgradeSkills(int increasePercentage) { }
 
-    public virtual void HireEmployee(Employee employee) { }
+    public virtual void HireEmployee() { }
+
+    public virtual void Fire() { }
+
+    public void Set(int setID)
+    {
+        this.setID = setID;
+        isSet = true;
+    }
     #endregion
 }

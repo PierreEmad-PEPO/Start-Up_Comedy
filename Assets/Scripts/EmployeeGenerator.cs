@@ -54,7 +54,6 @@ public class EmployeeGenerator : MonoBehaviour
         timer.Run();
         specialization = _specialization;
         hrSkill = GameManager.StartUp.TotalHrSkills; // from game manager;
-        Debug.Log("HRSKILLS " + hrSkill);
 
     }
 

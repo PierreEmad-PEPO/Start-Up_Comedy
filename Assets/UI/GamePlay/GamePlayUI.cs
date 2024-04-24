@@ -88,6 +88,10 @@ public class GamePlayUI : MonoBehaviour
         {
             WindowManager.OpenWindow(WindowName.Loan);
         };
+        root.Q<Button>("StoreButton").clicked += () =>
+        {
+            WindowManager.OpenWindow(WindowName.Store);
+        };
 
     }
 

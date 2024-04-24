@@ -50,7 +50,7 @@ public class StartUp : MonoBehaviour
         popularityLabel = gameplayUI.rootVisualElement.Q<Label>("Popularity");
 
         popularityChangeTimer = gameObject.AddComponent<Timer>();
-        popularityChangeTimer.Init(1, UpdatePopularity);
+        popularityChangeTimer.Init(60, UpdatePopularity);
         popularityChangeTimer.Run();
     }
 

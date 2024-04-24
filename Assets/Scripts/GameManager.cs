@@ -15,6 +15,7 @@ public static class GameManager
     static List<Employee> hiredEmployee = new List<Employee>();
     static Dictionary<MarketingEnum, List<float>> marketingPrice = new Dictionary<MarketingEnum, List<float>> ();
     static List<Loan> loans = new List<Loan>();
+    static List<Office> offices = new List<Office>();
     //Props
 
     public static StartUp StartUp { get { return startUp; } }
@@ -28,6 +29,7 @@ public static class GameManager
     public static List<Employee> HiredDataAnalysisEmployee { get { return hiredEmployee.Where(g => g.Specialization == EmployeeSpecialization.DataAnalysis).ToList(); } }
     public static List<Employee> HiredHrEmployee { get { return hiredEmployee.Where(g => g.Specialization == EmployeeSpecialization.HR).ToList(); } }
     public static List<Loan> Loans { get { return loans; } }
+    public static List<Office> Offices { get { return offices; } }
     public static int TotalHrEmlpoyeesSkills { get { return GetTotalHrEmlpoyeesSkills(); } }
     public static int TotalMarkeintingSkills { get { return GetTotalMarkeitingEmployeesSkills(); } }
 
@@ -42,9 +44,9 @@ public static class GameManager
     private static void InitMarketing()
     {
         // 50 and .5 for now
-        marketingPrice.Add(MarketingEnum.SocialAD, new List<float>{ 50f,.5f});
-        marketingPrice.Add(MarketingEnum.TVAD, new List<float> { 50f, .5f });
-        marketingPrice.Add(MarketingEnum.RadoiAd, new List<float> { 50f, .5f });
+        marketingPrice.Add(MarketingEnum.SocialAD, new List<float>{ 50f,50f});
+        marketingPrice.Add(MarketingEnum.TVAD, new List<float> { 50f, 50f });
+        marketingPrice.Add(MarketingEnum.RadoiAd, new List<float> { 50f, 50f });
     }
     public static int GetMarketingPrice(MarketingEnum name)
     {
@@ -65,6 +67,15 @@ public static class GameManager
         return hiredEmployee.Where(e => e is ProjectEmployee && (e as ProjectEmployee).AssignedProject == null).ToList();
     }
 
+    public static List<Employee> GetWaitingEmployees()
+    {
+        return hiredEmployee.Where(e => !e.IsSet).ToList();
+    }
+
+    public static Office GetOffice(int id)
+    {
+        return offices.Where(e => e.ID == id).First();
+    }
 
     // Privet Methodes
     private static int GetTotalHrEmlpoyeesSkills()

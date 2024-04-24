@@ -12,11 +12,15 @@ public class MarketingEmployee : Employee
     {
         base.Init(name, EmployeeSpecialization.Marketing, minSalary);
         marketingSkill = _marketingSkill;
-        EventManager.AddEmployeeEventListener(EventEnum.OnEmployeeHired, HireEmployee);
     }
 
-    public override void HireEmployee(Employee employee)
+    public override void HireEmployee()
     {
         GameManager.StartUp.AddTotalMarketingSkills(marketingSkill);
+    }
+
+    public override void Fire()
+    {
+        GameManager.StartUp.AddTotalMarketingSkills(-MarketingSkill);
     }
 }

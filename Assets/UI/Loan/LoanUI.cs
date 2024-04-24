@@ -64,7 +64,9 @@ public class LoanUI : MonoBehaviour
             {
                 int mo = (int)loans[index].Money;
                 int per = mo / 10;
-                GameManager.StartUp.AddMoney(- (mo + per));
+                int totel = (mo + per);
+                GameManager.StartUp.AddMoney(- totel);
+                WindowManager.ShowNotificationAlert("the bank took " + totel.ToString() + "$ for the loan");
                 loans.RemoveAt(index);
             }
             RebuildLoansList();

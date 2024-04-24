@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5846076113568989055}
   - component: {fileID: 3018973761041676557}
   - component: {fileID: 7989470357336406796}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Armchair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 2954398463305685266}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.76, y: 0.21351922, z: -4.75}
+  m_LocalPosition: {x: 0, y: 0.21351922, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []

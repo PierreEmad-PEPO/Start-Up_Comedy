@@ -17,6 +17,7 @@ public static class WindowManager
 
     public static void Init(GameObject UI)
     {
+        // for now 
         GameObject hiringUI = UI.transform.Find("HiringEmployee").gameObject;
         VisualElement hiringRoot = hiringUI.GetComponent<UIDocument>().rootVisualElement;
         window.Add(WindowName.HiringEmployees, hiringRoot);
@@ -41,6 +42,16 @@ public static class WindowManager
         VisualElement loansRoot = loans.GetComponent<UIDocument>().rootVisualElement;
         window.Add(WindowName.Loan, loansRoot);
         windowGameObject.Add(WindowName.Loan, loans);
+
+        GameObject stor = UI.transform.Find("Store").gameObject;
+        VisualElement storRoot = stor.GetComponent<UIDocument>().rootVisualElement;
+        window.Add(WindowName.Store, storRoot);
+        windowGameObject.Add(WindowName.Store, stor);
+
+        GameObject officeManager = UI.transform.Find("OfficeManager").gameObject;
+        VisualElement officeRoot = officeManager.GetComponent<UIDocument>().rootVisualElement;
+        window.Add(WindowName.Office, officeRoot);
+        windowGameObject.Add(WindowName.Office, officeManager);
 
         GameObject negotiationUI = UI.transform.Find("Negotiation").gameObject;
         VisualElement negotiationRoot = negotiationUI.GetComponent<UIDocument>().rootVisualElement;
@@ -156,5 +167,13 @@ public static class WindowManager
         return null;
     }
 
-
+    public static bool isThereWindoOpend()
+    {
+        if (GetWindow(currentWindow).style.display == DisplayStyle.None
+            && GetSubWindow(currentSubWindow).style.display == DisplayStyle.None)
+        {
+            return false;
+        }
+        return true;
+    }
 }
