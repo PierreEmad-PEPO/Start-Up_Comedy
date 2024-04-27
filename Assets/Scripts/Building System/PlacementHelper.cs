@@ -11,7 +11,7 @@ public class PlacementHelper : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonUp(0) && ! WindowManager.isThereWindoOpend())
+        if (Input.GetMouseButtonUp(1) && ! WindowManager.isThereWindoOpend())
         {
             Vector3 mousePosition = Input.mousePosition;
             mousePosition.z = mainCamera.nearClipPlane;
@@ -21,7 +21,6 @@ public class PlacementHelper : MonoBehaviour
             if (Physics.Raycast(ray, out hit, 1000, placementObjectLyerMask))
             {
                 GameObject hitObject = hit.transform.gameObject;
-                Debug.Log(hitObject.name);
                 if (hitObject.CompareTag("Office"))
                 {
                     Office office = hitObject.GetComponent<Office>();
