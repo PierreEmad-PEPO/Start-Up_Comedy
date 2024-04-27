@@ -64,7 +64,7 @@ public static class GameManager
 
     public static List<Employee> GetUnAssignedEmployees(Project project)
     {
-        return hiredEmployee.Where(e => e is ProjectEmployee && (e as ProjectEmployee).AssignedProject == null).ToList();
+        return hiredEmployee.Where(e => e is ProjectEmployee && (int)(e as ProjectEmployee).Specialization == (int)project.Specialization && (e as ProjectEmployee).AssignedProject == null).ToList();
     }
 
     public static List<Employee> GetWaitingEmployees()
@@ -92,6 +92,28 @@ public static class GameManager
         foreach (MarketingEmployee marketingEmployee in HiredMarketingEmployee)
             total += marketingEmployee.MarketingSkill;
         return total;
+    }
+
+    public static float GetTechSkillsAverage(List<Employee> employees)
+    {
+        float sum = 0;
+        foreach (ProjectEmployee employee in employees)
+        {
+            sum += employee.TechicalSkills;
+        }
+        if (sum == 0) return 0;
+        return sum / employees.Count;
+    }
+
+    public static float GetDesignSkillsAverage(List<Employee> employees)
+    {
+        float sum = 0;
+        foreach (ProjectEmployee employee in employees)
+        {
+            sum += employee.DesignSkills;
+        }
+        if (sum == 0) return 0;
+        return sum / employees.Count;
     }
 
 

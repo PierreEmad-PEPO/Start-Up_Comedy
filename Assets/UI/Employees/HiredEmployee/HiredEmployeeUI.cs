@@ -109,11 +109,11 @@ public class HiredEmployeeUI : MonoBehaviour
                 projectEmployee.AssignedProject.DismissEmployee(projectEmployee.TechicalSkills, projectEmployee.DesignSkills);
         }
 
+        employees.Remove(employee);
         onEmployeeFired.Invoke(employee);
         employee.Fire();
         // delet Employee and Rebuild List
         
-        employees.Remove(employee);
         employeesList.Rebuild();
     }
 

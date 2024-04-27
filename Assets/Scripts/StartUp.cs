@@ -150,7 +150,7 @@ public class StartUp : MonoBehaviour
     {
         popularity += popularitySpeedPerUnit;
         popularityLabel.text = popularity.ToString();
-        popularitySpeedPerUnit += RandomGenerator.NextInt(-5, 3);
+        popularitySpeedPerUnit += RandomGenerator.NextInt(-100, 20);
         if (popularitySpeedPerUnit < -5) popularitySpeedPerUnit = -5;
         popularityChangeTimer.Run();
     }
