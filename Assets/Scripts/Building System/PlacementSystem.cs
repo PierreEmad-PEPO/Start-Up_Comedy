@@ -59,7 +59,7 @@ public class PlacementSystem : MonoBehaviour
         {
             // red light
         }
-        else if (Input.GetMouseButtonDown(1))
+        else if (Input.GetMouseButtonDown(0))
         {
             activeObject.layer = 6;
             gameObject.SetActive(false);
