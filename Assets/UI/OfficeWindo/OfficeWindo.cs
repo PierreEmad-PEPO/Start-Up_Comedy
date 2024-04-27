@@ -50,7 +50,7 @@ public class OfficeWindo : MonoBehaviour
         {
 
             var temp = waitingCard.Instantiate();
-            temp.RegisterCallback((ClickEvent e) => {
+            temp.RegisterCallback<ClickEvent>(e => {
                 office.GetComponent<Office>().setEmployee(temp.userData as Employee);
                 GameObject model = Instantiate(employeeModles[0]);
                 model.transform.parent = office.transform.GetChild(0);

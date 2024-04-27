@@ -387,6 +387,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: fa8a696af4af70c4394fe0bd46fb3926, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 46d1484c166d88444b83fc16f1f17fbb, type: 2}
     - target: {fileID: 919132149155446097, guid: fa8a696af4af70c4394fe0bd46fb3926, type: 3}
       propertyPath: m_Name
       value: OfficeChair (1)

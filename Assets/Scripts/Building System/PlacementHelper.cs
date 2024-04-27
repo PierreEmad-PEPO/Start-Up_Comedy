@@ -11,7 +11,7 @@ public class PlacementHelper : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && ! WindowManager.isThereWindoOpend())
+        if (Input.GetMouseButtonUp(0) && ! WindowManager.isThereWindoOpend())
         {
             Vector3 mousePosition = Input.mousePosition;
             mousePosition.z = mainCamera.nearClipPlane;
