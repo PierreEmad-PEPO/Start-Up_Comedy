@@ -54,7 +54,7 @@ public class GamePlayUI : MonoBehaviour
 
         fastSpeed.clicked += () =>
         {
-            Time.timeScale = 2;
+            Time.timeScale = 4;
 
             normalSpeed.RemoveFromClassList("button-pressed");
             fastSpeed.AddToClassList("button-pressed");
