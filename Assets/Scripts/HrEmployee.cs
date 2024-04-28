@@ -16,11 +16,11 @@ public class HrEmployee : Employee
 
     public override void HireEmployee()
     {
-        GameManager.StartUp.AddTotalHrSkills(hrSkill);
+        GameManager.StartUp.AddTotalHrSkills(hrSkill/4);
     }
 
     public override void Fire()
     {
-        GameManager.StartUp.AddTotalHrSkills(-hrSkill);
+        GameManager.StartUp.AddTotalHrSkills(-(hrSkill/4));
     }
 }
