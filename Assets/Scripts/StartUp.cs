@@ -11,9 +11,9 @@ public class StartUp : MonoBehaviour
     private Dictionary<EmployeeSpecialization, List<GameObject>> employees;
     private string companyName = "Abo Hadeda";
     private long budget = 40000;
-    private int popularity = 200;
+    private int popularity = 350;
     private int rent = 500;
-    private int popularitySpeedPerUnit;
+    private int popularitySpeedPerUnit = 100;
     private Timer popularityChangeTimer;
     private int entertainment;
     private int totalHrSkills = 50;
@@ -24,6 +24,7 @@ public class StartUp : MonoBehaviour
 
 
     private VoidEventInvoker onBudgetChange;
+    private VoidEventInvoker onMarketingDone;
     [SerializeField] UIDocument gameplayUI;
     [SerializeField] PlacementSystem placementSystem;
     private Label popularityLabel;
@@ -33,6 +34,7 @@ public class StartUp : MonoBehaviour
     #region Props
     public string CompanyName {  get { return companyName; } }
     public long Budget { get { return budget; } }
+    public int MAX_POPULARITY { get { return 1001; } }
     public int Popularity { get { return popularity; } }
     public int Rent { get { return rent; } }
     public int PopularitySpeedPerUnit { get {  return popularitySpeedPerUnit; } }
@@ -52,10 +54,15 @@ public class StartUp : MonoBehaviour
         onBudgetChange = gameObject.AddComponent<VoidEventInvoker>();
         EventManager.AddVoidEventInvoker(EventEnum.OnBudgetChanged, onBudgetChange);
 
+        onMarketingDone = gameObject.AddComponent<VoidEventInvoker>();
+        EventManager.AddVoidEventInvoker(EventEnum.OnMarketingDone, onMarketingDone);
+
         popularityLabel = gameplayUI.rootVisualElement.Q<Label>("Popularity");
+        UpdatePopularityLabel();
+        
 
         popularityChangeTimer = gameObject.AddComponent<Timer>();
-        popularityChangeTimer.Init(60, UpdatePopularity);
+        popularityChangeTimer.Init(240, UpdatePopularity);
         popularityChangeTimer.Run();
     }
 
@@ -148,6 +155,8 @@ public class StartUp : MonoBehaviour
                 { 
                     PayMoney(price);
                     IncreasePopularitySpeed(effect);
+                    UpdatePopularity();
+                    onMarketingDone.Invoke();
                 });
         }
         else
@@ -174,10 +183,18 @@ public class StartUp : MonoBehaviour
     private void UpdatePopularity()
     {
         popularity += popularitySpeedPerUnit;
-        popularityLabel.text = popularity.ToString();
+        if (popularity > MAX_POPULARITY) popularity = MAX_POPULARITY-1;
+        UpdatePopularityLabel();
         popularitySpeedPerUnit += RandomGenerator.NextInt(-100, 20);
-        if (popularitySpeedPerUnit < -5) popularitySpeedPerUnit = -5;
+        if (popularitySpeedPerUnit < -50) popularitySpeedPerUnit = -50;
         popularityChangeTimer.Run();
+    }
+
+    private void UpdatePopularityLabel()
+    {
+        float ratio = (float)popularity / (float)MAX_POPULARITY;
+        popularityLabel.text = ((int)(ratio * 100)).ToString() + "%";
+        popularityLabel.style.color = Color.Lerp(Color.red, Color.black, ratio);
     }
     
     #endregion

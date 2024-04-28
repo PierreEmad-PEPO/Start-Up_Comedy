@@ -15,5 +15,6 @@ public enum EventEnum
     OnProjectMangerOneSec,
     OnAssigndProjectToEmployee,
     OnUnAssigndProjectFromEmployee,
-    OnBudgetChanged
+    OnBudgetChanged,
+    OnMarketingDone
 }

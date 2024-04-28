@@ -35,9 +35,6 @@ public class GamePlayUI : MonoBehaviour
         budget = root.Q<Label>("Budget");
         UpdateBudgetLabel();
 
-        popularity = root.Q<Label>("Popularity");
-        UpdatePopularityLabel();
-
         projects = root.Q<Label>("Projects");
         UpdateProjectsLabel(null);
 
@@ -95,16 +92,6 @@ public class GamePlayUI : MonoBehaviour
 
     }
 
-    IEnumerator UpdatePopularity ()
-    {
-        while (true)
-        {
-            UpdatePopularity();
-
-            yield return new WaitForSeconds(1);
-        }
-    }
-
     private void UpdateEmployeesLabel(Employee employee)
     {
         employees.text = GameManager.HiredEmployee.Count.ToString();
@@ -113,11 +100,6 @@ public class GamePlayUI : MonoBehaviour
     private void UpdateProjectsLabel(Project project)
     {
         projects.text = GameManager.Projects.Count.ToString();
-    }
-
-    private void UpdatePopularityLabel()
-    {
-        popularity.text = GameManager.StartUp.Popularity.ToString();
     }
 
     void UpdateBudgetLabel()

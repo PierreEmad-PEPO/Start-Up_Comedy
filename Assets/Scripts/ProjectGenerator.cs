@@ -112,12 +112,17 @@ public class ProjectGenerator : MonoBehaviour
 
         onProjectGenerated = gameObject.AddComponent<ProjectEventInvoker>();
         EventManager.AddProjectEventInvoker(EventEnum.OnProjectGenerated, onProjectGenerated);
+        EventManager.AddVoidEventListener(EventEnum.OnMarketingDone, UpdateNextProjectTimer);
     }
 
     private float CalculateNewDuration()
     {
         // Based on Popularity
-        return 5f; // For new
+        int newDur = (GameManager.StartUp.MAX_POPULARITY - GameManager.StartUp.Popularity) * 2;
+        if (newDur < 120) newDur = 120;
+        if (newDur > 15 * 60) newDur = 15 * 60;
+
+        return newDur;
     }
 
     private void GenerateProject()
@@ -134,33 +139,33 @@ public class ProjectGenerator : MonoBehaviour
             case ProjectSpecialization.Games:
                 requiredTechnicalSkills =
                     (int)(GameManager.GetTechSkillsAverage(GameManager.HiredGamesEmployee) *
-                    deadline * GameManager.HiredGamesEmployee.Count *
+                    deadline * GameManager.HiredGamesEmployee.Count * RandomGenerator.NextFloat(.2f, .6f) *
                     RandomGenerator.NextFloat(.3f, 1.7f));
                 requiredDesignSkills =
                     (int)(GameManager.GetDesignSkillsAverage(GameManager.HiredGamesEmployee) *
-                    deadline * GameManager.HiredGamesEmployee.Count *
+                    deadline * GameManager.HiredGamesEmployee.Count * RandomGenerator.NextFloat(.2f, .6f) *
                     RandomGenerator.NextFloat(.3f, 1.7f));
             break;
 
             case ProjectSpecialization.Web:
                 requiredTechnicalSkills =
                     (int)(GameManager.GetTechSkillsAverage(GameManager.HiredWebEmployee) *
-                    deadline * GameManager.HiredWebEmployee.Count *
+                    deadline * GameManager.HiredWebEmployee.Count * RandomGenerator.NextFloat(.2f, .6f) *
                     RandomGenerator.NextFloat(.3f, 1.7f));
                 requiredDesignSkills =
                     (int)(GameManager.GetDesignSkillsAverage(GameManager.HiredWebEmployee) *
-                    deadline * GameManager.HiredWebEmployee.Count *
+                    deadline * GameManager.HiredWebEmployee.Count * RandomGenerator.NextFloat(.2f, .6f) *
                     RandomGenerator.NextFloat(.3f, 1.7f));
             break;
 
             case ProjectSpecialization.Mobile:
                 requiredTechnicalSkills =
                     (int)(GameManager.GetTechSkillsAverage(GameManager.HiredMobileEmployee) *
-                    deadline * GameManager.HiredMobileEmployee.Count *
+                    deadline * GameManager.HiredMobileEmployee.Count * RandomGenerator.NextFloat(.2f, .6f) *
                     RandomGenerator.NextFloat(.3f, 1.7f));
                 requiredDesignSkills =
                     (int)(GameManager.GetDesignSkillsAverage(GameManager.HiredMobileEmployee) *
-                    deadline * GameManager.HiredMobileEmployee.Count *
+                    deadline * GameManager.HiredMobileEmployee.Count * RandomGenerator.NextFloat(.2f, .6f) *
                     RandomGenerator.NextFloat(.3f, 1.7f));
                 break;
         }
@@ -180,5 +185,12 @@ public class ProjectGenerator : MonoBehaviour
 
         timer.Duration = CalculateNewDuration();
         timer.Pause();
+    }
+
+    private void UpdateNextProjectTimer()
+    {
+        float newDur = Mathf.Min(CalculateNewDuration(), timer.Duration/3);
+        timer.Duration = newDur;
+        Debug.Log(newDur);
     }
 }
