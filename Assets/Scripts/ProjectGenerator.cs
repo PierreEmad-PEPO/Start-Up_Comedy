@@ -125,8 +125,8 @@ public class ProjectGenerator : MonoBehaviour
         ProjectSpecialization specialization = (ProjectSpecialization)(RandomGenerator.NextInt(0, 3));
         string name = projectNames[(int)specialization][RandomGenerator.NextInt(0, projectNames[(int)specialization].Count)];
         int deadline = RandomGenerator.NextInt(200, 3650);
-        int price = RandomGenerator.NextInt(40, 2005) * 50;
-        int penalClause = RandomGenerator.NextInt(20, 1005) * 50;
+        int price = RandomGenerator.NextInt(40, 1505) * 50;
+        int penalClause = RandomGenerator.NextInt(20, 1255) * 50;
         int requiredTechnicalSkills = 0;
         int requiredDesignSkills = 0;
         switch(specialization)

@@ -63,8 +63,8 @@ public class ProjectManager : MonoBehaviour
     void OnProjectDoneEffect (Project project)
     {
         List<Employee> assigndEmployees = GameManager.GetAssignedEmployees(project);
-        int extraSkills = 50; // for now
-        int increasePopularity = 10;
+        int extraSkills = 10; // for now
+        int increasePopularity = 100;
         GameManager.StartUp.AddMoney(project.Price);
         foreach (ProjectEmployee employee in assigndEmployees)
         {
@@ -77,7 +77,7 @@ public class ProjectManager : MonoBehaviour
     void OnProjectDeadEffect(Project project)
     {
         List<Employee> assigndEmployees = GameManager.GetAssignedEmployees(project);
-        int decreasePopularity = 10; // for now
+        int decreasePopularity = 100; // for now
         GameManager.StartUp.PayMoney(project.PenalClause);
         foreach (ProjectEmployee employee in assigndEmployees)
         {

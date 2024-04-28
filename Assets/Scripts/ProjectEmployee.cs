@@ -26,7 +26,7 @@ public class ProjectEmployee : Employee
     }
     public override void UpgradeSkills(int increasePercentage)
     {
-        technicalSkills += increasePercentage;
-        designSkills += increasePercentage;
+        technicalSkills += technicalSkills * increasePercentage/100;
+        designSkills += designSkills * increasePercentage/100;
     }
 }
