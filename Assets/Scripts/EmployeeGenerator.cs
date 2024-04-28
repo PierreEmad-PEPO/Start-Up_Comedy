@@ -13,17 +13,7 @@ public class EmployeeGenerator : MonoBehaviour
     private const float timerDuration = 2f;    // For Now
 
     private EmployeeSpecialization specialization = EmployeeSpecialization.Games;
-    private int hrSkill = 100; // From Game Manager
-
-    private int maxSkillFactor = 5;     // For Now
-    private int minSkillFactor = 3;     // For Now
-    private int maxMinSalaryFactor = 500; // For Now
-    private int minMinSalaryFactor = 3; // For Now
-
-    private float maxTechnicaSkillFactor = 3; // For Now
-    private float maxDesignSkillFactor = 3;   // For Now
-    private float maxMarktingSkillFactor = 3; // For Now
-    private float maxHrSkillFacotor = 3;
+    private int hrSkill = 50; // From Game Manager
 
     private EmployeeEventInvoker onEmployeeGenerated;
 
@@ -65,50 +55,65 @@ public class EmployeeGenerator : MonoBehaviour
 
     private void GenerateEmployee()
     {
-        string employeeName = employeesNames[RandomGenerator.NextInt(0, employeesNames.Length)];
-        int  employeeMinSalary = RandomGenerator.NextInt(minMinSalaryFactor, maxMinSalaryFactor);
-
         Employee employee = new Employee();
 
         switch (specialization)
         {
             case EmployeeSpecialization.Games:
-                employee = new ProjectEmployee();
-                int technicalGamesSkills = (int)(hrSkill * RandomGenerator.NextFloat(.5f, maxTechnicaSkillFactor));
-                int designGamesSkills = (int)(hrSkill * RandomGenerator.NextFloat(.5f, maxDesignSkillFactor));
-                (employee as ProjectEmployee).Init(employeeName, ProjectSpecialization.Games, employeeMinSalary, technicalGamesSkills, designGamesSkills);
+                employee = GenerateProjectEmployeeFactor(employee, ProjectSpecialization.Games);
                 break;
             case EmployeeSpecialization.Mobile:
-                employee = new ProjectEmployee();
-                int technicalMobileSkills = (int)(hrSkill * RandomGenerator.NextFloat(.5f, maxTechnicaSkillFactor));
-                int designMobileSkills = (int)(hrSkill * RandomGenerator.NextFloat(.5f, maxDesignSkillFactor));
-                (employee as ProjectEmployee).Init(employeeName, ProjectSpecialization.Mobile, employeeMinSalary, technicalMobileSkills, designMobileSkills);
+                employee = GenerateProjectEmployeeFactor(employee, ProjectSpecialization.Mobile);
                 break;
             case EmployeeSpecialization.Web:
-                employee = new ProjectEmployee();
-                int technicalWebSkills = (int)(hrSkill * RandomGenerator.NextFloat(.5f, maxTechnicaSkillFactor));
-                int designWebSkills = (int)(hrSkill * RandomGenerator.NextFloat(.5f, maxDesignSkillFactor));
-                (employee as ProjectEmployee).Init(employeeName, ProjectSpecialization.Web, employeeMinSalary, technicalWebSkills, designWebSkills);
+                employee = GenerateProjectEmployeeFactor(employee, ProjectSpecialization.Web);
                 break;
             case EmployeeSpecialization.Marketing:
                 employee = new MarketingEmployee();
-                int marketingSkills = (int)(hrSkill * RandomGenerator.NextFloat(.5f, maxMarktingSkillFactor));
-                (employee as MarketingEmployee).Init(employeeName, employeeMinSalary ,marketingSkills );
+                int marketingSkills = GenerateSkille();
+                (employee as MarketingEmployee).Init(GenerateEmployeeName(), GenerateSarary(marketingSkills), marketingSkills);
                 break;
             case EmployeeSpecialization.DataAnalysis:
                 employee = new DataAnalysisEmployee();
-                (employee as DataAnalysisEmployee).Init(employeeName, EmployeeSpecialization.DataAnalysis ,employeeMinSalary);
+                (employee as DataAnalysisEmployee).Init(GenerateEmployeeName(), EmployeeSpecialization.DataAnalysis ,GenerateSarary(200f));
                 break;
             case EmployeeSpecialization.HR:
                 employee = new HrEmployee();
-                int hrSkills = (int)(hrSkill * RandomGenerator.NextFloat(.5f,maxHrSkillFacotor));
-                (employee as HrEmployee).Init(employeeName, employeeMinSalary, hrSkills);
+                int _hrSkills = GenerateSkille();
+                (employee as HrEmployee).Init(GenerateEmployeeName(), GenerateSarary(_hrSkills), _hrSkills);
                 break;
         }
 
         timer.Run();
         onEmployeeGenerated.Invoke(employee);
     }
+
+    int GenerateSkille()
+    {
+        return (int)(hrSkill * RandomGenerator.NextFloat(.5f, 1.5f));
+    }
+
+    string GenerateEmployeeName()
+    {
+        return employeesNames[RandomGenerator.NextInt(0, employeesNames.Length)];
+    }
+
+    int GenerateSarary(float avrgeSkilles)
+    {
+        return (int)avrgeSkilles * 20;
+    }
+
+    ProjectEmployee GenerateProjectEmployeeFactor(Employee employee, ProjectSpecialization spec)
+    {
+        employee = new ProjectEmployee();
+        int technicalGamesSkills = GenerateSkille();
+        int designGamesSkills = GenerateSkille();
+        float avergSkills = (designGamesSkills + technicalGamesSkills) / 2f; 
+        int minSalary = GenerateSarary(avergSkills);
+        (employee as ProjectEmployee).Init(GenerateEmployeeName() ,spec, minSalary, technicalGamesSkills, designGamesSkills);
+        return (employee as ProjectEmployee);
+    }
+
     #endregion
 
 }

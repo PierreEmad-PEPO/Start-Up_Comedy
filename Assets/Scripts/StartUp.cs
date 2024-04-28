@@ -3,22 +3,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static UnityEditor.Progress;
 
 public class StartUp : MonoBehaviour
 {
     #region Fields
     private Dictionary<EmployeeSpecialization, List<GameObject>> employees;
     private string companyName = "Abo Hadeda";
-    private long budget = 1000;
+    private long budget = 40000;
     private int popularity = 200;
+    private int rent = 500;
     private int popularitySpeedPerUnit;
     private Timer popularityChangeTimer;
     private int entertainment;
     private int totalHrSkills = 50;
-    private int totalMarketingSkills = 0;
+    private int totalMarketingSkills = 50;
     private int fireSystemLevel;
     private int securityLevel;
     private bool hasDataAnalyst;
+
 
     private VoidEventInvoker onBudgetChange;
     [SerializeField] UIDocument gameplayUI;
@@ -31,6 +34,7 @@ public class StartUp : MonoBehaviour
     public string CompanyName {  get { return companyName; } }
     public long Budget { get { return budget; } }
     public int Popularity { get { return popularity; } }
+    public int Rent { get { return rent; } }
     public int PopularitySpeedPerUnit { get {  return popularitySpeedPerUnit; } }
     public int Entertainment { get {  return entertainment; } }
     public int TotalHrSkills { get {  return totalHrSkills; } }
@@ -38,6 +42,7 @@ public class StartUp : MonoBehaviour
     public int FireSystemLevel { get {  return fireSystemLevel; } }
     public int SecurityLevel { get { return securityLevel; } }
     public bool HasDataAnalyst { get {  return hasDataAnalyst; } }
+
     #endregion
 
     #region Unity Methods
@@ -66,10 +71,15 @@ public class StartUp : MonoBehaviour
         budget += money;
         onBudgetChange.Invoke();
     }
-    public void PayMoney(int money) 
+    public void PayMoney(long money) 
     {
         budget -= money;
         onBudgetChange.Invoke();
+    }
+
+    public void UpdateRint(int _rint)
+    {
+        rent += _rint;
     }
     public void SetPopularitySpeed(int newSpeed)
     {
@@ -100,12 +110,26 @@ public class StartUp : MonoBehaviour
         totalMarketingSkills += marketingSkills;
     }
 
-    public void UpgradeFireSystem()
+    public void UpgradeFireSystem(int cost)
     {
+        if (cost <= budget)
+        {
+            PayMoney(cost);
+            WindowManager.ShowNotificationAlert("Fire System Level Increassed By 1");
+            return;
+        }
+        WindowManager.ShowNotificationAlert("Not enough money");
         fireSystemLevel++;
     }
-    public void UpgradeSecurityLevel()
+    public void UpgradeSecurityLevel(int cost)
     {
+        if (cost <= budget)
+        {
+            PayMoney(cost);
+            WindowManager.ShowNotificationAlert("Cyperscurity System Level Increassed By 1");
+            return;
+        }
+        WindowManager.ShowNotificationAlert("Not enough money");
         securityLevel++;
     }
     public void SetHasDataAnalyst(bool _hasDataAnalyst)
@@ -140,6 +164,7 @@ public class StartUp : MonoBehaviour
         {
             PayMoney(item.cost);
             placementSystem.intiobject(item.id);
+            IncreaseEntertainment(1);
             return true;
         }
         WindowManager.ShowNotificationAlert("Not enough money");

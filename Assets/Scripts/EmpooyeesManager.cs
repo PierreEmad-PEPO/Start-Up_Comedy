@@ -5,7 +5,7 @@ using UnityEngine;
 public class EmpooyeesManager : MonoBehaviour
 {
     Timer timerManage;
-    float timerManageDuration = 30f; //for Naw
+    float timerManageDuration = 600f; //for Naw
     // Start is called before the first frame update
     void Start()
     {
@@ -17,15 +17,19 @@ public class EmpooyeesManager : MonoBehaviour
     void PaySalaries()
     {
         List<Employee> hiedEmployees = GameManager.HiredEmployee;
+        long totalEMployeeSalary = 0;
+        int rent = GameManager.StartUp.Rent;
         for(int index = 0; index < hiedEmployees.Count; index++) 
         {
-            if (GameManager.StartUp.Budget >= hiedEmployees[index].Salary)
-                GameManager.StartUp.AddMoney(-hiedEmployees[index].Salary);
-            else
-            {
-                Debug.Log("You Losssssssss");
-            }
+            totalEMployeeSalary += hiedEmployees[index].Salary;
+
         }
+
+        GameManager.StartUp.PayMoney(totalEMployeeSalary + rent);
+
+        WindowManager.ShowNotificationAlert("You paid " + totalEMployeeSalary.ToString() + "$ salaries\n"
+            + "and " + rent.ToString() + "$ rent");
+
         timerManage.Run();
     }
 

@@ -48,11 +48,31 @@ public class StoreWindow : MonoBehaviour
             item.Q<Label>("ItemCost").text = database.items[index].cost + "$";
             item.RegisterCallback((ClickEvent evt) =>
             {
-                WindowManager.ShowConfirmationAlert("Are you sure ?!", () =>
+                if (database.items[(int)item.userData].name == "Fire System")
                 {
-                    GameManager.StartUp.BuyFromStore(database.items[(int)item.userData]);
-                    root.style.display = DisplayStyle.None;
-                });
+                    WindowManager.ShowConfirmationAlert("Are you sure ?!", () =>
+                    {
+                        GameManager.StartUp.UpgradeFireSystem(database.items[(int)item.userData].cost);
+                        root.style.display = DisplayStyle.None;
+                    });
+                }
+                else if (database.items[(int)item.userData].name == "Cyperscurity System")
+                {
+                    WindowManager.ShowConfirmationAlert("Are you sure ?!", () =>
+                    {
+                        GameManager.StartUp.UpgradeSecurityLevel(database.items[(int)item.userData].cost);
+                        root.style.display = DisplayStyle.None;
+                    });
+                }
+                else
+                {
+
+                    WindowManager.ShowConfirmationAlert("Are you sure ?!", () =>
+                    {
+                        GameManager.StartUp.BuyFromStore(database.items[(int)item.userData]);
+                        root.style.display = DisplayStyle.None;
+                    });
+                }
             });
             gridContainer.Add(item);
         }
