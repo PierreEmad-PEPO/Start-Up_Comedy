@@ -99,6 +99,7 @@ public class Negotiation : MonoBehaviour
         currentTry = RandomGenerator.NextInt(MIN_TRIES, MAX_TRIES + 1);
         this.employee = employee;
         employeeName.text = employee.Name;
+        sliderInt.highValue = employee.MinSalary * RandomGenerator.NextInt(2, 6);
     }
 
     void Negotiate(int salary)

@@ -38,9 +38,9 @@ public class Employee
 
     virtual public void UpgradeSkills(int increasePercentage) { }
 
-    public virtual void HireEmployee() { }
+    public virtual void HireEmployee() { GameManager.StartUp.PayMoney(salary / 2); }
 
-    public virtual void Fire() { }
+    public virtual void Fire() { GameManager.StartUp.PayMoney(salary / 2); }
 
     public void Set(int setID)
     {
