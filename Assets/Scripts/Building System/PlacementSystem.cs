@@ -29,12 +29,13 @@ public class PlacementSystem : MonoBehaviour
 
     public void AssignActiveObject(GameObject _gameObject)
     {
-        if (activeObject != null)
-            activeObject.layer = 6;
-        gameObject.SetActive(true);
-        activeObject = _gameObject;
-        activeBoxCollider = activeObject.GetComponent<BoxCollider>();
-        activeObject.layer = 0;
+        if (activeObject == null)
+        {
+            gameObject.SetActive(true);
+            activeObject = _gameObject;
+            activeBoxCollider = activeObject.GetComponent<BoxCollider>();
+            activeObject.layer = 0;
+        }
     }
 
 
@@ -43,7 +44,7 @@ public class PlacementSystem : MonoBehaviour
     {
         // move object
         Vector3 mousPos = InputManager.GetMousePosition();
-        Vector3 position = Vector3.MoveTowards(activeObject.transform.position, mousPos, 10 * Time.deltaTime);
+        Vector3 position = Vector3.MoveTowards(activeObject.transform.position, mousPos, 5 * Time.deltaTime);
         position.y = activeObject.transform.position.y;
         activeObject.transform.position = position;
 
@@ -54,7 +55,10 @@ public class PlacementSystem : MonoBehaviour
         }
 
         // is collide
-        if (Physics.OverlapBoxNonAlloc(activeBoxCollider.transform.position + activeBoxCollider.center, (activeBoxCollider.size) / 2,
+        Vector3 po = Vector3.zero;
+        po.y = activeBoxCollider.center.y;
+        
+        if (Physics.OverlapBoxNonAlloc(activeBoxCollider.transform.position + po, (activeBoxCollider.size) / 2,
             colliders, activeBoxCollider.transform.rotation, placementObjectLyerMask) > 0)
         {
             // red light
@@ -63,6 +67,7 @@ public class PlacementSystem : MonoBehaviour
         {
             activeObject.layer = 6;
             gameObject.SetActive(false);
+            activeObject = null;
         }
         
     }
@@ -75,5 +80,4 @@ public class PlacementSystem : MonoBehaviour
         AssignActiveObject(_object);
 
     }
-
 }

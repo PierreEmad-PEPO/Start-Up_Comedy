@@ -123,10 +123,10 @@ public class StartUp : MonoBehaviour
         {
             PayMoney(cost);
             WindowManager.ShowNotificationAlert("Fire System Level Increassed By 1");
+            fireSystemLevel++;
             return;
         }
         WindowManager.ShowNotificationAlert("Not enough money");
-        fireSystemLevel++;
     }
     public void UpgradeSecurityLevel(int cost)
     {
@@ -134,10 +134,10 @@ public class StartUp : MonoBehaviour
         {
             PayMoney(cost);
             WindowManager.ShowNotificationAlert("Cyperscurity System Level Increassed By 1");
+            securityLevel++;
             return;
         }
         WindowManager.ShowNotificationAlert("Not enough money");
-        securityLevel++;
     }
     public void SetHasDataAnalyst(bool _hasDataAnalyst)
     {

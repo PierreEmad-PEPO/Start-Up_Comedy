@@ -10,7 +10,7 @@ public static class InputManager
 
     private static Vector3 lastPosition;
 
-    static float halfSize = 1f;
+    static float halfSize = .5f;
 
     public static Vector3 GetMousePosition()
     {

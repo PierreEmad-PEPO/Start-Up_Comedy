@@ -13,78 +13,88 @@ MonoBehaviour:
   m_Name: DataBase
   m_EditorClassIdentifier: 
   items:
-  - <name>k__BackingField: Chare
+  - <name>k__BackingField: Chair
     <id>k__BackingField: 0
-    <cost>k__BackingField: 10
+    <cost>k__BackingField: 100
     <prefab>k__BackingField: {fileID: 2954398463305685266, guid: f99a418a43716784e809a4a27cdffac4, type: 3}
     <img>k__BackingField: {fileID: 21300000, guid: a3cc1ec36ec3aaa4598488b40fd2772e, type: 3}
   - <name>k__BackingField: Basket
     <id>k__BackingField: 1
-    <cost>k__BackingField: 10
+    <cost>k__BackingField: 25
     <prefab>k__BackingField: {fileID: 2650673724651552459, guid: cc581e242644ccc48b3f11adaed61424, type: 3}
     <img>k__BackingField: {fileID: 21300000, guid: bf9accc12e1bf8d4da4e08246a152714, type: 3}
   - <name>k__BackingField: Couch
     <id>k__BackingField: 2
-    <cost>k__BackingField: 10
+    <cost>k__BackingField: 400
     <prefab>k__BackingField: {fileID: 616119417001421426, guid: 9a36f1c99891f254191e0ecdd46ea4bc, type: 3}
     <img>k__BackingField: {fileID: 21300000, guid: 9c50c37939f5ac145b656b6235624d7e, type: 3}
   - <name>k__BackingField: Employee Office
     <id>k__BackingField: 3
-    <cost>k__BackingField: 10
+    <cost>k__BackingField: 225
     <prefab>k__BackingField: {fileID: 4422761564128664771, guid: e568e1f9e7555f04280c166ac40446bd, type: 3}
     <img>k__BackingField: {fileID: 21300000, guid: 291befc1a1b2eea4c8bf0cb81e17e8f2, type: 3}
   - <name>k__BackingField: Employee Office
     <id>k__BackingField: 4
-    <cost>k__BackingField: 10
-    <prefab>k__BackingField: {fileID: 6359029790808614162, guid: 558c4a5ec46262b4da4541d38c195687, type: 3}
+    <cost>k__BackingField: 250
+    <prefab>k__BackingField: {fileID: 6359029790808614162, guid: 9d641f7f6022cc94fa96b95f2b2288ce, type: 3}
     <img>k__BackingField: {fileID: 21300000, guid: c7ee559d27338b3469a9de03ae608f61, type: 3}
   - <name>k__BackingField: Employee Office
     <id>k__BackingField: 5
-    <cost>k__BackingField: 10
+    <cost>k__BackingField: 200
     <prefab>k__BackingField: {fileID: 981737283381056299, guid: 124ec33c2445744458f8dd65200751bb, type: 3}
     <img>k__BackingField: {fileID: 21300000, guid: b9776154e92d3b2499dfcabf6fa670f7, type: 3}
   - <name>k__BackingField: Employee Office
     <id>k__BackingField: 6
-    <cost>k__BackingField: 10
+    <cost>k__BackingField: 210
     <prefab>k__BackingField: {fileID: 78540711509061800, guid: b4b24d80f5ffede4ca3c6179ab33fea2, type: 3}
     <img>k__BackingField: {fileID: 21300000, guid: 342992d4a20a90a47b60acc426dd9334, type: 3}
   - <name>k__BackingField: GlassWall
     <id>k__BackingField: 7
-    <cost>k__BackingField: 10
+    <cost>k__BackingField: 25
     <prefab>k__BackingField: {fileID: 6025418813087723579, guid: 4b6b6a51bec07f242bfe88b73ef5f753, type: 3}
     <img>k__BackingField: {fileID: 21300000, guid: 0339f071f8c4f7a4eabeb07d273ac98b, type: 3}
   - <name>k__BackingField: Manager Office
     <id>k__BackingField: 8
-    <cost>k__BackingField: 10
+    <cost>k__BackingField: 300
     <prefab>k__BackingField: {fileID: 3784660540588642647, guid: d0c9afda1df397242ac52e660bdbcc50, type: 3}
     <img>k__BackingField: {fileID: 21300000, guid: 48cd688bbc2ba744d864d413419a8b24, type: 3}
   - <name>k__BackingField: Door
     <id>k__BackingField: 9
-    <cost>k__BackingField: 10
+    <cost>k__BackingField: 40
     <prefab>k__BackingField: {fileID: 7862100040923295953, guid: 7bd49c8c8788be444a0aafbe8d13ff03, type: 3}
     <img>k__BackingField: {fileID: 21300000, guid: 4937a9c035508ed44a8c06c368af503d, type: 3}
-  - <name>k__BackingField: Dolab
+  - <name>k__BackingField: Cabinet
     <id>k__BackingField: 10
-    <cost>k__BackingField: 10
+    <cost>k__BackingField: 250
     <prefab>k__BackingField: {fileID: 2815420202299182320, guid: 8a532556bc11d0a478d1fde6b75426b9, type: 3}
     <img>k__BackingField: {fileID: 21300000, guid: b84607955c2779946859bd0ee1a455cd, type: 3}
-  - <name>k__BackingField: Side Dolab
+  - <name>k__BackingField: Side Cabinet
     <id>k__BackingField: 11
-    <cost>k__BackingField: 10
+    <cost>k__BackingField: 200
     <prefab>k__BackingField: {fileID: 9138545034775494673, guid: 581bdcdf1fdd26a47939465274d58099, type: 3}
     <img>k__BackingField: {fileID: 21300000, guid: f8301039d111d7e45ade2bc70a330bf3, type: 3}
-  - <name>k__BackingField: Sofra
+  - <name>k__BackingField: Meeting Table
     <id>k__BackingField: 12
-    <cost>k__BackingField: 10
+    <cost>k__BackingField: 450
     <prefab>k__BackingField: {fileID: 474480088290841267, guid: 330ea63ac9a38ab418b244989ce8f70f, type: 3}
     <img>k__BackingField: {fileID: 21300000, guid: 20d3497f04655cd47898d5247744a932, type: 3}
   - <name>k__BackingField: Water Cooler
     <id>k__BackingField: 13
-    <cost>k__BackingField: 10
+    <cost>k__BackingField: 175
     <prefab>k__BackingField: {fileID: 8834335713375509463, guid: 9e3774efd66bd184ea0cae5cd0797aca, type: 3}
     <img>k__BackingField: {fileID: 21300000, guid: 6eabf7185075303468417966b077f455, type: 3}
   - <name>k__BackingField: Water Cooler
     <id>k__BackingField: 14
-    <cost>k__BackingField: 10
+    <cost>k__BackingField: 150
     <prefab>k__BackingField: {fileID: 8405037012521835205, guid: 0bd21c23d3e5cf24eb41e90606b5a87e, type: 3}
     <img>k__BackingField: {fileID: 21300000, guid: 89895ae7db99cd94ba0cbb7ae085f3ea, type: 3}
+  - <name>k__BackingField: Fire System
+    <id>k__BackingField: 15
+    <cost>k__BackingField: 2000
+    <prefab>k__BackingField: {fileID: 0}
+    <img>k__BackingField: {fileID: 21300000, guid: b26b9ba02f2b85a42b90288a5caaf70c, type: 3}
+  - <name>k__BackingField: Cyperscurity System
+    <id>k__BackingField: 16
+    <cost>k__BackingField: 2500
+    <prefab>k__BackingField: {fileID: 0}
+    <img>k__BackingField: {fileID: 21300000, guid: 2370bdf45f9bb33419e76e40e362aa62, type: 3}
