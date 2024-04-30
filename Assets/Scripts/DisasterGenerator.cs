@@ -11,7 +11,7 @@ public class DisasterGenerator : MonoBehaviour
 
     private void UpdateRandomDisaster()
     {
-        timer.Duration = RandomGenerator.NextFloat(1f, 10f);
+        timer.Duration = RandomGenerator.NextFloat(1500f, 2550f);
 
         int idx = RandomGenerator.NextInt(0, disastersList.Count);
         timer.ToDoFunction = disastersList[idx];
@@ -41,7 +41,17 @@ public class DisasterGenerator : MonoBehaviour
 
     void SetFire()
     {
-        Debug.Log("FIRE !!!!!");
+        int fireLevel = RandomGenerator.NextInt(1, 6);
+        if (fireLevel > GameManager.StartUp.FireSystemLevel)
+        {
+            GameManager.StartUp.PayMoney(5000);
+            WindowManager.ShowNotificationAlert("The Company had a FIRE !!!\n" +
+                "You had to pay 5000$ to fix the damages");
+        }
+        else
+        {
+            WindowManager.ShowNotificationAlert("You had a FIRE but the fire system handled it safely");
+        }
 
         SetNewDisaster();
     }
@@ -55,7 +65,18 @@ public class DisasterGenerator : MonoBehaviour
 
     void CyberAttack()
     {
-        Debug.Log("Cyber Attack");
+
+        int cyberAttackLevel = RandomGenerator.NextInt(1, 6);
+        if (cyberAttackLevel > GameManager.StartUp.SecurityLevel)
+        {
+            GameManager.StartUp.PayMoney(7000);
+            WindowManager.ShowNotificationAlert("The Company had a CYBERATTACK !!!\n" +
+                "You had to pay 7000$ to fix the damages");
+        }
+        else
+        {
+            WindowManager.ShowNotificationAlert("You had a CYBERATTACK but your security system handled it safely");
+        }
 
         SetNewDisaster();
     }
