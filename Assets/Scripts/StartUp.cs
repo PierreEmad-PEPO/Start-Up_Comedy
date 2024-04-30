@@ -177,7 +177,7 @@ public class StartUp : MonoBehaviour
         {
             PayMoney(item.cost);
             placementSystem.intiobject(item.id);
-            IncreaseEntertainment(1);
+            IncreaseEntertainment(2);
             return true;
         }
         WindowManager.ShowNotificationAlert("Not enough money");

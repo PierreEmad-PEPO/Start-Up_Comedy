@@ -68,7 +68,7 @@ public class ProjectManager : MonoBehaviour
         GameManager.StartUp.AddMoney(project.Price);
         foreach (ProjectEmployee employee in assigndEmployees)
         {
-            employee.UpgradeSkills(extraSkills);
+            employee.UpgradeSkills(extraSkills + GameManager.StartUp.Entertainment/10);
             employee.AssignProject(null);
         }
         GameManager.StartUp.IncreasePopularitySpeed(increasePopularity);
