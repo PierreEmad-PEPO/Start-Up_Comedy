@@ -44,9 +44,9 @@ public static class GameManager
     private static void InitMarketing()
     {
         // 50 and .5 for now
-        marketingPrice.Add(MarketingEnum.SocialAD, new List<float>{ 50f,50f});
-        marketingPrice.Add(MarketingEnum.TVAD, new List<float> { 50f, 50f });
-        marketingPrice.Add(MarketingEnum.RadoiAd, new List<float> { 50f, 50f });
+        marketingPrice.Add(MarketingEnum.SocialAD, new List<float>{ 1500f,50f});
+        marketingPrice.Add(MarketingEnum.TVAD, new List<float> { 5000f, 150f });
+        marketingPrice.Add(MarketingEnum.RadoiAd, new List<float> { 1000f, 30f });
     }
     public static int GetMarketingPrice(MarketingEnum name)
     {
@@ -55,7 +55,7 @@ public static class GameManager
 
     public static float GetMarketingEffect(MarketingEnum name)
     {
-        return marketingPrice[name][1];
+        return marketingPrice[name][1] + startUp.TotalMarketingSkills;
     }
     public static List<Employee> GetAssignedEmployees(Project project)
     {

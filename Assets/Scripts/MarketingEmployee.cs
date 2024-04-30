@@ -17,12 +17,12 @@ public class MarketingEmployee : Employee
     public override void HireEmployee()
     {
         base.HireEmployee();
-        GameManager.StartUp.AddTotalMarketingSkills(marketingSkill);
+        GameManager.StartUp.AddTotalMarketingSkills(marketingSkill/3);
     }
 
     public override void Fire()
     {
         base.Fire();
-        GameManager.StartUp.AddTotalMarketingSkills(-MarketingSkill);
+        GameManager.StartUp.AddTotalMarketingSkills(-MarketingSkill/3);
     }
 }
