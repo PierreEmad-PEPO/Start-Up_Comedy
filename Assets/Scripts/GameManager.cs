@@ -16,6 +16,7 @@ public static class GameManager
     static Dictionary<MarketingEnum, List<float>> marketingPrice = new Dictionary<MarketingEnum, List<float>> ();
     static List<Loan> loans = new List<Loan>();
     static List<Office> offices = new List<Office>();
+    static int groundCount = 1;
     //Props
 
     public static StartUp StartUp { get { return startUp; } }
@@ -32,6 +33,8 @@ public static class GameManager
     public static List<Office> Offices { get { return offices; } }
     public static int TotalHrEmlpoyeesSkills { get { return GetTotalHrEmlpoyeesSkills(); } }
     public static int TotalMarkeintingSkills { get { return GetTotalMarkeitingEmployeesSkills(); } }
+
+    public static int GroundCount { get { return groundCount; } set { groundCount += 1;} }
 
     //Methodes
 

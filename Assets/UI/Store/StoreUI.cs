@@ -64,6 +64,14 @@ public class StoreWindow : MonoBehaviour
                         root.style.display = DisplayStyle.None;
                     });
                 }
+                else if (database.items[(int)item.userData].name == "Ground")
+                {
+                    WindowManager.ShowConfirmationAlert("Are you sure ?!", () =>
+                    {
+                        GameManager.StartUp.BuyGround(database.items[(int)item.userData].cost);
+                        root.style.display = DisplayStyle.None;
+                    });
+                }
                 else
                 {
 

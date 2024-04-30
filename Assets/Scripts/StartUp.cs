@@ -8,6 +8,10 @@ using static UnityEditor.Progress;
 public class StartUp : MonoBehaviour
 {
     #region Fields
+
+    [SerializeField] GameObject[] grounds;
+    [SerializeField] GameObject ground;
+
     private Dictionary<EmployeeSpecialization, List<GameObject>> employees;
     private string companyName = "Abo Hadeda";
     private long budget = 40000;
@@ -178,6 +182,45 @@ public class StartUp : MonoBehaviour
         }
         WindowManager.ShowNotificationAlert("Not enough money");
         return false;
+    }
+
+    public void BuyGround(int price)
+    {
+        if (price <= budget)
+        {
+            int groundCount = GameManager.GroundCount;
+            Vector3 position = Vector3.zero;
+            position.z = -(int)(groundCount / 3);
+            position.x = -(int)(groundCount % 3 );
+            if (position.z == 0)
+            {
+                position.x *= 10;
+                position.z *= 10;
+                GameObject plane = Instantiate(grounds[0],position, Quaternion.identity);
+                plane.transform.parent = ground.transform;
+            }
+            else if (position.x == 0)
+            {
+                position.x *= 10;
+                position.z *= 10;
+                GameObject plane = Instantiate(grounds[1], position, Quaternion.identity);
+                plane.transform.parent = ground.transform;
+            }
+            else
+            {
+                position.x *= 10;
+                position.z *= 10;
+                GameObject plane = Instantiate(grounds[2], position, Quaternion.identity);
+                plane.transform.parent = ground.transform;
+            }
+            PayMoney(price);
+            rent += price/20;
+            GameManager.GroundCount++;
+            return;
+        }
+        WindowManager.ShowNotificationAlert("Not enough money");
+        return ;
+
     }
 
     private void UpdatePopularity()
