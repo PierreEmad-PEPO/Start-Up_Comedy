@@ -12,7 +12,7 @@ public class DisasterGenerator : MonoBehaviour
 
     private void UpdateRandomDisaster()
     {
-        timer.Duration = RandomGenerator.NextFloat(1500f, 2550f);
+        timer.Duration = RandomGenerator.NextFloat(1500f, 20f);
 
         int idx = RandomGenerator.NextInt(0, disastersList.Count);
         timer.ToDoFunction = disastersList[idx];
@@ -59,13 +59,16 @@ public class DisasterGenerator : MonoBehaviour
 
     void EmployeeDeath()
     {
+        if (GameManager.HiredEmployee.Count > 0)
+        {
+            int randomEpoyeeIndex = RandomGenerator.NextInt(0, GameManager.HiredEmployee.Count);
 
-        int randomEpoyeeIndex = RandomGenerator.NextInt(0, GameManager.HiredEmployee.Count);
-        Employee employee = GameManager.HiredEmployee[randomEpoyeeIndex];
+            Employee employee = GameManager.HiredEmployee[randomEpoyeeIndex];
 
-        WindowManager.ShowNotificationAlert(employee.Name +" has Died");
+            WindowManager.ShowNotificationAlert(employee.Name + " has Died");
 
-        empooyeesManager.FireEmpoyee(employee);
+            empooyeesManager.FireEmpoyee(employee);
+        }
 
         SetNewDisaster();
     }

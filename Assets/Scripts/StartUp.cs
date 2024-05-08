@@ -13,7 +13,7 @@ public class StartUp : MonoBehaviour
 
     private Dictionary<EmployeeSpecialization, List<GameObject>> employees;
     private string companyName = "Abo Hadeda";
-    private long budget = 40000;
+    private long budget = 4000000;
     private int popularity = 350;
     private int rent = 500;
     private int popularitySpeedPerUnit = 100;
