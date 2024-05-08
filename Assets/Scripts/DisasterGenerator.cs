@@ -12,7 +12,7 @@ public class DisasterGenerator : MonoBehaviour
 
     private void UpdateRandomDisaster()
     {
-        timer.Duration = RandomGenerator.NextFloat(1500f, 20f);
+        timer.Duration = RandomGenerator.NextFloat(1500f, 2500f);
 
         int idx = RandomGenerator.NextInt(0, disastersList.Count);
         timer.ToDoFunction = disastersList[idx];
