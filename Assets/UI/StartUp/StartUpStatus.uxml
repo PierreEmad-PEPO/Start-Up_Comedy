@@ -16,7 +16,7 @@
             </ui:VisualElement>
             <ui:VisualElement name="Row" style="flex-grow: 0; flex-direction: row; align-items: center; justify-content: center; width: 100%; height: 15%; flex-shrink: 0;">
                 <ui:Label tabindex="-1" text="Entertainment: 50" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Entertainment" class="table-cell" />
-                <ui:Label tabindex="-1" text="DataAnalyst: No" parse-escape-sequences="true" display-tooltip-when-elided="true" name="DataAnalyst" class="table-cell" />
+                <ui:Label tabindex="-1" text="Rent : 500$" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Rent" class="table-cell" />
             </ui:VisualElement>
             <ui:VisualElement name="Row" style="flex-grow: 0; flex-direction: row; align-items: center; justify-content: center; width: 100%; height: 15%; flex-shrink: 0;">
                 <ui:Label tabindex="-1" text="Fire System Level : 0" parse-escape-sequences="true" display-tooltip-when-elided="true" name="FireSystem" class="table-cell" />

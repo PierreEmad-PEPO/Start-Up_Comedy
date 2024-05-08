@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 public class DisasterGenerator : MonoBehaviour
 {
+    [SerializeField] private EmpooyeesManager empooyeesManager;
     private Timer timer;
     private List<UnityAction> disastersList = new List<UnityAction>();
 
@@ -59,6 +60,10 @@ public class DisasterGenerator : MonoBehaviour
     void EmployeeDeath()
     {
         Debug.Log("Employee Death");
+
+        int randomEpoyeeIndex = RandomGenerator.NextInt(0, GameManager.HiredEmployee.Count);
+
+        empooyeesManager.FireEmpoyee(GameManager.HiredEmployee[randomEpoyeeIndex]);
 
         SetNewDisaster();
     }

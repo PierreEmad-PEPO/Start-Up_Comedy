@@ -29,4 +29,11 @@ public class ProjectEmployee : Employee
         technicalSkills += technicalSkills * increasePercentage/100;
         designSkills += designSkills * increasePercentage/100;
     }
+
+    public override void Fire()
+    {
+        base.Fire();
+        if (assignedProject != null)
+            assignedProject.DismissEmployee(technicalSkills, designSkills);
+    }
 }

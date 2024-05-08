@@ -40,7 +40,11 @@ public class Employee
 
     public virtual void HireEmployee() { GameManager.StartUp.PayMoney(salary / 2); }
 
-    public virtual void Fire() { GameManager.StartUp.PayMoney(salary / 2); }
+    public virtual void Fire()
+    {
+        GameManager.StartUp.PayMoney(salary / 2);
+        GameManager.HiredEmployee.Remove(this);
+    }
 
     public void Set(int setID)
     {

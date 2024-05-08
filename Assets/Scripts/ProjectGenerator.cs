@@ -122,6 +122,7 @@ public class ProjectGenerator : MonoBehaviour
         if (newDur < 120) newDur = 120;
         if (newDur > 15 * 60) newDur = 15 * 60;
 
+        newDur = 10;
         return newDur;
     }
 

@@ -9,6 +9,7 @@ public class OfficeWindo : MonoBehaviour
     [SerializeField] VisualTreeAsset waitingCard;
     [SerializeField] PlacementSystem placement;
     [SerializeField] GameObject[] employeeModles;
+    [SerializeField] EmpooyeesManager empooyeesManager;
     VisualElement root;
     VisualElement data;
     VisualElement waiting;
@@ -39,6 +40,12 @@ public class OfficeWindo : MonoBehaviour
             placement.AssignActiveObject(office);
         };
 
+        root.Q<Button>("Fire").clicked += () =>
+        {
+            root.style.display = DisplayStyle.None;
+            empooyeesManager.FireEmpoyee(employee);
+        };
+
         root.Q<Button>("Exit").clicked += () => { root.style.display = DisplayStyle.None; };
 
         root.style.display = DisplayStyle.None;
@@ -67,7 +74,6 @@ public class OfficeWindo : MonoBehaviour
         {
             item.userData = employees[index];
             item.Q<Label>("Name").text = employees[index].Name;
-            Debug.Log(employees[0].Name);
         };
         watingEmployees.fixedItemHeight = 110;
         watingEmployees.itemsSource = employees;

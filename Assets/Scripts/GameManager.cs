@@ -67,7 +67,7 @@ public static class GameManager
 
     public static List<Employee> GetUnAssignedEmployees(Project project)
     {
-        return hiredEmployee.Where(e => e is ProjectEmployee && (int)(e as ProjectEmployee).Specialization == (int)project.Specialization && (e as ProjectEmployee).AssignedProject == null).ToList();
+        return hiredEmployee.Where(e => e is ProjectEmployee && (int)(e as ProjectEmployee).Specialization == (int)project.Specialization && (e as ProjectEmployee).AssignedProject == null && e.IsSet).ToList();
     }
 
     public static List<Employee> GetWaitingEmployees()

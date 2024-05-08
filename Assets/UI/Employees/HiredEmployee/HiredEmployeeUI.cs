@@ -6,6 +6,7 @@ using UnityEngine.UIElements;
 public class HiredEmployeeUI : MonoBehaviour
 {
     [SerializeField] private VisualTreeAsset EmployeeCardTemplate;
+    [SerializeField] private EmpooyeesManager empooyeesManager;
 
     List<Employee> employees;
 
@@ -13,21 +14,19 @@ public class HiredEmployeeUI : MonoBehaviour
 
     ListView employeesList;
 
-     EmployeeEventInvoker onEmployeeFired;
 
     void Start()
     {
         employees = GameManager.HiredEmployee;
         SetVisualElement();
 
-        onEmployeeFired = gameObject.AddComponent<EmployeeEventInvoker>();
-        EventManager.AddEmployeeEventInvoker(EventEnum.OnEmployeeFired,onEmployeeFired);
 
         EventManager.AddProjectEventListener(EventEnum.OnProjectDone, RebuildEmoloyeeList);
         EventManager.AddProjectEventListener(EventEnum.OnUnAssigndProjectFromEmployee, RebuildEmoloyeeList);
         EventManager.AddProjectEventListener(EventEnum.OnAssigndProjectToEmployee, RebuildEmoloyeeList);
         EventManager.AddProjectEventListener(EventEnum.OnDeadlineEnd, RebuildEmoloyeeList);
         EventManager.AddEmployeeEventListener(EventEnum.OnEmployeeHired, RebuildEmoloyeeList);
+        EventManager.AddEmployeeEventListener(EventEnum.OnEmployeeFired, RebuildEmoloyeeList);
 
     }
 
@@ -96,25 +95,15 @@ public class HiredEmployeeUI : MonoBehaviour
         item.userData = employees[index];
 
         item.Q<Label>("EmployeeName").text = employees[index].Name;
+        item.Q <Label>("Salary").text = employees[index].Salary.ToString();
 
     }
 
     public void ConfirmDelete(Employee employee)
     {   
         // Unassigned Employee From Project
-        if (employee is ProjectEmployee)
-        {
-            ProjectEmployee projectEmployee = (ProjectEmployee) employee;
-            if (projectEmployee.AssignedProject != null)
-                projectEmployee.AssignedProject.DismissEmployee(projectEmployee.TechicalSkills, projectEmployee.DesignSkills);
-        }
 
-        employees.Remove(employee);
-        onEmployeeFired.Invoke(employee);
-        employee.Fire();
-        // delet Employee and Rebuild List
-        
-        employeesList.Rebuild();
+        empooyeesManager.FireEmpoyee(employee);
     }
 
     void BindGamesEmployee(VisualElement item, int index)

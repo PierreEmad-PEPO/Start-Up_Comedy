@@ -13,7 +13,7 @@ public class StartUpStatusUI : MonoBehaviour
     Label totalHrSkillsLabel;
     Label totalMarketingLabel;
     Label entertainmentLabel;
-    Label hasDataAnalystLabel;
+    Label rentLabel;
     Label fireSystemLabel;
     Label securityLabel;
 
@@ -36,7 +36,7 @@ public class StartUpStatusUI : MonoBehaviour
         totalHrSkillsLabel = root.Q<Label>("TotalHR");
         totalMarketingLabel = root.Q<Label>("TotalMarketing");
         entertainmentLabel = root.Q<Label>("Entertainment");
-        hasDataAnalystLabel = root.Q<Label>("DataAnalyst");
+        rentLabel = root.Q<Label>("Rent");
         fireSystemLabel = root.Q<Label>("FireSystem");
         securityLabel = root.Q<Label>("Security");
         root.Q<Button>("Exit").clicked += () => { root.style.display = DisplayStyle.None; };
@@ -51,7 +51,7 @@ public class StartUpStatusUI : MonoBehaviour
         totalHrSkillsLabel.text = "Total HR Skills: " + startUp.TotalHrSkills;
         totalMarketingLabel.text = "Total Marketing Skills: " + startUp.TotalMarketingSkills;
         entertainmentLabel.text = "Entertainment: " + startUp.Entertainment;
-        hasDataAnalystLabel.text = "Has Data Analyst: " + startUp.HasDataAnalyst.ToString();
+        rentLabel.text = "Rent: " + startUp.Rent.ToString() + "$" ;
         fireSystemLabel.text = "Fire System Level: " + startUp.FireSystemLevel;
         securityLabel.text = "Security Level: " + startUp.SecurityLevel;
     }
