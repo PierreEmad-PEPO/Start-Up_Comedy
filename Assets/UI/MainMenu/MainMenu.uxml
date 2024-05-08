@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/MainMenu/MainMenu.uss?fileID=7433441132597879392&amp;guid=08d6058b502aaac4ab5380eb5f42e033&amp;type=3#MainMenu" />
+    <ui:VisualElement name="VisualElement" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/MainMenu/37389.jpg?fileID=2800000&amp;guid=3d203e1db9ab8804aa324c3646a482b8&amp;type=3#37389&quot;);">
+        <ui:GroupBox style="width: 50%; height: 50%; align-items: flex-start; justify-content: center; align-self: flex-start; -unity-font-style: normal; left: 17%; top: 25%; right: 0;">
+            <ui:Button parse-escape-sequences="false" display-tooltip-when-elided="true" name="Play" class="unity-button Button" />
+            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="Tutorual" class="Button" style="background-image: url(&quot;project://database/Assets/Sprites/MainMenu/tut.png?fileID=2800000&amp;guid=3c6c92cd7a7682b498363cd8774c8ab4&amp;type=3#tut&quot;);" />
+            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="Setting" class="Button" style="background-image: url(&quot;project://database/Assets/Sprites/MainMenu/seeting.png?fileID=2800000&amp;guid=ae2c4cd4ccfb0024cac0e361df4ee845&amp;type=3#seeting&quot;);" />
+            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="Exit" class="Button" style="background-image: url(&quot;project://database/Assets/Sprites/MainMenu/Exit.png?fileID=2800000&amp;guid=68178008b691ddd498ab3c4a6b8af99c&amp;type=3#Exit&quot;);" />
+        </ui:GroupBox>
+    </ui:VisualElement>
+</ui:UXML>

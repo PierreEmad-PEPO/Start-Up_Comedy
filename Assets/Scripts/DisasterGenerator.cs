@@ -59,11 +59,13 @@ public class DisasterGenerator : MonoBehaviour
 
     void EmployeeDeath()
     {
-        Debug.Log("Employee Death");
 
         int randomEpoyeeIndex = RandomGenerator.NextInt(0, GameManager.HiredEmployee.Count);
+        Employee employee = GameManager.HiredEmployee[randomEpoyeeIndex];
 
-        empooyeesManager.FireEmpoyee(GameManager.HiredEmployee[randomEpoyeeIndex]);
+        WindowManager.ShowNotificationAlert(employee.Name +" has Died");
+
+        empooyeesManager.FireEmpoyee(employee);
 
         SetNewDisaster();
     }

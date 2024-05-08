@@ -121,8 +121,6 @@ public class ProjectGenerator : MonoBehaviour
         int newDur = (GameManager.StartUp.MAX_POPULARITY - GameManager.StartUp.Popularity) * 2;
         if (newDur < 120) newDur = 120;
         if (newDur > 15 * 60) newDur = 15 * 60;
-
-        newDur = 10;
         return newDur;
     }
 

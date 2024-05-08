@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7277459274597988662}
   - component: {fileID: -8677936502495817525}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EmployeeOffice 2
   m_TagString: Office
   m_Icon: {fileID: 0}

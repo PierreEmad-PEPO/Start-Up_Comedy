@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6401100304875317889}
   - component: {fileID: -7298268914166389631}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GlassWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
