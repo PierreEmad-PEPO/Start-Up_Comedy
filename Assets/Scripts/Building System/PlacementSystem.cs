@@ -69,7 +69,7 @@ public class PlacementSystem : MonoBehaviour
             gameObject.SetActive(false);
             activeObject = null;
         }
-        
+ 
     }
 
 
@@ -80,4 +80,5 @@ public class PlacementSystem : MonoBehaviour
         AssignActiveObject(_object);
 
     }
+
 }

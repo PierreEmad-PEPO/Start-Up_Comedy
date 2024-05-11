@@ -12,7 +12,7 @@ public class StartUp : MonoBehaviour
     [SerializeField] GameObject ground;
 
     private Dictionary<EmployeeSpecialization, List<GameObject>> employees;
-    private string companyName = "Abo Hadeda";
+    private string companyName = "RocketDevs";
     private long budget = 4000000;
     private int popularity = 350;
     private int rent = 500;

@@ -36,3 +36,9 @@
 #SliderInt TextElement {
     color: rgb(0, 0, 0);
 }
+
+#Money #unity-text-field {
+    height: 100%;
+    width: 100px;
+    color: rgb(0, 0, 0);
+}

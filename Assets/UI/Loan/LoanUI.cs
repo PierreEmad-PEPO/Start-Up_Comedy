@@ -30,6 +30,7 @@ public class LoanUI : MonoBehaviour
         root.Q<Button>("AddLoan").clicked += () =>
         {
             WindowManager.OpenSubWindow(SubWindowName.AddLoan);
+            WindowManager.GetSubWindowGameObject(SubWindowName.AddLoan).GetComponent<AddLoanUI>().UpdateSlayder();
         };
         InitLoansList();
         root.style.display = DisplayStyle.None;

@@ -24,7 +24,7 @@ public class AddLoanUI : MonoBehaviour
         };
         root.Q<Button>("Send").clicked += () =>
         {
-            if (money.value > GameManager.StartUp.Budget / 2 || GameManager.Loans.Count > 10)
+            if (money.value > GameManager.StartUp.Budget / 2 || GameManager.Loans.Count > 10 || money.value <= 999)
             {
                 WindowManager.ShowNotificationAlert("Sorry, But The Bank Refused Your Request.");
             }
@@ -39,6 +39,10 @@ public class AddLoanUI : MonoBehaviour
             }
         };
         root.style.display = DisplayStyle.None;
-    }
 
+    }
+    public void UpdateSlayder()
+    {
+        money.highValue = (int)GameManager.StartUp.Budget * 5;
+    }
 }

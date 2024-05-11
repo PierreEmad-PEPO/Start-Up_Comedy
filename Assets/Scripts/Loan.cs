@@ -6,7 +6,7 @@ public class Loan
 {
     long money;
     float deadline;
-    float minSecondForLoan = 20; // for now
+    float minSecondForLoan = 15; // for now
     float maxSeconedForLoan = 30; // for now
 
     public long Money { get { return money; } }
@@ -15,7 +15,7 @@ public class Loan
     public Loan (long money) 
     {
         this.money = money;
-        this.deadline = Random.Range(minSecondForLoan, maxSeconedForLoan);
+        this.deadline = money/10;
     }
 
     public void UpdateLoan()
