@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/PauseMenu/PauseMenu.uss?fileID=7433441132597879392&amp;guid=3339ff0e63ef7e547811481a4b1a7786&amp;type=3#PauseMenu" />
+    <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.56); align-self: auto; justify-content: center;">
+        <ui:GroupBox style="width: 50%; align-self: center;">
+            <ui:Button text="Resume" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Resume" class="Button" />
+            <ui:Button text="Setting" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Setting" class="Button" />
+            <ui:Button text="Exit" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Exit" class="Button" />
+        </ui:GroupBox>
+    </ui:VisualElement>
+</ui:UXML>

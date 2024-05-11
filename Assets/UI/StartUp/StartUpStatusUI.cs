@@ -24,6 +24,7 @@ public class StartUpStatusUI : MonoBehaviour
         SetVisualElement();
         StartCoroutine(SecondTick());
         root.style.display = DisplayStyle.None;
+        UpdateData();
     }
 
     void SetVisualElement()

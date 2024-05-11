@@ -6,8 +6,8 @@ public class Loan
 {
     long money;
     float deadline;
-    float minSecondForLoan = 15; // for now
-    float maxSeconedForLoan = 30; // for now
+    //float minSecondForLoan = 15; // for now
+    //float maxSeconedForLoan = 30; // for now
 
     public long Money { get { return money; } }
     public float Deadline { get { return deadline; } }

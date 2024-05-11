@@ -12,7 +12,7 @@ public class StartUp : MonoBehaviour
     [SerializeField] GameObject ground;
 
     private Dictionary<EmployeeSpecialization, List<GameObject>> employees;
-    private string companyName = "RocketDevs";
+    private string companyName = "";
     private long budget = 4000000;
     private int popularity = 350;
     private int rent = 500;
@@ -35,7 +35,7 @@ public class StartUp : MonoBehaviour
 
 
     #region Props
-    public string CompanyName {  get { return companyName; } }
+    public string CompanyName {  get { return companyName; } set { companyName = value; } }
     public long Budget { get { return budget; } }
     public int MAX_POPULARITY { get { return 1001; } }
     public int Popularity { get { return popularity; } }

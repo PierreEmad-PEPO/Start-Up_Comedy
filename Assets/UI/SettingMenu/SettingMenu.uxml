@@ -1,0 +1,12 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/SettingMenu/setting.uss?fileID=7433441132597879392&amp;guid=602ae09b0e281a14eb0c284afe9b370d&amp;type=3#setting" />
+    <ui:VisualElement style="flex-grow: 1; align-self: auto; justify-content: center;">
+        <ui:VisualElement style="align-self: center; background-color: rgb(56, 207, 204); top: auto; border-top-left-radius: 13px; border-top-right-radius: 13px; border-bottom-right-radius: 13px; border-bottom-left-radius: 13px; width: 60%; height: 30%; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);">
+            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="Exit" style="align-self: flex-end; background-image: resource(&apos;EmployeeLists/Delete&apos;); background-color: rgba(188, 188, 188, 0); border-left-color: rgba(149, 149, 149, 0); border-right-color: rgba(149, 149, 149, 0); border-top-color: rgba(149, 149, 149, 0); border-bottom-color: rgba(149, 149, 149, 0); width: 20px; height: 20px;" />
+            <ui:GroupBox name="GroupBox" style="justify-content: center; height: 80%;">
+                <ui:Toggle label="Mute" name="Mute" style="-unity-text-align: upper-center; font-size: 20px; -unity-font-style: bold; -unity-font-definition: initial; -unity-font: url(&quot;project://database/Assets/Diana%20Stuff/Fonts/PixelEmulator-xq08.ttf?fileID=12800000&amp;guid=c94ffc8cc41116c498afe9e291568142&amp;type=3#PixelEmulator-xq08&quot;);" />
+                <ui:SliderInt label="Sound" high-value="100" name="Sound" show-input-field="false" style="-unity-text-align: upper-center; font-size: 20px; -unity-font-style: bold; padding-right: 28px; -unity-font-definition: initial; -unity-font: url(&quot;project://database/Assets/Diana%20Stuff/Fonts/PixelEmulator-xq08.ttf?fileID=12800000&amp;guid=c94ffc8cc41116c498afe9e291568142&amp;type=3#PixelEmulator-xq08&quot;);" />
+            </ui:GroupBox>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
