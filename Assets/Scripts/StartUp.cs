@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class StartUp : MonoBehaviour
@@ -65,7 +66,7 @@ public class StartUp : MonoBehaviour
         
 
         popularityChangeTimer = gameObject.AddComponent<Timer>();
-        popularityChangeTimer.Init(240, UpdatePopularity);
+        popularityChangeTimer.Init(250, UpdatePopularity);
         popularityChangeTimer.Run();
     }
 
@@ -80,11 +81,13 @@ public class StartUp : MonoBehaviour
     {
         budget += money;
         onBudgetChange.Invoke();
+        GameOverCheack();
     }
     public void PayMoney(long money) 
     {
         budget -= money;
         onBudgetChange.Invoke();
+        GameOverCheack();
     }
 
     public void UpdateRint(int _rint)
@@ -222,6 +225,12 @@ public class StartUp : MonoBehaviour
 
     }
 
+    public void GameOverCheack()
+    {
+        if (budget < 1 && popularity < 1 && GameManager.Projects.Count < 1)
+            WindowManager.ShowNotificationAlert("Game Over.", () => { SceneManager.LoadScene("MainMenu"); });
+    }
+
     private void UpdatePopularity()
     {
         popularity += popularitySpeedPerUnit;
@@ -237,7 +246,7 @@ public class StartUp : MonoBehaviour
         float ratio = (float)popularity / (float)MAX_POPULARITY;
         popularityLabel.text = ((int)(ratio * 100)).ToString() + "%";
         popularityLabel.style.color = Color.Lerp(Color.red, Color.black, ratio);
+        GameOverCheack();
     }
-    
     #endregion
 }

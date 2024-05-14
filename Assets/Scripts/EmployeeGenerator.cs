@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class EmployeeGenerator : MonoBehaviour
 {
     #region Fields
-    private string[] employeesNames = { "ABDELRHMAN", "PEPO", "ZIAD", "MARTIN", "SAMUEL"};
+    private string[] employeesNames = { "ABDELRHMAN", "PIERRE", "ZIAD", "MARTIN", "SAMUEL","KHALED","ABDULLAH","AHMED","ESLAM"};
 
     private Timer timer;
     private const float timerDuration = 2f;    // For Now
@@ -90,7 +90,7 @@ public class EmployeeGenerator : MonoBehaviour
 
     int GenerateSkille()
     {
-        return (int)(hrSkill * RandomGenerator.NextFloat(.5f, 1.5f));
+        return Math.Min((int)(hrSkill * RandomGenerator.NextFloat(.5f, 1.5f)),500);
     }
 
     string GenerateEmployeeName()

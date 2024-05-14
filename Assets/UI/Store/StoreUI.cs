@@ -1,6 +1,8 @@
 using System;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static UnityEditor.Progress;
 
 public class StoreWindow : MonoBehaviour
 {
@@ -50,19 +52,35 @@ public class StoreWindow : MonoBehaviour
             {
                 if (database.items[(int)item.userData].name == "Fire System")
                 {
-                    WindowManager.ShowConfirmationAlert("Are you sure ?!", () =>
+                    if (GameManager.StartUp.FireSystemLevel < 5)
                     {
-                        GameManager.StartUp.UpgradeFireSystem(database.items[(int)item.userData].cost);
-                        root.style.display = DisplayStyle.None;
-                    });
+                        WindowManager.ShowConfirmationAlert("Are you sure ?!", () =>
+                        {
+                            GameManager.StartUp.UpgradeFireSystem(database.items[(int)item.userData].cost);
+                            root.style.display = DisplayStyle.None;
+                        });
+                    }
+                    else
+                    {
+                        WindowManager.ShowNotificationAlert("You reached the max level.");
+                    }
+
                 }
                 else if (database.items[(int)item.userData].name == "Cyperscurity System")
                 {
-                    WindowManager.ShowConfirmationAlert("Are you sure ?!", () =>
+                    if (GameManager.StartUp.SecurityLevel < 5)
                     {
-                        GameManager.StartUp.UpgradeSecurityLevel(database.items[(int)item.userData].cost);
-                        root.style.display = DisplayStyle.None;
-                    });
+                        WindowManager.ShowConfirmationAlert("Are you sure ?!", () =>
+                        {
+                            GameManager.StartUp.UpgradeSecurityLevel(database.items[(int)item.userData].cost);
+                            root.style.display = DisplayStyle.None;
+                        });
+                    }
+                    else
+                    {
+                        WindowManager.ShowNotificationAlert("You reached the max level.");
+                    }
+
                 }
                 else if (database.items[(int)item.userData].name == "Ground")
                 {
@@ -90,4 +108,5 @@ public class StoreWindow : MonoBehaviour
         root.style.display = DisplayStyle.None;
 
     }
+
 }

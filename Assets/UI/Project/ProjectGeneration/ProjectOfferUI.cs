@@ -70,7 +70,7 @@ public class ProjectOfferUI : MonoBehaviour
         root.userData = project;
         name.text = project.Name;
         specialization.text = project.Specialization.ToString();
-        deadline.text = project.Deadline.ToString() + "/h"; // forNow
+        deadline.text = project.Deadline.ToString("00:00:00"); ; // forNow
         price.text = project.Price.ToString() + "$";
         penalClause.text = project.PenalClause.ToString() + "$";
         technicalSkills.text = project.RequiredTechnicalSkills.ToString();

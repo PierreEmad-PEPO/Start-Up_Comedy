@@ -153,7 +153,8 @@ public class EmployeeHiringListView : MonoBehaviour
         item.userData = employees[index];
 
         item.Q<Label>("EmployeeName").text = employees[index].Name;
-        
+        item.Q<VisualElement>("SecondarySkillsContainer").style.visibility = Visibility.Visible;
+
     }
 
     public void ConfirmDelete(Employee employee)
@@ -169,27 +170,55 @@ public class EmployeeHiringListView : MonoBehaviour
     void BindGamesEmployee(VisualElement item, int index)
     {
         item.Q<VisualElement>("SpecializationIcon").style.backgroundImage = new StyleBackground (Resources.Load<Sprite>("EmployeeLists/Games"));
-        item.Q<Label>("PrimarySkills").text = (employees[index] as ProjectEmployee).TechicalSkills.ToString();
-        item.Q<Label>("SecondarySkills").text = (employees[index] as ProjectEmployee).DesignSkills.ToString();
+        /*item.Q<Label>("PrimarySkills").text = (employees[index] as ProjectEmployee).TechicalSkills.ToString();
+        item.Q<Label>("SecondarySkills").text = (employees[index] as ProjectEmployee).DesignSkills.ToString();*/
+
+        ProgressBar prog = item.Q<ProgressBar>("PrimarySkills");
+        prog.value = ((employees[index] as ProjectEmployee).TechicalSkills * 100 / 500);
+        prog.title = prog.value.ToString() + "%";
+        prog = item.Q<ProgressBar>("SecondarySkills");
+        prog.value = ((employees[index] as ProjectEmployee).DesignSkills * 100 / 500);
+        prog.title = prog.value.ToString() + "%";
+
     }
     void BindMobileEmployee(VisualElement item, int index)
     {
         item.Q<VisualElement>("SpecializationIcon").style.backgroundImage = new StyleBackground(Resources.Load<Sprite>("EmployeeLists/Android"));
-        item.Q<Label>("PrimarySkills").text = (employees[index] as ProjectEmployee).TechicalSkills.ToString();
-        item.Q<Label>("SecondarySkills").text = (employees[index] as ProjectEmployee).DesignSkills.ToString();
+        /* item.Q<Label>("PrimarySkills").text = (employees[index] as ProjectEmployee).TechicalSkills.ToString();
+         item.Q<Label>("SecondarySkills").text = (employees[index] as ProjectEmployee).DesignSkills.ToString();*/
+
+        ProgressBar prog = item.Q<ProgressBar>("PrimarySkills");
+        prog.value = ((employees[index] as ProjectEmployee).TechicalSkills * 100 / 500);
+        prog.title = prog.value.ToString() + "%";
+        prog = item.Q<ProgressBar>("SecondarySkills");
+        prog.value = ((employees[index] as ProjectEmployee).DesignSkills * 100 / 500);
+        prog.title = prog.value.ToString() + "%";
+
     }
     void BindWebEmployee(VisualElement item, int index)
     {
         item.Q<VisualElement>("SpecializationIcon").style.backgroundImage = new StyleBackground(Resources.Load<Sprite>("EmployeeLists/Web"));
-        item.Q<Label>("PrimarySkills").text = (employees[index] as ProjectEmployee).TechicalSkills.ToString();
-        item.Q<Label>("SecondarySkills").text = (employees[index] as ProjectEmployee).DesignSkills.ToString();
+/*        item.Q<Label>("PrimarySkills").text = (employees[index] as ProjectEmployee).TechicalSkills.ToString();
+        item.Q<Label>("SecondarySkills").text = (employees[index] as ProjectEmployee).DesignSkills.ToString();*/
+
+        ProgressBar prog = item.Q<ProgressBar>("PrimarySkills");
+        prog.value = ((employees[index] as ProjectEmployee).TechicalSkills * 100 / 500);
+        prog.title = prog.value.ToString() + "%";
+        prog = item.Q<ProgressBar>("SecondarySkills");
+        prog.value = ((employees[index] as ProjectEmployee).DesignSkills * 100 / 500);
+        prog.title = prog.value.ToString() + "%";
+
     }
 
     void BindHrEmployee (VisualElement item, int index)
     {
         item.Q<VisualElement>("SpecializationIcon").style.backgroundImage = new StyleBackground(Resources.Load<Sprite>("EmployeeLists/Hr"));
         item.Q<VisualElement>("PrimaryIcon").style.backgroundImage = new StyleBackground(Resources.Load<Sprite>("EmployeeLists/GeneralSkills"));
-        item.Q<Label>("PrimarySkills").text = (employees[index] as HrEmployee).HrSkill.ToString();
+        //item.Q<Label>("PrimarySkills").text = (employees[index] as HrEmployee).HrSkill.ToString();
+        ProgressBar prog = item.Q<ProgressBar>("PrimarySkills");
+        prog.value = ((employees[index] as HrEmployee).HrSkill * 100 / 500);
+        prog.title = prog.value.ToString() + "%";
+
         item.Q<VisualElement>("SecondarySkillsContainer").style.visibility = Visibility.Hidden;
     }
 
@@ -197,7 +226,12 @@ public class EmployeeHiringListView : MonoBehaviour
     {
         item.Q<VisualElement>("SpecializationIcon").style.backgroundImage = new StyleBackground(Resources.Load<Sprite>("EmployeeLists/Marketing"));
         item.Q<VisualElement>("PrimaryIcon").style.backgroundImage = new StyleBackground(Resources.Load<Sprite>("EmployeeLists/GeneralSkills"));
-        item.Q<Label>("PrimarySkills").text = (employees[index] as MarketingEmployee).MarketingSkill.ToString();
+        //item.Q<Label>("PrimarySkills").text = (employees[index] as MarketingEmployee).MarketingSkill.ToString();
+
+        ProgressBar prog = item.Q<ProgressBar>("PrimarySkills");
+        prog.value = ((employees[index] as MarketingEmployee).MarketingSkill * 100 / 500);
+        prog.title = prog.value.ToString() + "%";
+
         item.Q<VisualElement>("SecondarySkillsContainer").style.visibility = Visibility.Hidden;
     }
     void BindDataAnalysisEmployee(VisualElement item, int index)

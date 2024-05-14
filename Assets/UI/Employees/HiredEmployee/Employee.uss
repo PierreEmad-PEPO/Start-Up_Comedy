@@ -1,0 +1,15 @@
+.unity-progress-bar__background {
+    background-color: rgb(224, 54, 73);
+    border-top-left-radius: 13px;
+    border-top-right-radius: 13px;
+    border-bottom-right-radius: 13px;
+    border-bottom-left-radius: 13px;
+}
+
+.unity-progress-bar__progress {
+    background-color: rgb(87, 230, 64);
+    border-top-left-radius: 13px;
+    border-top-right-radius: 13px;
+    border-bottom-right-radius: 13px;
+    border-bottom-left-radius: 13px;
+}

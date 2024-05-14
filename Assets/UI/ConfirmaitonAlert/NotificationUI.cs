@@ -8,6 +8,7 @@ public class NotificatoinUI : MonoBehaviour
     private VisualElement root;
     private Label messageLabel;
     private Button okButton;
+    Action action;
 
     private void Start()
     {
@@ -22,6 +23,8 @@ public class NotificatoinUI : MonoBehaviour
         okButton = root.Q<Button>("Ok");
         okButton.clicked += () =>
         {
+            if (action != null)
+                action.Invoke();
             root.style.display = DisplayStyle.None;
         };
         
@@ -30,5 +33,11 @@ public class NotificatoinUI : MonoBehaviour
     public void SetNotification(string message)
     {
         messageLabel.text = message;
+    }
+
+    public void SetNotification(string message,Action action)
+    {
+        messageLabel.text = message;
+        this.action = action;
     }
 }

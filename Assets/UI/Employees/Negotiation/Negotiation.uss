@@ -39,6 +39,6 @@
 
 #Money #unity-text-field {
     height: 100%;
-    width: 100px;
+    width: 150px;
     color: rgb(0, 0, 0);
 }

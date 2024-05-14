@@ -48,9 +48,9 @@ public class StartUpStatusUI : MonoBehaviour
         var startUp = GameManager.StartUp;
         startupName.text = startUp.CompanyName;
         moneyLabel.text = "Money: " + startUp.Budget;
-        popularityLabel.text = "Popularity: " + startUp.Popularity;
-        totalHrSkillsLabel.text = "Total HR Skills: " + startUp.TotalHrSkills;
-        totalMarketingLabel.text = "Total Marketing Skills: " + startUp.TotalMarketingSkills;
+        popularityLabel.text = "Popularity: " + (startUp.Popularity * 100)/GameManager.StartUp.MAX_POPULARITY + "%";
+        totalHrSkillsLabel.text = "Total HR Skills: " + (startUp.TotalHrSkills * 100)/500 + "%";
+        totalMarketingLabel.text = "Total Marketing Skills: " + (startUp.TotalMarketingSkills * 100)/ 500 + "%";
         entertainmentLabel.text = "Entertainment: " + startUp.Entertainment;
         rentLabel.text = "Rent: " + startUp.Rent.ToString() + "$" ;
         fireSystemLabel.text = "Fire System Level: " + startUp.FireSystemLevel;

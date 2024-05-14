@@ -116,6 +116,12 @@ public static class WindowManager
         OpenSubWindow(SubWindowName.NotificationAlert);
     }
 
+    public static void ShowNotificationAlert(string message, Action action)
+    {
+        GetSubWindowGameObject(SubWindowName.NotificationAlert).GetComponent<NotificatoinUI>().SetNotification(message,action);
+        OpenSubWindow(SubWindowName.NotificationAlert);
+    }
+
     public static void AddWindow(WindowName windowName, VisualElement UIDecomentRoot, GameObject gameObject)
     {
         window.Add(windowName, UIDecomentRoot);

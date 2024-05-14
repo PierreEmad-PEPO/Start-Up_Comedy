@@ -44,7 +44,7 @@ public class PlacementSystem : MonoBehaviour
     {
         // move object
         Vector3 mousPos = InputManager.GetMousePosition();
-        Vector3 position = Vector3.MoveTowards(activeObject.transform.position, mousPos, 5 * Time.deltaTime);
+        Vector3 position = Vector3.MoveTowards(activeObject.transform.position, mousPos, 10 * Time.deltaTime);
         position.y = activeObject.transform.position.y;
         activeObject.transform.position = position;
 
@@ -62,12 +62,25 @@ public class PlacementSystem : MonoBehaviour
             colliders, activeBoxCollider.transform.rotation, placementObjectLyerMask) > 0)
         {
             // red light
+            if (Input.GetMouseButtonDown(0))
+                WindowManager.ShowNotificationAlert("You can't place it here.");
         }
         else if (Input.GetMouseButtonDown(0))
         {
-            activeObject.layer = 6;
-            gameObject.SetActive(false);
-            activeObject = null;
+            if (Physics.OverlapBoxNonAlloc(InputManager.GetMousePosition() + po, (activeBoxCollider.size) / 2,
+            colliders, activeBoxCollider.transform.rotation, placementObjectLyerMask) > 0)
+            {
+
+            }
+            else
+            {
+                Vector3 pos = InputManager.GetMousePosition();
+                pos.y = activeObject.transform.position.y;
+                activeObject.transform.position = pos;
+                activeObject.layer = 6;
+                gameObject.SetActive(false);
+                activeObject = null;
+            }
         }
  
     }
