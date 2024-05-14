@@ -2,7 +2,6 @@ using System;
 using System.Reflection;
 using UnityEngine;
 using UnityEngine.UIElements;
-using static UnityEditor.Progress;
 
 public class StoreWindow : MonoBehaviour
 {
