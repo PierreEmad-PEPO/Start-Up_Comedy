@@ -1316,7 +1316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dba044579a37c254c8c9e687e9bf3f64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitingCard: {fileID: 9197481963319205126, guid: 3f24b90afdf94c64fb94e805f5ccbe6b, type: 3}
+  waitingCard: {fileID: 9197481963319205126, guid: ac1278cd3f960ac4fbdc93b9bd6403a5, type: 3}
   placement: {fileID: 1945248263}
   employeeModles:
   - {fileID: 1390667026769470244, guid: cc9146a154dd1f341a22d3e782134465, type: 3}
