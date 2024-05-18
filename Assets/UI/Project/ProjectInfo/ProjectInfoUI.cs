@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -146,8 +145,11 @@ public class ProjectInfoUI : MonoBehaviour
 
             item.Q<VisualElement>("SpecializationIcon").style.backgroundImage = specializationLogo.style.backgroundImage;
             item.Q<Label>("EmployeeName").text = assignedEmployees[index].Name;
-            item.Q<Label>("PrimarySkills").text = tech.ToString();
-            item.Q<Label>("SecondarySkills").text = des.ToString();
+            item.Q<ProgressBar>("PrimarySkills").value = tech;
+            item.Q<ProgressBar>("PrimarySkills").title = (tech*100/500) + "%";
+
+            item.Q<ProgressBar>("SecondarySkills").value = des;
+            item.Q<ProgressBar>("SecondarySkills").title = (des * 100 / 500) + "%";
         };
         assignedEmployeesList.fixedItemHeight = 106;
     }
@@ -189,8 +191,11 @@ public class ProjectInfoUI : MonoBehaviour
 
             item.Q<VisualElement>("SpecializationIcon").style.backgroundImage = specializationLogo.style.backgroundImage;
             item.Q<Label>("EmployeeName").text = unAssignedEmployees[index].Name;
-            item.Q<Label>("PrimarySkills").text = tech.ToString();
-            item.Q<Label>("SecondarySkills").text = des.ToString();
+            item.Q<ProgressBar>("PrimarySkills").value = tech;
+            item.Q<ProgressBar>("PrimarySkills").title = (tech * 100 / 500) + "%";
+
+            item.Q<ProgressBar>("SecondarySkills").value = des;
+            item.Q<ProgressBar>("SecondarySkills").title = (des * 100 / 500) + "%";
         };
         unAssignedEmployeesList.fixedItemHeight = 106;
     }
