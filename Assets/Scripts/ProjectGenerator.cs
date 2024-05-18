@@ -133,6 +133,7 @@ public class ProjectGenerator : MonoBehaviour
         int penalClause = RandomGenerator.NextInt(20, 1255) * 50;
         int requiredTechnicalSkills = 0;
         int requiredDesignSkills = 0;
+        int highValue = 0;
         switch(specialization)
         {
             case ProjectSpecialization.Games:
@@ -144,6 +145,7 @@ public class ProjectGenerator : MonoBehaviour
                     (int)(GameManager.GetDesignSkillsAverage(GameManager.HiredGamesEmployee) *
                     deadline * GameManager.HiredGamesEmployee.Count * RandomGenerator.NextFloat(.2f, .6f) *
                     RandomGenerator.NextFloat(.3f, 1.7f));
+                highValue = GameManager.HiredGamesEmployee.Count * 200 * deadline;
             break;
 
             case ProjectSpecialization.Web:
@@ -155,7 +157,8 @@ public class ProjectGenerator : MonoBehaviour
                     (int)(GameManager.GetDesignSkillsAverage(GameManager.HiredWebEmployee) *
                     deadline * GameManager.HiredWebEmployee.Count * RandomGenerator.NextFloat(.2f, .6f) *
                     RandomGenerator.NextFloat(.3f, 1.7f));
-            break;
+                highValue = GameManager.HiredWebEmployee.Count * 200 * deadline;
+                break;
 
             case ProjectSpecialization.Mobile:
                 requiredTechnicalSkills =
@@ -166,18 +169,21 @@ public class ProjectGenerator : MonoBehaviour
                     (int)(GameManager.GetDesignSkillsAverage(GameManager.HiredMobileEmployee) *
                     deadline * GameManager.HiredMobileEmployee.Count * RandomGenerator.NextFloat(.2f, .6f) *
                     RandomGenerator.NextFloat(.3f, 1.7f));
+                highValue = GameManager.HiredMobileEmployee.Count * 200 * deadline;
                 break;
         }
 
         if (requiredTechnicalSkills == 0)
-            requiredTechnicalSkills = 50000;
+            requiredTechnicalSkills = 8000;
         if (requiredDesignSkills == 0)
-            requiredDesignSkills = 120000;
-            
+            requiredDesignSkills = 12000;
+        if (highValue == 0)
+            highValue = 12000;
 
         Project project = new Project();
         project.Init(name, specialization, deadline, price,
         penalClause, requiredTechnicalSkills, requiredDesignSkills);
+        project.highValue = highValue;
 
         onProjectGenerated.Invoke(project);
         

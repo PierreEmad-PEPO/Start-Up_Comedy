@@ -117,10 +117,12 @@ public class StartUp : MonoBehaviour
     public void AddTotalHrSkills(int hrSkills)
     {
         totalHrSkills += hrSkills;
+        if (totalHrSkills > 500) totalHrSkills = 500;
     }
     public void AddTotalMarketingSkills(int marketingSkills)
     {
         totalMarketingSkills += marketingSkills;
+        if (totalMarketingSkills > 500) totalMarketingSkills = 500;
     }
 
     public void UpgradeFireSystem(int cost)

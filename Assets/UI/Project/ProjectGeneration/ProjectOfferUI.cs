@@ -10,8 +10,8 @@ public class ProjectOfferUI : MonoBehaviour
     private Label deadline;
     private Label price;
     private Label penalClause;
-    private Label technicalSkills;
-    private Label designSkills;
+    private ProgressBar technicalSkills;
+    private ProgressBar designSkills;
 
     private VisualElement root;
 
@@ -42,8 +42,8 @@ public class ProjectOfferUI : MonoBehaviour
         deadline = root.Q<Label>("DeadlineValue");
         price = root.Q<Label>("PriceValue");
         penalClause = root.Q<Label>("PenalClauseValue");
-        technicalSkills = root.Q<Label>("TechnicalSkillsValue");
-        designSkills = root.Q<Label>("DesignSkillsValue"); 
+        technicalSkills = root.Q<ProgressBar>("TechnicalSkillsValue");
+        designSkills = root.Q<ProgressBar>("DesignSkillsValue"); 
 
         root.Q<Button>("Refuse").clicked += () => 
         {
@@ -73,8 +73,13 @@ public class ProjectOfferUI : MonoBehaviour
         deadline.text = project.Deadline.ToString("00:00:00"); ; // forNow
         price.text = project.Price.ToString() + "$";
         penalClause.text = project.PenalClause.ToString() + "$";
-        technicalSkills.text = project.RequiredTechnicalSkills.ToString();
-        designSkills.text = project.RequiredDesignSkills.ToString();
+        int highValue = project.highValue;
+        technicalSkills.highValue = highValue;
+        technicalSkills.value = project.RequiredTechnicalSkills;
+        technicalSkills.title = ((project.RequiredTechnicalSkills * 100)/ highValue ) +"%";
+        designSkills.highValue = highValue;
+        designSkills.value = project.RequiredDesignSkills;
+        designSkills.title = ((project.RequiredDesignSkills * 100)/highValue) + "%";
         root.style.display = DisplayStyle.Flex;
 
     } 

@@ -19,6 +19,7 @@ public class Project
     private int totalAssignedDesignSkills;
     private int maxRequredTechnicalSkills;
     private int maxRequredDesignSkills;
+    public int highValue;
 
     #endregion
 
