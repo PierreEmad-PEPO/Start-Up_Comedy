@@ -17,7 +17,7 @@ public class MarketingUI : MonoBehaviour
         root = GetComponent<UIDocument>().rootVisualElement;
         root.Q<Label>("SocialValue").text = GameManager.GetMarketingPrice(MarketingEnum.SocialAD).ToString();
         root.Q<Label>("TvValue").text = GameManager.GetMarketingPrice(MarketingEnum.TVAD).ToString();
-        root.Q<Label>("RadoiValue").text = GameManager.GetMarketingPrice(MarketingEnum.RadoiAd).ToString();
+        root.Q<Label>("RadoiValue").text = GameManager.GetMarketingPrice(MarketingEnum.RadioAd).ToString();
 
         root.Q<Button>("SocialAd").clicked += () =>
         {
@@ -29,7 +29,7 @@ public class MarketingUI : MonoBehaviour
         };
         root.Q<Button>("RadoiAd").clicked += () =>
         {
-            GameManager.StartUp.DoAD(MarketingEnum.RadoiAd);
+            GameManager.StartUp.DoAD(MarketingEnum.RadioAd);
         };
 
         root.Q<Button>("Exit").clicked += () =>

@@ -17,8 +17,8 @@ public class Project
     private int requiredDesignSkills;
     private int totalAssignedTechnicalSkills;
     private int totalAssignedDesignSkills;
-    private int maxRequredTechnicalSkills;
-    private int maxRequredDesignSkills;
+    private int maxRequiredTechnicalSkills;
+    private int maxRequiredDesignSkills;
     public int highValue;
 
     #endregion
@@ -33,10 +33,10 @@ public class Project
     public int RequiredDesignSkills {  get { return requiredDesignSkills; } }
     public bool IsDone { get { return (requiredTechnicalSkills <= 0 &&  requiredDesignSkills <= 0); } }
     public bool IsDeadlineEnd { get { return deadline <= 0; } }
-    public float TechnicalProgress { get { return Mathf.Min(100f, (float)(maxRequredTechnicalSkills - requiredTechnicalSkills) / maxRequredTechnicalSkills * 100f); } }
-    public float DesignProgress { get { return Mathf.Min(100f, (float)(maxRequredDesignSkills - requiredDesignSkills) / maxRequredDesignSkills * 100f); } }
-    public int MaxRequiredTechnicalSkills { get { return maxRequredTechnicalSkills; } }
-    public int MaxRequiredDesignSkills { get { return maxRequredDesignSkills; } }
+    public float TechnicalProgress { get { return Mathf.Min(100f, (float)(maxRequiredTechnicalSkills - requiredTechnicalSkills) / maxRequiredTechnicalSkills * 100f); } }
+    public float DesignProgress { get { return Mathf.Min(100f, (float)(maxRequiredDesignSkills - requiredDesignSkills) / maxRequiredDesignSkills * 100f); } }
+    public int MaxRequiredTechnicalSkills { get { return maxRequiredTechnicalSkills; } }
+    public int MaxRequiredDesignSkills { get { return maxRequiredDesignSkills; } }
     #endregion
 
     #region Methods
@@ -52,8 +52,8 @@ public class Project
         this.requiredDesignSkills = requiredDesignSkills;
         this.totalAssignedTechnicalSkills = 0;
         this.totalAssignedDesignSkills = 0;
-        this.maxRequredTechnicalSkills = requiredTechnicalSkills;
-        this.maxRequredDesignSkills = requiredDesignSkills;
+        this.maxRequiredTechnicalSkills = requiredTechnicalSkills;
+        this.maxRequiredDesignSkills = requiredDesignSkills;
     }
 
     public void AssignEmployee(int technicalSkills, int  designSkills)

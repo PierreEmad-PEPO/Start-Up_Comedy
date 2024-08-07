@@ -15,11 +15,11 @@ public class LoanUI : MonoBehaviour
     void Start()
     {
         loans = GameManager.Loans;
-        SetVisuelElement();
+        SetVisualElement();
         InvokeRepeating("UpdateLoans", 1, 1);
     }
 
-    void SetVisuelElement()
+    void SetVisualElement()
     {
         root = GetComponent<UIDocument>().rootVisualElement;
         loanList = root.Q<ListView>("LoanList");
@@ -30,7 +30,7 @@ public class LoanUI : MonoBehaviour
         root.Q<Button>("AddLoan").clicked += () =>
         {
             WindowManager.OpenSubWindow(SubWindowName.AddLoan);
-            WindowManager.GetSubWindowGameObject(SubWindowName.AddLoan).GetComponent<AddLoanUI>().UpdateSlayder();
+            WindowManager.GetSubWindowGameObject(SubWindowName.AddLoan).GetComponent<AddLoanUI>().UpdateSlider();
         };
         InitLoansList();
         root.style.display = DisplayStyle.None;
@@ -65,9 +65,9 @@ public class LoanUI : MonoBehaviour
             {
                 int mo = (int)loans[index].Money;
                 int per = mo / 10;
-                int totel = (mo + per);
-                GameManager.StartUp.AddMoney(- totel);
-                WindowManager.ShowNotificationAlert("the bank took " + totel.ToString() + "$ for the loan");
+                int total = (mo + per);
+                GameManager.StartUp.AddMoney(- total);
+                WindowManager.ShowNotificationAlert("the bank took " + total.ToString() + "$ for the loan");
                 loans.RemoveAt(index);
             }
             RebuildLoansList();

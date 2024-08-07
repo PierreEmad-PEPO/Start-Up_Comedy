@@ -81,18 +81,18 @@ public class StartUp : MonoBehaviour
     {
         budget += money;
         onBudgetChange.Invoke();
-        GameOverCheack();
+        GameOverCheck();
     }
     public void PayMoney(long money) 
     {
         budget -= money;
         onBudgetChange.Invoke();
-        GameOverCheack();
+        GameOverCheck();
     }
 
-    public void UpdateRint(int _rint)
+    public void UpdateRent(int _rent)
     {
-        rent += _rint;
+        rent += _rent;
     }
     public void SetPopularitySpeed(int newSpeed)
     {
@@ -130,7 +130,7 @@ public class StartUp : MonoBehaviour
         if (cost <= budget)
         {
             PayMoney(cost);
-            WindowManager.ShowNotificationAlert("Fire System Level Increassed By 1");
+            WindowManager.ShowNotificationAlert("Fire System Level Increased By 1");
             fireSystemLevel++;
             return;
         }
@@ -141,7 +141,7 @@ public class StartUp : MonoBehaviour
         if (cost <= budget)
         {
             PayMoney(cost);
-            WindowManager.ShowNotificationAlert("Cyperscurity System Level Increassed By 1");
+            WindowManager.ShowNotificationAlert("Cybersecurity System Level Increased By 1");
             securityLevel++;
             return;
         }
@@ -180,7 +180,7 @@ public class StartUp : MonoBehaviour
         if (item.cost <= budget)
         {
             PayMoney(item.cost);
-            placementSystem.intiobject(item.id);
+            placementSystem.InstantiateObject(item.id);
             IncreaseEntertainment(2);
             return true;
         }
@@ -227,7 +227,7 @@ public class StartUp : MonoBehaviour
 
     }
 
-    public void GameOverCheack()
+    public void GameOverCheck()
     {
         if (budget < 1 && popularity < 1 && GameManager.Projects.Count < 1)
             WindowManager.ShowNotificationAlert("Game Over.", () => { SceneManager.LoadScene("MainMenu"); });
@@ -248,7 +248,7 @@ public class StartUp : MonoBehaviour
         float ratio = (float)popularity / (float)MAX_POPULARITY;
         popularityLabel.text = ((int)(ratio * 100)).ToString() + "%";
         popularityLabel.style.color = Color.Lerp(Color.red, Color.black, ratio);
-        GameOverCheack();
+        GameOverCheck();
     }
     #endregion
 }

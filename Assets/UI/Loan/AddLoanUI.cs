@@ -41,7 +41,7 @@ public class AddLoanUI : MonoBehaviour
         root.style.display = DisplayStyle.None;
 
     }
-    public void UpdateSlayder()
+    public void UpdateSlider()
     {
         money.highValue = (int)GameManager.StartUp.Budget * 5;
     }

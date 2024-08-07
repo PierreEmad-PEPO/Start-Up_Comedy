@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 
-public class NotificatoinUI : MonoBehaviour
+public class NotificationUI : MonoBehaviour
 {
     private VisualElement root;
     private Label messageLabel;
@@ -12,11 +12,11 @@ public class NotificatoinUI : MonoBehaviour
 
     private void Start()
     {
-        SetVisualELement();
+        SetVisualElement();
         root.style.display = DisplayStyle.None;
     }
 
-    void SetVisualELement()
+    void SetVisualElement()
     {
         root = GetComponent<UIDocument>().rootVisualElement;
         messageLabel = root.Q<Label>("Message");

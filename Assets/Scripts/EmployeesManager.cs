@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EmpooyeesManager : MonoBehaviour
+public class EmployeesManager : MonoBehaviour
 {
     Timer timerManage;
     float timerManageDuration = 600f; //for Naw
@@ -22,24 +22,24 @@ public class EmpooyeesManager : MonoBehaviour
 
     void PaySalaries()
     {
-        List<Employee> hiedEmployees = GameManager.HiredEmployee;
-        long totalEMployeeSalary = 0;
+        List<Employee> hiredEmployees = GameManager.HiredEmployee;
+        long totalEmployeesSalary = 0;
         int rent = GameManager.StartUp.Rent;
-        for(int index = 0; index < hiedEmployees.Count; index++) 
+        for(int index = 0; index < hiredEmployees.Count; index++) 
         {
-            totalEMployeeSalary += hiedEmployees[index].Salary;
+            totalEmployeesSalary += hiredEmployees[index].Salary;
 
         }
 
-        GameManager.StartUp.PayMoney(totalEMployeeSalary + rent);
+        GameManager.StartUp.PayMoney(totalEmployeesSalary + rent);
 
-        WindowManager.ShowNotificationAlert("You paid " + totalEMployeeSalary.ToString() + "$ salaries\n"
+        WindowManager.ShowNotificationAlert("You paid " + totalEmployeesSalary.ToString() + "$ salaries\n"
             + "and " + rent.ToString() + "$ rent");
 
         timerManage.Run();
     }
 
-    public void FireEmpoyee(Employee employee)
+    public void FireEmployee(Employee employee)
     {
         employee.Fire();
         onEmployeeFired.Invoke(employee);

@@ -5,7 +5,7 @@ public enum WindowName
     Store,
     Employees,
     HiringEmployees,
-    Markiting,
+    Marketing,
     Setting,
     StartUpStatus,
     Loan,

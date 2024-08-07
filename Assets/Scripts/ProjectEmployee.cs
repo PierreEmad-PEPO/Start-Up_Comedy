@@ -9,7 +9,7 @@ public class ProjectEmployee : Employee
     private int designSkills;
     private Project assignedProject;
 
-    public int TechicalSkills { get{ return technicalSkills; }}
+    public int TechnicalSkills { get{ return technicalSkills; }}
     public int DesignSkills { get { return designSkills; }}
 
     public Project AssignedProject { get { return assignedProject; }}

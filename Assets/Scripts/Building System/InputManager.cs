@@ -30,9 +30,9 @@ public static class InputManager
         return lastPosition;
     }
 
-    public static void init (Camera _mainCamera, LayerMask _placemetLayer)
+    public static void init (Camera _mainCamera, LayerMask _placementLayer)
     {
-        placementLayerMask = _placemetLayer;
+        placementLayerMask = _placementLayer;
         mainCamera = _mainCamera;
     }
 }

@@ -71,7 +71,7 @@ public class GamePlayUI : MonoBehaviour
         }; 
         root.Q<Button>("MarketingButton").clicked += () =>
         {
-            WindowManager.OpenWindow(WindowName.Markiting);
+            WindowManager.OpenWindow(WindowName.Marketing);
         }; 
         root.Q<Button>("EmployeesButton").clicked += () =>
         {

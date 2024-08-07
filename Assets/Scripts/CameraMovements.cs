@@ -12,13 +12,13 @@ public class CameraMovements : MonoBehaviour
     float scrollInput;
     Vector3 lastPosition;
     float speed = 5f;
-    int xLimet;
-    int zLimet;
+    int xLimit;
+    int zLimit;
     // Start is called before the first frame update
     void Start()
     {
         startPosition = transform.position;
-        xLimet = (int)(startPosition.x - 18);
+        xLimit = (int)(startPosition.x - 18);
         _camera = GetComponent<Camera>();
 
     }
@@ -31,15 +31,15 @@ public class CameraMovements : MonoBehaviour
         scrollInput = Input.GetAxis("Mouse ScrollWheel");
         lastPosition = transform.position;
         transform.position += input * speed * Time.deltaTime;
-        zLimet = (int)(startPosition.z -  (((GameManager.GroundCount) / 3 ) * 10));
-        if (transform.position.x < xLimet || transform.position.x > startPosition.x)
+        zLimit = (int)(startPosition.z -  (((GameManager.GroundCount) / 3 ) * 10));
+        if (transform.position.x < xLimit || transform.position.x > startPosition.x)
         {
             Vector3 po = transform.position;
             po.x = lastPosition.x;
             transform.position = po;
         }
 
-        if (transform.position.z < zLimet || transform.position.z > startPosition.z)
+        if (transform.position.z < zLimit || transform.position.z > startPosition.z)
         {
             Vector3 po = transform.position;
             po.z = lastPosition.z;

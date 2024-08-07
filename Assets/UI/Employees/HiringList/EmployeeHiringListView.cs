@@ -36,7 +36,7 @@ public class EmployeeHiringListView : MonoBehaviour
         employees = GameManager.HiringEmployees;
 
         SetVisualElement();
-        InitHiringListViwe();
+        InitHiringListView();
         root.style.display = DisplayStyle.None;
 
     }
@@ -88,7 +88,7 @@ public class EmployeeHiringListView : MonoBehaviour
         employeeGenerator.EndGeneration();
     }
 
-    void InitHiringListViwe()
+    void InitHiringListView()
     {
         
         employeeList.makeItem = () =>
@@ -107,7 +107,7 @@ public class EmployeeHiringListView : MonoBehaviour
             var temp = EmployeeCardTemplate.Instantiate();
             temp.Q<Button>("Negotiation").clicked += () =>
             {
-                WindowManager.OpenSubWindow(SubWindowName.Negotation);
+                WindowManager.OpenSubWindow(SubWindowName.Negotiation);
                 negotiationMenu.SetTheEmployee(temp.userData as Employee);
             };
             temp.Q<Button>("Delete").clicked += () =>
@@ -170,11 +170,11 @@ public class EmployeeHiringListView : MonoBehaviour
     void BindGamesEmployee(VisualElement item, int index)
     {
         item.Q<VisualElement>("SpecializationIcon").style.backgroundImage = new StyleBackground (Resources.Load<Sprite>("EmployeeLists/Games"));
-        /*item.Q<Label>("PrimarySkills").text = (employees[index] as ProjectEmployee).TechicalSkills.ToString();
+        /*item.Q<Label>("PrimarySkills").text = (employees[index] as ProjectEmployee).TechnicalSkills.ToString();
         item.Q<Label>("SecondarySkills").text = (employees[index] as ProjectEmployee).DesignSkills.ToString();*/
 
         ProgressBar prog = item.Q<ProgressBar>("PrimarySkills");
-        prog.value = ((employees[index] as ProjectEmployee).TechicalSkills * 100 / 500);
+        prog.value = ((employees[index] as ProjectEmployee).TechnicalSkills * 100 / 500);
         prog.title = prog.value.ToString() + "%";
         prog = item.Q<ProgressBar>("SecondarySkills");
         prog.value = ((employees[index] as ProjectEmployee).DesignSkills * 100 / 500);
@@ -184,11 +184,11 @@ public class EmployeeHiringListView : MonoBehaviour
     void BindMobileEmployee(VisualElement item, int index)
     {
         item.Q<VisualElement>("SpecializationIcon").style.backgroundImage = new StyleBackground(Resources.Load<Sprite>("EmployeeLists/Android"));
-        /* item.Q<Label>("PrimarySkills").text = (employees[index] as ProjectEmployee).TechicalSkills.ToString();
+        /* item.Q<Label>("PrimarySkills").text = (employees[index] as ProjectEmployee).TechnicalSkills.ToString();
          item.Q<Label>("SecondarySkills").text = (employees[index] as ProjectEmployee).DesignSkills.ToString();*/
 
         ProgressBar prog = item.Q<ProgressBar>("PrimarySkills");
-        prog.value = ((employees[index] as ProjectEmployee).TechicalSkills * 100 / 500);
+        prog.value = ((employees[index] as ProjectEmployee).TechnicalSkills * 100 / 500);
         prog.title = prog.value.ToString() + "%";
         prog = item.Q<ProgressBar>("SecondarySkills");
         prog.value = ((employees[index] as ProjectEmployee).DesignSkills * 100 / 500);
@@ -198,11 +198,11 @@ public class EmployeeHiringListView : MonoBehaviour
     void BindWebEmployee(VisualElement item, int index)
     {
         item.Q<VisualElement>("SpecializationIcon").style.backgroundImage = new StyleBackground(Resources.Load<Sprite>("EmployeeLists/Web"));
-/*        item.Q<Label>("PrimarySkills").text = (employees[index] as ProjectEmployee).TechicalSkills.ToString();
+/*        item.Q<Label>("PrimarySkills").text = (employees[index] as ProjectEmployee).TechnicalSkills.ToString();
         item.Q<Label>("SecondarySkills").text = (employees[index] as ProjectEmployee).DesignSkills.ToString();*/
 
         ProgressBar prog = item.Q<ProgressBar>("PrimarySkills");
-        prog.value = ((employees[index] as ProjectEmployee).TechicalSkills * 100 / 500);
+        prog.value = ((employees[index] as ProjectEmployee).TechnicalSkills * 100 / 500);
         prog.title = prog.value.ToString() + "%";
         prog = item.Q<ProgressBar>("SecondarySkills");
         prog.value = ((employees[index] as ProjectEmployee).DesignSkills * 100 / 500);

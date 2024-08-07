@@ -4,19 +4,19 @@ public class PauseMenu : MonoBehaviour
 {
     [SerializeField] SettingMenu settingMenu;
     VisualElement root;
-    float provesScalTime = 1;
+    float previousTimeScale = 1;
 
     void Start()
     {
-        SetVisualElment();
+        SetVisualElement();
     }
 
-    void SetVisualElment()
+    void SetVisualElement()
     {
         root = GetComponent<UIDocument>().rootVisualElement;
         root.Q<Button>("Resume").clicked += () =>
         {
-            Time.timeScale = provesScalTime;
+            Time.timeScale = previousTimeScale;
             root.style.display = DisplayStyle.None;
         };
 
@@ -35,7 +35,7 @@ public class PauseMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            provesScalTime = Time.timeScale;
+            previousTimeScale = Time.timeScale;
             Time.timeScale = 0;
             root.style.display = DisplayStyle.Flex;
         }

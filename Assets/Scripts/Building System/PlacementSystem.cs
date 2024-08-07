@@ -16,7 +16,7 @@ public class PlacementSystem : MonoBehaviour
 
     private BoxCollider[] colliders = new BoxCollider[10];
     [SerializeField] Camera mainCamera;
-    [SerializeField] LayerMask placementObjectLyerMask;
+    [SerializeField] LayerMask placementObjectLayerMask;
 
     public ObjectsDatabaseSO DatabaseSO { get { return dataBase; } }
 
@@ -43,8 +43,8 @@ public class PlacementSystem : MonoBehaviour
     private void Update()
     {
         // move object
-        Vector3 mousPos = InputManager.GetMousePosition();
-        Vector3 position = Vector3.MoveTowards(activeObject.transform.position, mousPos, 10 * Time.deltaTime);
+        Vector3 mousePos = InputManager.GetMousePosition();
+        Vector3 position = Vector3.MoveTowards(activeObject.transform.position, mousePos, 10 * Time.deltaTime);
         position.y = activeObject.transform.position.y;
         activeObject.transform.position = position;
 
@@ -59,7 +59,7 @@ public class PlacementSystem : MonoBehaviour
         po.y = activeBoxCollider.center.y;
         
         if (Physics.OverlapBoxNonAlloc(activeBoxCollider.transform.position + po, (activeBoxCollider.size) / 2,
-            colliders, activeBoxCollider.transform.rotation, placementObjectLyerMask) > 0)
+            colliders, activeBoxCollider.transform.rotation, placementObjectLayerMask) > 0)
         {
             // red light
             if (Input.GetMouseButtonDown(0))
@@ -68,7 +68,7 @@ public class PlacementSystem : MonoBehaviour
         else if (Input.GetMouseButtonDown(0))
         {
             if (Physics.OverlapBoxNonAlloc(InputManager.GetMousePosition() + po, (activeBoxCollider.size) / 2,
-            colliders, activeBoxCollider.transform.rotation, placementObjectLyerMask) > 0)
+            colliders, activeBoxCollider.transform.rotation, placementObjectLayerMask) > 0)
             {
 
             }
@@ -86,7 +86,7 @@ public class PlacementSystem : MonoBehaviour
     }
 
 
-    public void intiobject(int id)
+    public void InstantiateObject(int id)
     {
         GameObject _object = Instantiate(dataBase.items[id].prefab);
         _object.AddComponent<Office>().Init(id);

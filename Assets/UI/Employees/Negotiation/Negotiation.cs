@@ -37,7 +37,7 @@ public class Negotiation : MonoBehaviour
 
 
     [SerializeField] VisualTreeAsset sentMessage;
-    [SerializeField] VisualTreeAsset recievedMessage;
+    [SerializeField] VisualTreeAsset receivedMessage;
 
     Employee employee;
 
@@ -113,13 +113,13 @@ public class Negotiation : MonoBehaviour
         sent.Q<Label>("Message").text = salary.ToString() + " $";
         chatView.contentContainer.Add(sent);
 
-        var recieved = recievedMessage.Instantiate();
+        var received = receivedMessage.Instantiate();
 
         if (salary >= employee.MinSalary)
         {
-            recieved.Q<Label>("Message").text = acceptingMessages[RandomGenerator.NextInt(0, acceptingMessages.Length)];
+            received.Q<Label>("Message").text = acceptingMessages[RandomGenerator.NextInt(0, acceptingMessages.Length)];
             currentTry = 0;
-            chatView.contentContainer.Add(recieved);
+            chatView.contentContainer.Add(received);
             GameManager.HiredEmployee.Add(employee);
             if (GameManager.HiringEmployees.Contains(employee))
             {
@@ -136,15 +136,15 @@ public class Negotiation : MonoBehaviour
         }
         else 
         {
-            recieved.Q<Label>("Message").text = rejectingMessages[RandomGenerator.NextInt(0, rejectingMessages.Length)];
-            chatView.Add(recieved);
+            received.Q<Label>("Message").text = rejectingMessages[RandomGenerator.NextInt(0, rejectingMessages.Length)];
+            chatView.Add(received);
         }
 
         currentTry--;
         if (currentTry <= 0) 
         {
             finalMessage.style.display = DisplayStyle.Flex;
-            finalMessage.text = "Employee Closed The Neogtiation";
+            finalMessage.text = "Employee Closed The Negotiation";
             GameManager.HiringEmployees.Remove(employee);
             WindowManager.GetWindowGameObject(WindowName.HiringEmployees).GetComponent<EmployeeHiringListView>().ConfirmDelete(employee);
             finalMessage.style.color = Color.red;

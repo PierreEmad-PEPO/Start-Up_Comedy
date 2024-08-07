@@ -1,7 +1,7 @@
 
 public enum SubWindowName 
 {
-    Negotation,
+    Negotiation,
     ProjectInfo,
     ConfirmationAlert,
     NotificationAlert,

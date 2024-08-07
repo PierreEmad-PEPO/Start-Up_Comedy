@@ -4,21 +4,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class OfficeWindo : MonoBehaviour
+public class OfficeWindow : MonoBehaviour
 {
     [SerializeField] VisualTreeAsset waitingCard;
     [SerializeField] PlacementSystem placement;
-    [SerializeField] GameObject[] employeeModles;
-    [SerializeField] EmpooyeesManager empooyeesManager;
+    [SerializeField] GameObject[] employeeModels;
+    [SerializeField] EmployeesManager employeesManager;
     VisualElement root;
     VisualElement data;
     VisualElement waiting;
-/*    Label employeeName;
-    ProgressBar ticskills;
-    ProgressBar desSkill;
-    Label assProj;
-    Label sal;*/
-    ListView watingEmployees;
+
+    ListView waitingEmployees;
     Employee employee;
     List<Employee> employees;
     GameObject office;
@@ -29,7 +25,7 @@ public class OfficeWindo : MonoBehaviour
     void Start()
     {
         SetVisualElement();
-        EventManager.AddEmployeeEventListener(EventEnum.OnEmployeeFired, DestoyCharacter);
+        EventManager.AddEmployeeEventListener(EventEnum.OnEmployeeFired, DestroyCharacter);
     }
 
     void SetVisualElement()
@@ -37,12 +33,8 @@ public class OfficeWindo : MonoBehaviour
         root = GetComponent<UIDocument>().rootVisualElement;
         data = root.Q<VisualElement>("Data");
         waiting = root.Q<VisualElement>("Waiting");
-/*        employeeName = root.Q<Label>("Name");
-        ticskills = root.Q<ProgressBar>("PrimarySkills");
-        desSkill = root.Q<ProgressBar>("SecondarySkills");
-        sal = root.Q<Label>("Salary");
-        assProj = root.Q<Label>("AssigndProject");*/
-        watingEmployees = root.Q<ListView>("EmployeeList");
+
+        waitingEmployees = root.Q<ListView>("EmployeeList");
         car = root.Q<VisualElement>("Card1");
         InitWaitingList();
         root.Query<Button>("Replace").First().clicked+= () => 
@@ -59,7 +51,7 @@ public class OfficeWindo : MonoBehaviour
         root.Q<Button>("Fire").clicked += () =>
         {
             root.style.display = DisplayStyle.None;
-            empooyeesManager.FireEmpoyee(employee);
+            employeesManager.FireEmployee(employee);
         };
 
         root.Q<Button>("Exit").clicked += () => { root.style.display = DisplayStyle.None; };
@@ -69,13 +61,13 @@ public class OfficeWindo : MonoBehaviour
 
     void InitWaitingList()
     {
-        watingEmployees.makeItem = () =>
+        waitingEmployees.makeItem = () =>
         {
 
             var temp = waitingCard.Instantiate();
             temp.RegisterCallback<ClickEvent>(e => {
                 office.GetComponent<Office>().setEmployee(temp.userData as Employee);
-                GameObject model = Instantiate(employeeModles[0]);
+                GameObject model = Instantiate(employeeModels[0]);
                 model.transform.parent = office.transform.GetChild(0);
                 model.transform.localPosition = Vector3.zero;
                 model.transform.localRotation = Quaternion.identity;
@@ -86,14 +78,14 @@ public class OfficeWindo : MonoBehaviour
 
         };
 
-        watingEmployees.bindItem = (item, index) =>
+        waitingEmployees.bindItem = (item, index) =>
         {
             /*            item.userData = employees[index];
                         item.Q<Label>("Name").text = employees[index].Name;*/
-            Binde(employees[index], item);
+            Bind(employees[index], item);
         };
-        watingEmployees.fixedItemHeight = 110;
-        watingEmployees.itemsSource = employees;
+        waitingEmployees.fixedItemHeight = 110;
+        waitingEmployees.itemsSource = employees;
 
     }
 
@@ -101,7 +93,7 @@ public class OfficeWindo : MonoBehaviour
     {
         employee = _employee;
         // employeeName.text = _employee.Name;
-        Binde(employee,car);
+        Bind(employee,car);
         this.office = office;
         data.style.display = DisplayStyle.Flex;
         waiting.style.display = DisplayStyle.None;
@@ -111,13 +103,13 @@ public class OfficeWindo : MonoBehaviour
     {
         this.office = office;
         employees = GameManager.GetWaitingEmployees();
-        watingEmployees.itemsSource = employees;
+        waitingEmployees.itemsSource = employees;
         data.style.display = DisplayStyle.None;
         waiting.style.display = DisplayStyle.Flex;
-        watingEmployees.Rebuild();
+        waitingEmployees.Rebuild();
     }
 
-    public void DestoyCharacter(Employee employee)
+    public void DestroyCharacter(Employee employee)
     {
         if (employee.IsSet)
         {
@@ -125,7 +117,7 @@ public class OfficeWindo : MonoBehaviour
         }
     }
 
-    void Binde(Employee employee, VisualElement card)
+    void Bind(Employee employee, VisualElement card)
     {
         BindBaseEmployeeUI(employee, card);
 
@@ -164,54 +156,54 @@ public class OfficeWindo : MonoBehaviour
     void BindGamesEmployee(Employee employee, VisualElement item)
     {
         item.Q<VisualElement>("SpecializationIcon").style.backgroundImage = new StyleBackground(Resources.Load<Sprite>("EmployeeLists/Games"));
-        /* item.Q<Label>("PrimarySkills").text = (employees[index] as ProjectEmployee).TechicalSkills.ToString();
+        /* item.Q<Label>("PrimarySkills").text = (employees[index] as ProjectEmployee).TechnicalSkills.ToString();
          item.Q<Label>("SecondarySkills").text = (employees[index] as ProjectEmployee).DesignSkills.ToString();*/
         ProgressBar prog = item.Q<ProgressBar>("PrimarySkills");
-        prog.value = ((employee as ProjectEmployee).TechicalSkills * 100 / 500);
+        prog.value = ((employee as ProjectEmployee).TechnicalSkills * 100 / 500);
         prog.title = prog.value.ToString() + "%";
         prog = item.Q<ProgressBar>("SecondarySkills");
         prog.value = ((employee as ProjectEmployee).DesignSkills * 100 / 500);
         prog.title = prog.value.ToString() + "%";
-        Project assindProject = (employee as ProjectEmployee).AssignedProject;
-        if (assindProject != null)
-            item.Q<Label>("AssigndProject").text = assindProject.Name;
+        Project assignedProject = (employee as ProjectEmployee).AssignedProject;
+        if (assignedProject != null)
+            item.Q<Label>("AssigndProject").text = assignedProject.Name;
         else
-            item.Q<Label>("AssigndProject").text = "Not Assignd";
+            item.Q<Label>("AssigndProject").text = "Not Assigned";
     }
     void BindMobileEmployee(Employee employee, VisualElement item)
     {
         item.Q<VisualElement>("SpecializationIcon").style.backgroundImage = new StyleBackground(Resources.Load<Sprite>("EmployeeLists/Android"));
         ProgressBar prog = item.Q<ProgressBar>("PrimarySkills");
-        prog.value = ((employee as ProjectEmployee).TechicalSkills * 100 / 500);
+        prog.value = ((employee as ProjectEmployee).TechnicalSkills * 100 / 500);
         prog.title = prog.value.ToString() + "%";
         prog = item.Q<ProgressBar>("SecondarySkills");
         prog.value = ((employee as ProjectEmployee).DesignSkills * 100 / 500);
         prog.title = prog.value.ToString() + "%";
 
-        Project assindProject = (employee as ProjectEmployee).AssignedProject;
-        if (assindProject != null)
-            item.Q<Label>("AssigndProject").text = assindProject.Name;
+        Project assignedProject = (employee as ProjectEmployee).AssignedProject;
+        if (assignedProject != null)
+            item.Q<Label>("AssigndProject").text = assignedProject.Name;
         else
-            item.Q<Label>("AssigndProject").text = "Not Assignd";
+            item.Q<Label>("AssigndProject").text = "Not Assigned";
     }
     void BindWebEmployee(Employee employee, VisualElement item)
     {
         item.Q<VisualElement>("SpecializationIcon").style.backgroundImage = new StyleBackground(Resources.Load<Sprite>("EmployeeLists/Web"));
-        //item.Q<Label>("PrimarySkills").text = (employees[index] as ProjectEmployee).TechicalSkills.ToString();
+        //item.Q<Label>("PrimarySkills").text = (employees[index] as ProjectEmployee).TechnicalSkills.ToString();
         //item.Q<Label>("SecondarySkills").text = (employees[index] as ProjectEmployee).DesignSkills.ToString();
 
         ProgressBar prog = item.Q<ProgressBar>("PrimarySkills");
-        prog.value = ((employee as ProjectEmployee).TechicalSkills * 100 / 500);
+        prog.value = ((employee as ProjectEmployee).TechnicalSkills * 100 / 500);
         prog.title = prog.value.ToString() + "%";
         prog = item.Q<ProgressBar>("SecondarySkills");
         prog.value = ((employee as ProjectEmployee).DesignSkills * 100 / 500);
         prog.title = prog.value.ToString() + "%";
 
-        Project assindProject = (employee as ProjectEmployee).AssignedProject;
-        if (assindProject != null)
-            item.Q<Label>("AssigndProject").text = assindProject.Name;
+        Project assignedProject = (employee as ProjectEmployee).AssignedProject;
+        if (assignedProject != null)
+            item.Q<Label>("AssigndProject").text = assignedProject.Name;
         else
-            item.Q<Label>("AssigndProject").text = "Not Assignd";
+            item.Q<Label>("AssigndProject").text = "Not Assigned";
     }
 
     void BindHrEmployee(Employee employee, VisualElement item)

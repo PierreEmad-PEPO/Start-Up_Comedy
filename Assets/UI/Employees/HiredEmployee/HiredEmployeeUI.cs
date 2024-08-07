@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 public class HiredEmployeeUI : MonoBehaviour
 {
     [SerializeField] private VisualTreeAsset EmployeeCardTemplate;
-    [SerializeField] private EmpooyeesManager empooyeesManager;
+    [SerializeField] private EmployeesManager employeesManager;
 
     List<Employee> employees;
 
@@ -21,12 +21,12 @@ public class HiredEmployeeUI : MonoBehaviour
         SetVisualElement();
 
 
-        EventManager.AddProjectEventListener(EventEnum.OnProjectDone, RebuildEmoloyeeList);
-        EventManager.AddProjectEventListener(EventEnum.OnUnAssigndProjectFromEmployee, RebuildEmoloyeeList);
-        EventManager.AddProjectEventListener(EventEnum.OnAssigndProjectToEmployee, RebuildEmoloyeeList);
-        EventManager.AddProjectEventListener(EventEnum.OnDeadlineEnd, RebuildEmoloyeeList);
-        EventManager.AddEmployeeEventListener(EventEnum.OnEmployeeHired, RebuildEmoloyeeList);
-        EventManager.AddEmployeeEventListener(EventEnum.OnEmployeeFired, RebuildEmoloyeeList);
+        EventManager.AddProjectEventListener(EventEnum.OnProjectDone, RebuildEmployeeList);
+        EventManager.AddProjectEventListener(EventEnum.OnUnAssignProjectFromEmployee, RebuildEmployeeList);
+        EventManager.AddProjectEventListener(EventEnum.OnAssignProjectToEmployee, RebuildEmployeeList);
+        EventManager.AddProjectEventListener(EventEnum.OnDeadlineEnd, RebuildEmployeeList);
+        EventManager.AddEmployeeEventListener(EventEnum.OnEmployeeHired, RebuildEmployeeList);
+        EventManager.AddEmployeeEventListener(EventEnum.OnEmployeeFired, RebuildEmployeeList);
 
     }
 
@@ -38,12 +38,12 @@ public class HiredEmployeeUI : MonoBehaviour
         {
             root.style.display = DisplayStyle.None;
         };
-        InitHiredListViwe();
+        InitHiredListView();
 
         root.style.display = DisplayStyle.None;
     }
 
-    void InitHiredListViwe()
+    void InitHiredListView()
     {
 
         employeesList.makeItem = () =>
@@ -51,7 +51,7 @@ public class HiredEmployeeUI : MonoBehaviour
             var temp = EmployeeCardTemplate.Instantiate();
             temp.Q<Button>("Delete").clicked += () =>
             {
-                WindowManager.ShowConfirmationAlert("Are you suree to DELETE this Employee ?!!",
+                WindowManager.ShowConfirmationAlert("Are you sure to DELETE this Employee ?!!",
                     () => {
                         ConfirmDelete(temp.userData as Employee);
                     });
@@ -104,34 +104,34 @@ public class HiredEmployeeUI : MonoBehaviour
     {   
         // Unassigned Employee From Project
 
-        empooyeesManager.FireEmpoyee(employee);
+        employeesManager.FireEmployee(employee);
     }
 
     void BindGamesEmployee(VisualElement item, int index)
     {
         item.Q<VisualElement>("SpecializationIcon").style.backgroundImage = new StyleBackground(Resources.Load<Sprite>("EmployeeLists/Games"));
-        /* item.Q<Label>("PrimarySkills").text = (employees[index] as ProjectEmployee).TechicalSkills.ToString();
+        /* item.Q<Label>("PrimarySkills").text = (employees[index] as ProjectEmployee).TechnicalSkills.ToString();
          item.Q<Label>("SecondarySkills").text = (employees[index] as ProjectEmployee).DesignSkills.ToString();*/
         ProgressBar prog = item.Q<ProgressBar>("PrimarySkills");
-        prog.value = ((employees[index] as ProjectEmployee).TechicalSkills * 100 / 500);
+        prog.value = ((employees[index] as ProjectEmployee).TechnicalSkills * 100 / 500);
         prog.title = prog.value.ToString() + "%";
         prog = item.Q<ProgressBar>("SecondarySkills");
         prog.value = ((employees[index] as ProjectEmployee).DesignSkills * 100 / 500);
         prog.title = prog.value.ToString() + "%";
-        Project assindProject = (employees[index] as ProjectEmployee).AssignedProject;
-        if (assindProject != null)
-            item.Q<Label>("AssigndProject").text = assindProject.Name;
+        Project assinedProject = (employees[index] as ProjectEmployee).AssignedProject;
+        if (assinedProject != null)
+            item.Q<Label>("AssigndProject").text = assinedProject.Name;
         else 
-            item.Q<Label>("AssigndProject").text = "Not Assignd";
+            item.Q<Label>("AssigndProject").text = "Not Assigned";
     }
     void BindMobileEmployee(VisualElement item, int index)
     {
         item.Q<VisualElement>("SpecializationIcon").style.backgroundImage = new StyleBackground(Resources.Load<Sprite>("EmployeeLists/Android"));
-        /*item.Q<Label>("PrimarySkills").text = (employees[index] as ProjectEmployee).TechicalSkills.ToString();
+        /*item.Q<Label>("PrimarySkills").text = (employees[index] as ProjectEmployee).TechnicalSkills.ToString();
         item.Q<Label>("SecondarySkills").text = (employees[index] as ProjectEmployee).DesignSkills.ToString();*/
 
         ProgressBar prog = item.Q<ProgressBar>("PrimarySkills");
-        prog.value = ((employees[index] as ProjectEmployee).TechicalSkills * 100 / 500);
+        prog.value = ((employees[index] as ProjectEmployee).TechnicalSkills * 100 / 500);
         prog.title = prog.value.ToString() + "%";
         prog = item.Q<ProgressBar>("SecondarySkills");
         prog.value = ((employees[index] as ProjectEmployee).DesignSkills * 100 / 500);
@@ -141,26 +141,26 @@ public class HiredEmployeeUI : MonoBehaviour
         if (assindProject != null)
             item.Q<Label>("AssigndProject").text = assindProject.Name;
         else
-            item.Q<Label>("AssigndProject").text = "Not Assignd";
+            item.Q<Label>("AssigndProject").text = "Not Assigned";
     }
     void BindWebEmployee(VisualElement item, int index)
     {
         item.Q<VisualElement>("SpecializationIcon").style.backgroundImage = new StyleBackground(Resources.Load<Sprite>("EmployeeLists/Web"));
-        //item.Q<Label>("PrimarySkills").text = (employees[index] as ProjectEmployee).TechicalSkills.ToString();
+        //item.Q<Label>("PrimarySkills").text = (employees[index] as ProjectEmployee).TechnicalSkills.ToString();
         //item.Q<Label>("SecondarySkills").text = (employees[index] as ProjectEmployee).DesignSkills.ToString();
 
         ProgressBar prog = item.Q<ProgressBar>("PrimarySkills");
-        prog.value = ((employees[index] as ProjectEmployee).TechicalSkills * 100 / 500);
+        prog.value = ((employees[index] as ProjectEmployee).TechnicalSkills * 100 / 500);
         prog.title = prog.value.ToString() + "%";
         prog = item.Q<ProgressBar>("SecondarySkills");
         prog.value = ((employees[index] as ProjectEmployee).DesignSkills * 100 / 500);
         prog.title = prog.value.ToString() + "%";
 
-        Project assindProject = (employees[index] as ProjectEmployee).AssignedProject;
-        if (assindProject != null)
-            item.Q<Label>("AssigndProject").text = assindProject.Name;
+        Project assinedProject = (employees[index] as ProjectEmployee).AssignedProject;
+        if (assinedProject != null)
+            item.Q<Label>("AssigndProject").text = assinedProject.Name;
         else
-            item.Q<Label>("AssigndProject").text = "Not Assignd";
+            item.Q<Label>("AssigndProject").text = "Not Assigned";
     }
 
     void BindHrEmployee(VisualElement item, int index)
@@ -197,11 +197,11 @@ public class HiredEmployeeUI : MonoBehaviour
         item.Q<VisualElement>("AssigndProjectContainer").style.visibility = Visibility.Hidden;
     }
 
-    void RebuildEmoloyeeList(Employee employee)
+    void RebuildEmployeeList(Employee employee)
     {
         employeesList.Rebuild();
     }
-    void RebuildEmoloyeeList(Project project)
+    void RebuildEmployeeList(Project project)
     {
         employeesList.Rebuild();
     }

@@ -19,8 +19,8 @@ public class AcceptedProjectUI : MonoBehaviour
         SetVisualElement();
         root.style.display = DisplayStyle.None;
         EventManager.AddProjectEventListener(EventEnum.OnProjectAccepted,AddAssignedProject);
-        EventManager.AddProjectEventListener(EventEnum.OnDeadlineEnd, RebuidProjectsList);
-        EventManager.AddProjectEventListener(EventEnum.OnProjectDone, RebuidProjectsList);
+        EventManager.AddProjectEventListener(EventEnum.OnDeadlineEnd, RebuildProjectsList);
+        EventManager.AddProjectEventListener(EventEnum.OnProjectDone, RebuildProjectsList);
         EventManager.AddVoidEventListener(EventEnum.OnProjectMangerOneSec, UpdateProgressBar);
     }
 
@@ -37,10 +37,10 @@ public class AcceptedProjectUI : MonoBehaviour
         {
             root.style.display = DisplayStyle.None;
         };
-        InitAcceptedProjectListViwe();
+        InitAcceptedProjectListView();
     }
 
-    void InitAcceptedProjectListViwe()
+    void InitAcceptedProjectListView()
     {
         acceptedProjectListView.makeItem = () =>
         {
@@ -51,9 +51,9 @@ public class AcceptedProjectUI : MonoBehaviour
         acceptedProjectListView.bindItem = (item, index) =>
         {
             item.Q<Label>("Name").text = projects[index].Name;
-            ProgressBar tichincal = item.Q<ProgressBar>("TechincalProgress");
-            tichincal.value = projects[index].TechnicalProgress;
-            tichincal.title = "Techincal Progress " + projects[index].TechnicalProgress.ToString() + "%";
+            ProgressBar technical = item.Q<ProgressBar>("TechincalProgress");
+            technical.value = projects[index].TechnicalProgress;
+            technical.title = "Techincal Progress " + projects[index].TechnicalProgress.ToString() + "%";
             ProgressBar design = item.Q<ProgressBar>("DesignProgress");
             design.value = projects[index].DesignProgress;
             design.title = "Design Progress " + projects[index].DesignProgress.ToString() + "%";
@@ -96,10 +96,10 @@ public class AcceptedProjectUI : MonoBehaviour
     void AddAssignedProject(Project project) 
     {
         projects.Add(project);
-        RebuidProjectsList(project);
+        RebuildProjectsList(project);
     }
 
-    void RebuidProjectsList(Project project)
+    void RebuildProjectsList(Project project)
     {
         acceptedProjectListView.Rebuild();
     }

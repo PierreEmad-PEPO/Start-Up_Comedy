@@ -14,11 +14,11 @@ public class ConfirmUI : MonoBehaviour
 
     private void Start()
     {
-        SetVisualELement();
+        SetVisualElement();
         root.style.display = DisplayStyle.None;
     }
 
-    void SetVisualELement()
+    void SetVisualElement()
     {
         root = GetComponent<UIDocument>().rootVisualElement;
         messageLabel = root.Q<Label>("Message");

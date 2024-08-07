@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class DisasterGenerator : MonoBehaviour
 {
-    [SerializeField] private EmpooyeesManager empooyeesManager;
+    [SerializeField] private EmployeesManager empooyeesManager;
     private Timer timer;
     private List<UnityAction> disastersList = new List<UnityAction>();
 
@@ -67,7 +67,7 @@ public class DisasterGenerator : MonoBehaviour
 
             WindowManager.ShowNotificationAlert(employee.Name + " has Died");
 
-            empooyeesManager.FireEmpoyee(employee);
+            empooyeesManager.FireEmployee(employee);
         }
 
         SetNewDisaster();

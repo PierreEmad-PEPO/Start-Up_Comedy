@@ -10,9 +10,9 @@ public class ProjectInfoUI : MonoBehaviour
     [SerializeField] private VisualTreeAsset assignedEmployeeCard;
     [SerializeField] private VisualTreeAsset unAssignedEmployeeCard;
 
-    VisualElement assigndEmployeesTab;
-    VisualElement unAssigndEmployeesTab;
-    string pressedtabName = "tab-pressed";
+    VisualElement assignedEmployeesTab;
+    VisualElement unAssignedEmployeesTab;
+    string pressedTabName = "tab-pressed";
 
     private Project project;
 
@@ -31,8 +31,8 @@ public class ProjectInfoUI : MonoBehaviour
     List<Employee> assignedEmployees;
     List<Employee> unAssignedEmployees;
 
-    private ProjectEventInvoker onAssigndProjectToEmployee;
-    private ProjectEventInvoker onUnAssigndProjectFromEmployee;
+    private ProjectEventInvoker onAssignProjectToEmployee;
+    private ProjectEventInvoker onUnAssignProjectFromEmployee;
 
     // Start is called before the first frame update
     void Start()
@@ -40,11 +40,11 @@ public class ProjectInfoUI : MonoBehaviour
         SetVisualElement();
         root.style.display = DisplayStyle.None;
 
-        onAssigndProjectToEmployee = gameObject.AddComponent<ProjectEventInvoker>();
-        EventManager.AddProjectEventInvoker(EventEnum.OnAssigndProjectToEmployee, onAssigndProjectToEmployee);
+        onAssignProjectToEmployee = gameObject.AddComponent<ProjectEventInvoker>();
+        EventManager.AddProjectEventInvoker(EventEnum.OnAssignProjectToEmployee, onAssignProjectToEmployee);
 
-        onUnAssigndProjectFromEmployee = gameObject.AddComponent<ProjectEventInvoker>();
-        EventManager.AddProjectEventInvoker(EventEnum.OnUnAssigndProjectFromEmployee, onUnAssigndProjectFromEmployee);
+        onUnAssignProjectFromEmployee = gameObject.AddComponent<ProjectEventInvoker>();
+        EventManager.AddProjectEventInvoker(EventEnum.OnUnAssignProjectFromEmployee, onUnAssignProjectFromEmployee);
 
         EventManager.AddVoidEventListener(EventEnum.OnProjectMangerOneSec, UpdateDynamicVisualElementData);
         EventManager.AddVoidEventListener(EventEnum.OnProjectDone, UpdateDynamicVisualElementData);
@@ -78,27 +78,27 @@ public class ProjectInfoUI : MonoBehaviour
         assignedEmployeesList = root.Q<ListView>("AssignedEmployeesList");
         unAssignedEmployeesList = root.Q<ListView>("UnAssignedEmployeesList");
 
-        assigndEmployeesTab = root.Q<VisualElement>("AssignedEmployeesTab");
-        unAssigndEmployeesTab = root.Q<VisualElement>("UnAssignedEmployeesTab");
+        assignedEmployeesTab = root.Q<VisualElement>("AssignedEmployeesTab");
+        unAssignedEmployeesTab = root.Q<VisualElement>("UnAssignedEmployeesTab");
 
-        assigndEmployeesTab.RegisterCallback<ClickEvent>(e => {
+        assignedEmployeesTab.RegisterCallback<ClickEvent>(e => {
             assignedEmployeesList.style.display = DisplayStyle.Flex;
             unAssignedEmployeesList.style.display = DisplayStyle.None;
-            if (!assigndEmployeesTab.ClassListContains(pressedtabName))
-                assigndEmployeesTab.AddToClassList(pressedtabName);
-            if (unAssigndEmployeesTab.ClassListContains(pressedtabName))
-                unAssigndEmployeesTab.RemoveFromClassList(pressedtabName);
+            if (!assignedEmployeesTab.ClassListContains(pressedTabName))
+                assignedEmployeesTab.AddToClassList(pressedTabName);
+            if (unAssignedEmployeesTab.ClassListContains(pressedTabName))
+                unAssignedEmployeesTab.RemoveFromClassList(pressedTabName);
 
             assignedEmployeesList.Rebuild();
 
         });
-        unAssigndEmployeesTab.RegisterCallback<ClickEvent>(e => {
+        unAssignedEmployeesTab.RegisterCallback<ClickEvent>(e => {
             assignedEmployeesList.style.display = DisplayStyle.None;
             unAssignedEmployeesList.style.display = DisplayStyle.Flex;
-            if (!unAssigndEmployeesTab.ClassListContains(pressedtabName))
-                unAssigndEmployeesTab.AddToClassList(pressedtabName);
-            if (assigndEmployeesTab.ClassListContains(pressedtabName))
-                assigndEmployeesTab.RemoveFromClassList(pressedtabName);
+            if (!unAssignedEmployeesTab.ClassListContains(pressedTabName))
+                unAssignedEmployeesTab.AddToClassList(pressedTabName);
+            if (assignedEmployeesTab.ClassListContains(pressedTabName))
+                assignedEmployeesTab.RemoveFromClassList(pressedTabName);
 
             unAssignedEmployeesList.Rebuild();
         });
@@ -118,7 +118,7 @@ public class ProjectInfoUI : MonoBehaviour
             template.Q<Button>("Delete").clicked += () =>
             {
                 var emp = template.userData as ProjectEmployee;
-                var tech = emp.TechicalSkills;
+                var tech = emp.TechnicalSkills;
                 var des = emp.DesignSkills;
                 
                 project.DismissEmployee(tech, des);
@@ -130,7 +130,7 @@ public class ProjectInfoUI : MonoBehaviour
 
                 assignedEmployeesList.Rebuild();
 
-                onUnAssigndProjectFromEmployee.Invoke(project);
+                onUnAssignProjectFromEmployee.Invoke(project);
             };
             return template;
         };
@@ -138,7 +138,7 @@ public class ProjectInfoUI : MonoBehaviour
         assignedEmployeesList.bindItem = (item, index) =>
         {
             var emp = (assignedEmployees[index] as ProjectEmployee);
-            var tech = emp.TechicalSkills;
+            var tech = emp.TechnicalSkills;
             var des = emp.DesignSkills;
 
             item.userData = assignedEmployees[index];
@@ -163,7 +163,7 @@ public class ProjectInfoUI : MonoBehaviour
             template.Q<Button>("AssignProject").clicked += () =>
             {
                 var emp = template.userData as ProjectEmployee;
-                var tech = emp.TechicalSkills;
+                var tech = emp.TechnicalSkills;
                 var des = emp.DesignSkills;
 
                 project.AssignEmployee(tech, des);
@@ -174,7 +174,7 @@ public class ProjectInfoUI : MonoBehaviour
 
                 unAssignedEmployeesList.Rebuild();
 
-                onAssigndProjectToEmployee.Invoke(project);
+                onAssignProjectToEmployee.Invoke(project);
 
             };
 
@@ -184,7 +184,7 @@ public class ProjectInfoUI : MonoBehaviour
         unAssignedEmployeesList.bindItem = (item, index) =>
         {
             var emp = (unAssignedEmployees[index] as ProjectEmployee);
-            var tech = emp.TechicalSkills;
+            var tech = emp.TechnicalSkills;
             var des = emp.DesignSkills;
 
             item.userData = unAssignedEmployees[index];

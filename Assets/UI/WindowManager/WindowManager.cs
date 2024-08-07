@@ -30,8 +30,8 @@ public static class WindowManager
 
         GameObject marketingUI = UI.transform.Find("Marketing").gameObject;
         VisualElement marketingRoot = marketingUI.GetComponent<UIDocument>().rootVisualElement;
-        window.Add(WindowName.Markiting, marketingRoot);
-        windowGameObject.Add(WindowName.Markiting, marketingUI);
+        window.Add(WindowName.Marketing, marketingRoot);
+        windowGameObject.Add(WindowName.Marketing, marketingUI);
 
         GameObject employeesUI = UI.transform.Find("HiredEmployees").gameObject;
         VisualElement employeesRoot = employeesUI.GetComponent<UIDocument>().rootVisualElement;
@@ -43,10 +43,10 @@ public static class WindowManager
         window.Add(WindowName.Loan, loansRoot);
         windowGameObject.Add(WindowName.Loan, loans);
 
-        GameObject stor = UI.transform.Find("Store").gameObject;
-        VisualElement storRoot = stor.GetComponent<UIDocument>().rootVisualElement;
-        window.Add(WindowName.Store, storRoot);
-        windowGameObject.Add(WindowName.Store, stor);
+        GameObject store = UI.transform.Find("Store").gameObject;
+        VisualElement storeRoot = store.GetComponent<UIDocument>().rootVisualElement;
+        window.Add(WindowName.Store, storeRoot);
+        windowGameObject.Add(WindowName.Store, store);
 
         GameObject officeManager = UI.transform.Find("OfficeManager").gameObject;
         VisualElement officeRoot = officeManager.GetComponent<UIDocument>().rootVisualElement;
@@ -55,8 +55,8 @@ public static class WindowManager
 
         GameObject negotiationUI = UI.transform.Find("Negotiation").gameObject;
         VisualElement negotiationRoot = negotiationUI.GetComponent<UIDocument>().rootVisualElement;
-        subWindow.Add(SubWindowName.Negotation, negotiationRoot);
-        subWindowGameObject.Add(SubWindowName.Negotation, negotiationUI);
+        subWindow.Add(SubWindowName.Negotiation, negotiationRoot);
+        subWindowGameObject.Add(SubWindowName.Negotiation, negotiationUI);
 
         GameObject addLoan = UI.transform.Find("AddLoan").gameObject;
         VisualElement addLoanRoot = addLoan.GetComponent<UIDocument>().rootVisualElement;
@@ -112,25 +112,25 @@ public static class WindowManager
 
     public static void ShowNotificationAlert(string message)
     {
-        GetSubWindowGameObject(SubWindowName.NotificationAlert).GetComponent<NotificatoinUI>().SetNotification(message);
+        GetSubWindowGameObject(SubWindowName.NotificationAlert).GetComponent<NotificationUI>().SetNotification(message);
         OpenSubWindow(SubWindowName.NotificationAlert);
     }
 
     public static void ShowNotificationAlert(string message, Action action)
     {
-        GetSubWindowGameObject(SubWindowName.NotificationAlert).GetComponent<NotificatoinUI>().SetNotification(message,action);
+        GetSubWindowGameObject(SubWindowName.NotificationAlert).GetComponent<NotificationUI>().SetNotification(message,action);
         OpenSubWindow(SubWindowName.NotificationAlert);
     }
 
-    public static void AddWindow(WindowName windowName, VisualElement UIDecomentRoot, GameObject gameObject)
+    public static void AddWindow(WindowName windowName, VisualElement UIDocumentRoot, GameObject gameObject)
     {
-        window.Add(windowName, UIDecomentRoot);
+        window.Add(windowName, UIDocumentRoot);
         windowGameObject.Add(windowName, gameObject);
     }
 
-    public static void AddSubWindow(SubWindowName subWindowName, VisualElement UIDecomentRoot, GameObject gameObject)
+    public static void AddSubWindow(SubWindowName subWindowName, VisualElement UIDocumentRoot, GameObject gameObject)
     {
-        subWindow.Add(subWindowName, UIDecomentRoot);
+        subWindow.Add(subWindowName, UIDocumentRoot);
         subWindowGameObject.Add(subWindowName, gameObject);
     }
 
@@ -173,7 +173,7 @@ public static class WindowManager
         return null;
     }
 
-    public static bool isThereWindoOpend()
+    public static bool isThereWindowOpen()
     {
         if (GetWindow(currentWindow).style.display == DisplayStyle.None
             && GetSubWindow(currentSubWindow).style.display == DisplayStyle.None)

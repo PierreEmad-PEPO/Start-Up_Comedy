@@ -31,12 +31,12 @@ public static class GameManager
     public static List<Employee> HiredHrEmployee { get { return hiredEmployee.Where(g => g.Specialization == EmployeeSpecialization.HR).ToList(); } }
     public static List<Loan> Loans { get { return loans; } }
     public static List<Office> Offices { get { return offices; } }
-    public static int TotalHrEmlpoyeesSkills { get { return GetTotalHrEmlpoyeesSkills(); } }
-    public static int TotalMarkeintingSkills { get { return GetTotalMarkeitingEmployeesSkills(); } }
+    public static int TotalHrEmployeesSkills { get { return GetTotalHrEmployeesSkills(); } }
+    public static int TotalMarketingSkills { get { return GetTotalMarketingEmployeesSkills(); } }
 
     public static int GroundCount { get { return groundCount; } set { groundCount += 1;} }
 
-    //Methodes
+    //Methods
 
     public static void Init(StartUp _startUp)
     {
@@ -49,7 +49,7 @@ public static class GameManager
         // 50 and .5 for now
         marketingPrice.Add(MarketingEnum.SocialAD, new List<float>{ 1500f,50f});
         marketingPrice.Add(MarketingEnum.TVAD, new List<float> { 5000f, 150f });
-        marketingPrice.Add(MarketingEnum.RadoiAd, new List<float> { 1000f, 30f });
+        marketingPrice.Add(MarketingEnum.RadioAd, new List<float> { 1000f, 30f });
     }
     public static int GetMarketingPrice(MarketingEnum name)
     {
@@ -80,8 +80,8 @@ public static class GameManager
         return offices.Where(e => e.ID == id).First();
     }
 
-    // Privet Methodes
-    private static int GetTotalHrEmlpoyeesSkills()
+    // Private Methods
+    private static int GetTotalHrEmployeesSkills()
     {
         int total = 0;
         foreach (HrEmployee Hr in HiredHrEmployee)
@@ -89,7 +89,7 @@ public static class GameManager
         return total;
     }
 
-    private static int GetTotalMarkeitingEmployeesSkills()
+    private static int GetTotalMarketingEmployeesSkills()
     {
         int total = 0;
         foreach (MarketingEmployee marketingEmployee in HiredMarketingEmployee)
@@ -102,7 +102,7 @@ public static class GameManager
         float sum = 0;
         foreach (ProjectEmployee employee in employees)
         {
-            sum += employee.TechicalSkills;
+            sum += employee.TechnicalSkills;
         }
         if (sum == 0) return 0;
         return sum / employees.Count;
